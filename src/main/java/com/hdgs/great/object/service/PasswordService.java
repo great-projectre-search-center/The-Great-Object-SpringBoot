@@ -1,11 +1,11 @@
 package com.hdgs.great.object.service;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public interface PasswordService {
 
     /**
      * 密码加密
+     *
      * @param rawPassword
      * @return
      */
@@ -13,6 +13,7 @@ public interface PasswordService {
 
     /**
      * 密码匹配
+     *
      * @param rawPassword
      * @param encodedPassword
      * @return

@@ -1,10 +1,8 @@
 package com.hdgs.great.object.service;
+
 import com.hdgs.great.object.domain.WxAccount;
 import org.apache.ibatis.annotations.*;
 
-
-
-@Mapper
 public interface WxAccountService {
 
     public WxAccount getWxAccount(int id);
@@ -13,6 +11,7 @@ public interface WxAccountService {
 
     /**
      * 登录凭证校验
+     *
      * @param js_code
      * @return
      */

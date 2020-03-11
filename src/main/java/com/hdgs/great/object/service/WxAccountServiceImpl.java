@@ -22,10 +22,10 @@ public class WxAccountServiceImpl implements WxAccountService {
     @Autowired
     PasswordService passwordService;
 
-    @Autowired(required = false)
+    @Autowired
     RestTemplate restTemplate;
 
-    @Autowired(required = false)
+    @Autowired
     WxAccountRepository wxAccountRepository;
 
     @Value("${wx.appid}")
