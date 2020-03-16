@@ -13,13 +13,13 @@ public class WxAccount implements UserDetails {
     String openId;
     String sessionKey;
 
-    String nickName;
-    String gender;
-    String city;
-    String province;
-    String country;
-    String avatarUrl;
-    String encodedPassword;
+    String nickName;//昵称
+    String gender;//性别
+    String city;//城市
+    String province;//省份
+    String country;//国家
+    String avatarUrl;//头像地址
+    String encodedPassword;//加密的密码
 
 
     public WxAccount(String openId, String sessionKey) {
