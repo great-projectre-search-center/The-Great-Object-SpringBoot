@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UploadUserInfoImpl implements UploadUserInfo {
+public class UploadUserInfoServiceImpl implements UploadUserInfoService {
 
     @Autowired
     WxAccountRepository wxAccountRepository;

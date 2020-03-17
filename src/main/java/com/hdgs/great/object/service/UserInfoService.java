@@ -6,5 +6,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 public interface UserInfoService {
-    String changAvatar(WxAccount wxAccount, MultipartFile multipartFile) throws IOException;
+    /**
+     * 更改头像
+     * @param wxAccount
+     * @param multipartFile
+     * @return
+     * @throws IOException
+     */
+    String changeAvatar(WxAccount wxAccount, MultipartFile multipartFile) throws IOException;
 }

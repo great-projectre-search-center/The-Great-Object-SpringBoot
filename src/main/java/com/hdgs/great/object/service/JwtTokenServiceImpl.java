@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class JwtTokenServiceImpl {
+public class JwtTokenServiceImpl implements JwtTokenService{
 
     @Value("${jwt.expiretime}")
     long EXPIRE_TIME;

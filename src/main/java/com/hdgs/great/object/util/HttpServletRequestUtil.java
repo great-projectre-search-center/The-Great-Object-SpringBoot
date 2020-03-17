@@ -9,6 +9,12 @@ import java.io.InputStreamReader;
 
 public class HttpServletRequestUtil {
 
+    /**
+     * RequestBody转化为字符串
+     * @param request
+     * @return
+     * @throws IOException
+     */
     public static String RequestBody2String(HttpServletRequest request) throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -20,6 +26,12 @@ public class HttpServletRequestUtil {
         return stringBuilder.toString();
     }
 
+    /**
+     * RequestBody转化为JSON
+     * @param request
+     * @return
+     * @throws IOException
+     */
     public static JSONObject RequestBody2Json(HttpServletRequest request) throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));

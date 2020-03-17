@@ -19,7 +19,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     WxAccountRepository wxAccountRepository;
 
 
-    public String changAvatar(WxAccount wxAccount, MultipartFile multipartFile) throws IOException {
+    public String changeAvatar(WxAccount wxAccount, MultipartFile multipartFile) throws IOException {
         String a = uploadFileService.uuidFile(multipartFile, "avatar/");
         wxAccount.setAvatarUrl("/avatar/" + a);
         wxAccountRepository.updateByWxAccount(wxAccount);

@@ -15,7 +15,7 @@ public class UploadFileServiceImpl implements UploadFileService{
     String userResourceBasePath;
 
 
-    public UploadFileServiceImpl(@Value("${xyz.ljqiii.uploadedfilepath}") String path, @Value("${xyz.ljqiii.userresource}") String path2) {
+    public UploadFileServiceImpl(@Value("${xyz.zxcwxy999.uploadedfilepath}") String path, @Value("${xyz.zxcwxy999.userresource}") String path2) {
 
         if (path.endsWith("/")) {
             this.uploadFileBasePath = path;
@@ -39,14 +39,14 @@ public class UploadFileServiceImpl implements UploadFileService{
         }
         String tempName = UUID.randomUUID().toString();
         String originalFilename = file.getOriginalFilename();
-        String extnmae = "";
+        String extname = "";
 
         if (originalFilename.contains(".")) {
             String[] namepart = originalFilename.split("\\.");
-            extnmae = namepart[namepart.length - 1];
+            extname = namepart[namepart.length - 1];
         }
-        if (!extnmae.equals("")) {
-            tempName = tempName + "." + extnmae;
+        if (!extname.equals("")) {
+            tempName = tempName + "." + extname;
         }
         String pathname = uploadFileBasePath + subpath + tempName;
 

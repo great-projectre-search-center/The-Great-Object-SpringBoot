@@ -8,6 +8,12 @@ import java.io.PrintWriter;
 
 public class HttpServletResponseUtil {
 
+    /**
+     * 输出字符串
+     * @param httpServletResponse
+     * @param jsonString
+     * @throws IOException
+     */
     public static void returnString(HttpServletResponse httpServletResponse, String jsonString) throws IOException {
 
         httpServletResponse.setHeader("content-type", "application/json");
@@ -17,6 +23,12 @@ public class HttpServletResponseUtil {
         out.close();
     }
 
+    /**
+     * 输出JSON
+     * @param httpServletResponse
+     * @param object
+     * @throws IOException
+     */
     public static void returnJson(HttpServletResponse httpServletResponse, Object object) throws IOException {
 
         String jsonString = JSONObject.toJSONString(object);
@@ -27,6 +39,13 @@ public class HttpServletResponseUtil {
         out.close();
 
     }
+
+    /**
+     * 输出JSON
+     * @param httpServletResponse
+     * @param jsonObject
+     * @throws IOException
+     */
     public static void returnJson(HttpServletResponse httpServletResponse, JSONObject jsonObject) throws IOException {
 
         String jsonString = jsonObject.toJSONString();

@@ -50,7 +50,7 @@ public class NotificationServiceImpl {
 
         Notification[] notifications = notificationRepository.findByToopenid(toopenid);
 
-        ArrayList<JSONObject> responejson = new ArrayList<>();
+        ArrayList<JSONObject> responsejson = new ArrayList<>();
 
         for (Notification notification : notifications) {
 
@@ -79,8 +79,8 @@ public class NotificationServiceImpl {
 
             temp.put("id", notification.getId());
 
-            responejson.add(temp);
+            responsejson.add(temp);
         }
-        return responejson;
+        return responsejson;
     }
 }

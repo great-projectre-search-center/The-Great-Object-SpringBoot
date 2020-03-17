@@ -8,7 +8,11 @@ public class AccountTypeUtil {
     public static int UUIDACCOUNT = 2;
     public static int OTHER = -1;
 
-
+    /**
+     * 判断openid是哪个类型的id
+     * @param openid
+     * @return
+     */
     public static int judge(String openid) {
         //uuid example      : 3d6185db-8ab8-42ce-bd27-a906605a1e83
         //openid example    : owh1O5ckqseCFh8ZDmT6mpA7zpPQ

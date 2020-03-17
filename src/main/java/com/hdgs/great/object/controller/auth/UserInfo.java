@@ -26,7 +26,11 @@ public class UserInfo {
     @Autowired
     UserInfoService userInfoService;
 
-
+    /**
+     * 获取用户信息
+     * @param wxAuthenticationToken
+     * @return
+     */
     @GetMapping("/getuserinfo")
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     public JSONObject getUserInfo(WxAuthenticationToken wxAuthenticationToken) {
@@ -43,7 +47,14 @@ public class UserInfo {
         return responsejson;
     }
 
-
+    /**
+     * 更改头像
+     * @param request
+     * @param wxAuthenticationToken
+     * @param multipartFile
+     * @param servletRequest
+     * @return
+     */
     @PostMapping("/setavatar")
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     public JSONObject setAvatar(ServletRequest request, WxAuthenticationToken wxAuthenticationToken, @RequestParam("file") MultipartFile[] multipartFile, ServletRequest servletRequest)  {
@@ -55,7 +66,7 @@ public class UserInfo {
 
 
         try {
-            String avatarname= userInfoService.changAvatar(wxAccount,avatar);
+            String avatarname= userInfoService.changeAvatar(wxAccount,avatar);
 
             String contentpath=servletRequest.getServletContext().getContextPath();
             if(!contentpath.equals("")){

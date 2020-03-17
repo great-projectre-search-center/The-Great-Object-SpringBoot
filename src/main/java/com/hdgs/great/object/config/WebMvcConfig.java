@@ -11,10 +11,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("${xyz.ljqiii.uploadedfilepath}")
+    @Value("${xyz.zxcwxy999.uploadedfilepath}")
     String uploadedfilepath;
 
-    @Value("${xyz.ljqiii.resourcepath}")
+    @Value("${xyz.zxcwxy999.resourcepath}")
     String resourcepath;
 
     @Override

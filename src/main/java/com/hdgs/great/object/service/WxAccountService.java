@@ -17,7 +17,11 @@ public interface WxAccountService {
      */
     public String code2Session(String js_code);
 
-
+    /**
+     * 昵称是否存在
+     * @param nickName
+     * @return
+     */
     public boolean isNicknameExist(String nickName);
 
 }

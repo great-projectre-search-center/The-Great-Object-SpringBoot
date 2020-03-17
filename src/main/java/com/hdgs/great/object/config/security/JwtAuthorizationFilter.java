@@ -4,7 +4,7 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.hdgs.great.object.config.security.GrantedAuthority.WxAuthenticationToken;
 import com.hdgs.great.object.repository.WxAccountRepository;
-import com.hdgs.great.object.service.JwtTokenServiceImpl;
+import com.hdgs.great.object.service.JwtTokenService;
 import com.hdgs.great.object.util.HttpServletResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
     @Autowired
-    JwtTokenServiceImpl jwtTokenService;
+    JwtTokenService jwtTokenService;
 
     @Autowired
     WxAccountRepository wxAccountRepository;

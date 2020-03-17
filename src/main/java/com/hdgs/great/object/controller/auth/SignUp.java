@@ -24,12 +24,16 @@ public class SignUp {
     @Autowired
     WxAccountService wxAccountService;
 
-
+    /**
+     * 用户注册
+     * @param requestjson
+     * @return
+     */
     @PostMapping("/signup")
     public JSONObject signUp(@RequestBody JSONObject requestjson) {
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        JSONObject responejson = new JSONObject();
+        JSONObject responsejson = new JSONObject();
 
         String nickname = requestjson.getString("nickname");
         String password = requestjson.getString("password");
@@ -55,13 +59,13 @@ public class SignUp {
         if (errcode == 0) {
             wxAccount = wxAccountService.addAccount(nickname, password);
             String jwt_token = jwtTokenService.generateToken(wxAccount.getUsername());
-            responejson.put("token", jwt_token);
+            responsejson.put("token", jwt_token);
         }
 
-        responejson.put("errmsg", errmsgs);
-        responejson.put("errcode", errcode);
+        responsejson.put("errmsg", errmsgs);
+        responsejson.put("errcode", errcode);
 
-        return responejson;
+        return responsejson;
     }
 
 

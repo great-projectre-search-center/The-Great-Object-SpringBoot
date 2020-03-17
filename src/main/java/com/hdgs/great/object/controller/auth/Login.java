@@ -8,7 +8,7 @@ import com.hdgs.great.object.repository.WxAccountRepository;
 import com.hdgs.great.object.service.JwtTokenService;
 import com.hdgs.great.object.service.PasswordService;
 import com.hdgs.great.object.service.UploadFileService;
-import com.hdgs.great.object.service.UploadUserInfo;
+import com.hdgs.great.object.service.UploadUserInfoService;
 import com.hdgs.great.object.util.AccountTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,8 +37,13 @@ public class Login {
     JwtTokenService jwtTokenService;
 
     @Autowired
-    UploadUserInfo uploadUserInfo;
+    UploadUserInfoService uploadUserInfoService;
 
+    /**
+     * 授权登录
+     * @param wxAuthenticationToken
+     * @return
+     */
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     @PostMapping("/auth/wxlogin")
     public JSONObject wxLogin(WxAuthenticationToken wxAuthenticationToken) {
@@ -61,26 +66,43 @@ public class Login {
     }
 
 
+    /**
+     * 加载用户信息
+     * @param userinfo
+     * @param wxAuthenticationToken
+     * @return
+     * @throws IOException
+     */
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     @PostMapping("/auth/uploadWxUserinfo")
     public String uploadWxUserinfo(@RequestBody JSONObject userinfo, WxAuthenticationToken wxAuthenticationToken) throws IOException {
-        uploadUserInfo.upload((Integer) wxAuthenticationToken.getCredentials(), userinfo);
+        uploadUserInfoService.upload((Integer) wxAuthenticationToken.getCredentials(), userinfo);
         return "ok";
     }
 
+    /**
+     * 加载头像信息
+     * @param wxAuthenticationToken
+     * @param file
+     * @return
+     */
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     @PostMapping("/auth/uploadAvatar")
     public String uploadAvatar(WxAuthenticationToken wxAuthenticationToken, MultipartFile file) {
         return "";
     }
 
-
+    /**
+     * 用户名密码登录
+     * @param requestjson
+     * @return
+     */
     @PostMapping("/restlogin")
     public JSONObject restLogin(@RequestBody JSONObject requestjson) {
         String nickname = requestjson.getString("nickname");
         String password = requestjson.getString("password");
 
-        JSONObject responejson=new JSONObject();
+        JSONObject responsejson=new JSONObject();
 
         List<WxAccount> wxAccounts = wxAccountRepository.selectByNickName(nickname);
 
@@ -95,26 +117,26 @@ public class Login {
 
         if (sumUuidAccount == 1) {
             if (passwordService.matches(password,wxAccounts.get(index).getEncodedPassword())) {
-                responejson.put("errcode",0);
-                responejson.put("errmsg","");
+                responsejson.put("errcode",0);
+                responsejson.put("errmsg","");
                 String token=jwtTokenService.generateToken(wxAccounts.get(index).getUsername());
-                responejson.put("token",token);
+                responsejson.put("token",token);
 
-                return responejson;
+                return responsejson;
             }else {
-                responejson.put("errcode",1);
-                responejson.put("errmsg","用户名或密码错误");
+                responsejson.put("errcode",1);
+                responsejson.put("errmsg","用户名或密码错误");
 
-                return responejson;
+                return responsejson;
             }
         }else if(sumUuidAccount==0){
-            responejson.put("errcode",1);
-            responejson.put("errmsg","用户不存在");
+            responsejson.put("errcode",1);
+            responsejson.put("errmsg","用户不存在");
 
-            return responejson;
+            return responsejson;
         }
-        responejson.put("errcode",1);
-        responejson.put("errmsg","内部错误");//出现了同名用户
-        return responejson;
+        responsejson.put("errcode",1);
+        responsejson.put("errmsg","内部错误");//出现了同名用户
+        return responsejson;
     }
 }

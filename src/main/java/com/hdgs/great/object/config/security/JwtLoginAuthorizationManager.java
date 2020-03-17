@@ -3,6 +3,7 @@ package com.hdgs.great.object.config.security;
 import com.hdgs.great.object.config.security.GrantedAuthority.WxAuthenticationToken;
 import com.hdgs.great.object.repository.WxAccountRepository;
 import com.hdgs.great.object.domain.WxAccount;
+import com.hdgs.great.object.service.JwtTokenService;
 import com.hdgs.great.object.service.JwtTokenServiceImpl;
 import com.hdgs.great.object.service.NotificationServiceImpl;
 import com.hdgs.great.object.service.WxAccountService;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class JwtLoginAuthorizationManager implements AuthenticationManager {
 
     @Autowired
-    JwtTokenServiceImpl jwtTokenService;
+    JwtTokenService jwtTokenService;
 
     @Autowired
     ApplicationContext applicationContext;
