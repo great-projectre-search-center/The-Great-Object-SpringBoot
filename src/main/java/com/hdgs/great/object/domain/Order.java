@@ -11,13 +11,14 @@ public class Order {
     private String catalog;//订单类型
     private double longitude;//位置的经度
     private double latitude;//位置的纬度
-    private int reward;
+    private int reward;//奖励积分
+    private int status;//订单状态0未接单1已接单2送货中3已接收4已评价5已取消
 
     protected Order() {
 
     }
 
-    public Order(int id, Date date, String user, String title, String content, String catalog, double longitude, double latitude, int reward) {
+    public Order(int id, Date date, String user, String title, String content, String catalog, double longitude, double latitude, int reward, int status) {
         this.id = id;
         this.date = date;
         this.user = user;
@@ -27,9 +28,10 @@ public class Order {
         this.longitude = longitude;
         this.latitude = latitude;
         this.reward = reward;
+        this.status = status;
     }
 
-    public Order(String user, String title, String content, String catalog, double longitude, double latitude, int reward) {
+    public Order(String user, String title, String content, String catalog, double longitude, double latitude, int reward, int status) {
         this.user = user;
         this.title = title;
         this.content = content;
@@ -37,6 +39,7 @@ public class Order {
         this.longitude = longitude;
         this.latitude = latitude;
         this.reward = reward;
+        this.status = status;
     }
 
     public int getId() {
@@ -110,5 +113,13 @@ public class Order {
 
     public void setReward(int reward) {
         this.reward = reward;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

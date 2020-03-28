@@ -28,6 +28,7 @@ CREATE TABLE `notification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fromopenid` varchar(40) NOT NULL,
   `toopenid` varchar(40) NOT NULL,
+  `title` varchar(200) DEFAULT NULL,
   `msg` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 ;

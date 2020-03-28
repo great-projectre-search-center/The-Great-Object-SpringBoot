@@ -23,14 +23,24 @@ public interface OrderRepository {
 
 
     /**
-     * 根据分类分页查找订单
+     * 根据分类分页查找全部订单
      *
      * @param catalog
      * @param pageable
      * @return
      */
     @Select("select (*) from order where catalog=#{catalog} limit #{limit}")
-    Page<Order> findByCatalog(Catalog catalog, Pageable pageable);
+    Page<Order> findOrderByCatalog(Catalog catalog, Pageable pageable);
+
+    /**
+     * 根据订单状态分页查找全部订单
+     * @param status
+     * @param pageable
+     * @return
+     */
+    @Select("select (*) from order where status=#{status} limit #{limit}")
+    Page<Order> findOrderByStatus(int status, Pageable pageable);
+
 
     /**
      * 增加订单
