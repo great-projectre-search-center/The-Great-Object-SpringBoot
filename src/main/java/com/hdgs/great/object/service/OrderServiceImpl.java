@@ -18,13 +18,22 @@ public class OrderServiceImpl implements OrderService{
     OrderRepository orderRepository;
 
     @Override
-    public void create(Order order) {
+    public boolean createOrder(Order order) {
         //创建当前时间对象，封装Order属性
         Date now = new Date();
         order.setDate(now);
         //订单在最初创建时默认是未接单状态
         order.setStatus(0);
-        orderRepository.insertOrder(order);
+        int insertNum=orderRepository.insertOrder(order);
+        if(insertNum>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateOrder(Order order) {
+        return false;
     }
 
     @Override

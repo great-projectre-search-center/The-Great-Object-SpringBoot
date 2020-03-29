@@ -51,6 +51,14 @@ public interface OrderRepository {
     @Insert("insert into order(date,user,title,content,catalog,longtitude,latitude,reward,status) values(#{date},#{user},#{title},#{content},#{catalog},#{longtitude},#{latitude},#{reward},#{status})")
     int insertOrder(Order order);
 
+
+    /**
+     * 修改订单
+     * @param order 订单对象数据
+     * @return 数据库中受影响的行数
+     */
+    @Insert("update order set date=#{date},user=#{user},title=#{title},content=#{content},catalog=#{catalog},longtitude=#{longtitude},latitude=#{latitude},reward=#{reward},status=#{status}  where id=#{id}")
+    int updateOrder(Order order);
     /**
      * 删除订单
      *

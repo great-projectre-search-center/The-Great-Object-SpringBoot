@@ -13,7 +13,14 @@ public interface OrderService {
      * 创建订单
      * @param order 订单数据
      */
-    void create(Order order);
+    boolean createOrder(Order order);
+
+    /**
+     * 修改订单
+     * @param order
+     * @return
+     */
+    boolean updateOrder(Order order);
 
     /**
      * 删除订单
@@ -22,6 +29,12 @@ public interface OrderService {
      */
     void delete(int id);
 
+    /**
+     * 订单是否存在
+     * @param id
+     * @return
+     */
+   // boolean isExist(int id);
 
     /**
      * 根据Id查找订单

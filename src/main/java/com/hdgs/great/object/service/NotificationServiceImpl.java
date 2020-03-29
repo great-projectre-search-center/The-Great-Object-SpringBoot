@@ -41,8 +41,11 @@ public class NotificationServiceImpl implements NotificationService {
      */
     public boolean insertNotification(String fromopenid, String toopenid, String title, String msg) {
         Notification notification = new Notification(fromopenid, toopenid, title, msg);
-        notificationRepository.insertByNotification(notification);
-        return true;
+        int insertNum=notificationRepository.insertByNotification(notification);
+        if(insertNum>0){
+            return true;
+        }
+        return false;
     }
 
 
