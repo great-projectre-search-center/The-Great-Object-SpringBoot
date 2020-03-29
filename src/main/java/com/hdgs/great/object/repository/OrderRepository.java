@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+
 @Mapper
 public interface OrderRepository {
 
@@ -43,24 +44,19 @@ public interface OrderRepository {
 
 
     /**
-     * 增加订单
-     *
-     * @param user
-     * @param title
-     * @param content
-     * @param catalog
-     * @param longitude
-     * @param latitude
-     * @param reward
+     * 创建订单
+     * @param order 订单对象数据
+     * @return 数据库中受影响的行数
      */
-    @Insert("insert into order(user,title,content,catalog,longtitude,latitude,reward) values(#{user},#{title},#{content},#{catalog},#{longtitude},#{latitude},#{reward})")
-    void insertOrder(String user, String title, String content, String catalog, double longitude, double latitude, int reward);
+    @Insert("insert into order(date,user,title,content,catalog,longtitude,latitude,reward,status) values(#{date},#{user},#{title},#{content},#{catalog},#{longtitude},#{latitude},#{reward},#{status})")
+    int insertOrder(Order order);
 
     /**
      * 删除订单
      *
-     * @param id
+     * @param id 订单id
+     * @return 数据库中受影响的行数
      */
     @Delete("delete from order where id=#{id}")
-    void deleteOrder(int id);
+    int deleteOrderById(int id);
 }

@@ -14,7 +14,7 @@ public class Order {
     private int reward;//奖励积分
     private int status;//订单状态0未接单1已接单2送货中3已接收4已评价5已取消
 
-    protected Order() {
+    public Order() {
 
     }
 
