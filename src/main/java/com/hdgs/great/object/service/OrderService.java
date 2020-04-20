@@ -11,52 +11,101 @@ public interface OrderService {
 
     /**
      * 创建订单
+     *
      * @param order 订单数据
      */
     boolean createOrder(Order order);
 
     /**
-     * 修改订单
+     * 修改订单信息
+     *
      * @param order
      * @return
      */
-    boolean updateOrder(Order order);
+    boolean updateOrderInfo(Order order);
+
+    /**
+     * 修改状态为接单
+     *
+     * @param orderId
+     * @param acctpterId
+     * @return
+     */
+    boolean acceptOrder(Long orderId, String acctpterId);
+
+    /**
+     * 修改状态为送货中
+     *
+     * @param orderId
+     * @return
+     */
+    boolean deliveringOrder(Long orderId);
+
+    /**
+     * 修改状态为已接收
+     *
+     * @param orderId
+     * @return
+     */
+    boolean receivedOrder(Long orderId);
+
+    /**
+     * 评价订单
+     *
+     * @param orderId
+     * @param comment
+     * @return
+     */
+    boolean commentOrder(Long orderId, String comment);
+
+    /**
+     * 取消订单
+     *
+     * @param orderId
+     * @return
+     */
+    boolean cancelOrder(Long orderId);
 
     /**
      * 删除订单
      *
-     * @param id 订单id
+     * @param orderId
+     * @return
      */
-    void delete(int id);
+    boolean deleteOrder(Long orderId);
 
     /**
-     * 订单是否存在
+     * 根据订单类型查找订单按照指定字段排序（时间、奖励积分）
+     *
+     * @param catalog
+     * @param orderBy
+     * @return
+     */
+    Page<Order> getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size);
+
+    /**
+     * 根据订单名称模糊查询
+     *
+     * @param title
+     * @return
+     */
+    Page<Order> getOrderByTitle(String title, int page, int size);
+
+    /**
+     * 根据放单人ID和接单人ID以及订单状态查找订单
+     *
      * @param id
      * @return
      */
-   // boolean isExist(int id);
+    Page<Order> getOrderByCreaterOrAccepterId(String id, int status, int page, int size);
 
     /**
-     * 根据Id查找订单
+     * 根据订单Id查找订单
      *
      * @param id
      * @return 订单数据
      */
-    Order getMappingById(int id);
+    Order getOrderById(Long id);
 
-    /**
-     * 根据分类分页查找全部订单
-     *
-     * @param catalog 订单类型
-     * @return
-     */
-    Page<Order> getMappingByCatalog(Catalog catalog,int page ,int size);
-
-    /**
-     * 根据订单状态分页查找全部订单
-     * @param status
-     * @return
-     */
-    Page<Order> getMappingByStatus(int status,int page ,int size);
 
 }

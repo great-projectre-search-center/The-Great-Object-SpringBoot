@@ -68,7 +68,6 @@ public class WxAccountServiceImpl implements WxAccountService {
         URI uri = uriComponentsBuilder.build().encode().toUri();
         System.out.println(uri.toString());
 
-
         String code2SessionString = restTemplate.getForObject(uri, String.class);
 
         System.out.println(code2SessionString);

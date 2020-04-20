@@ -64,7 +64,12 @@ public class NotificationController {
         return responseJSON;
     }
 
-    //发送通知
+    /**
+     * 发送通知
+     * @param openid
+     * @param jsonObject
+     * @return
+     */
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     @PostMapping("/{openid}/postnotification")
     public JSONObject postNotification(@RequestParam("openid") String openid, @RequestBody JSONObject jsonObject) {

@@ -72,11 +72,11 @@ public class OrderController {
     @RequestMapping("/delete")
     public JSONObject delete(int id) {
         //执行删除
-        orderService.delete(id);
+        boolean result=orderService.delete(id);
         //响应
-        JSONObject json = new JSONObject();
-        json.put("status", "OK");
-        return json;
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
     }
 
     /**
