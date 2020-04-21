@@ -162,6 +162,19 @@ public class OrderServiceImpl implements OrderService{
     }
 
     /**
+     * 根据放单人ID和接单人ID查找全部订单
+     *
+     * @param id
+     * @param page
+     * @param size
+     * @return
+     */
+    @Override
+    public Page<Order> getOrderByCreaterOrAccepterId(String id, int page, int size) {
+        return orderRepository.findOrderByCreaterIdOrAccepterId(id,page,size);
+    }
+
+    /**
      * 根据订单Id查找订单
      *
      * @param id

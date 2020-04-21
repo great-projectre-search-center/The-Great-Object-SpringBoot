@@ -100,6 +100,15 @@ public interface OrderService {
     Page<Order> getOrderByCreaterOrAccepterId(String id, int status, int page, int size);
 
     /**
+     * 根据放单人ID和接单人ID查找全部订单
+     * @param id
+     * @param page
+     * @param size
+     * @return
+     */
+    Page<Order> getOrderByCreaterOrAccepterId(String id, int page, int size);
+
+    /**
      * 根据订单Id查找订单
      *
      * @param id

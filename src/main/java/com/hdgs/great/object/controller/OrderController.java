@@ -4,19 +4,16 @@ package com.hdgs.great.object.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hdgs.great.object.domain.Catalog;
+import com.hdgs.great.object.domain.Location;
 import com.hdgs.great.object.domain.Order;
 import com.hdgs.great.object.service.OrderService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 
-/**
- * @author jingfeng999
- * @create 2020-03-29 16:52
- * 订单控制器
- */
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -26,39 +23,39 @@ public class OrderController {
 
     /**
      * 创建或修改订单
-     *
-     * @param jsonObject
+     * @param order
      * @return
      */
+    /*
+    JSON格式样例
+    {
+        "order_Id":"",
+        "order_Catalog":"",
+        "order_Title":"",
+        "order_CreateDate":"",
+        "order_AcceptDate":"",
+        "order_CreaterId":"",
+        "order_AccepterId":"",
+        "order_PublicField1":"",
+        "order_PublicField2":"",
+        "order_EstimateWorth":"",
+        "order_Creater":"",
+        "order_CreaterTel":"",
+        "order_CreaterLocation":"",
+        "order_ShopsLocation":"",
+        "order_Remark":"",
+        "order_Comment":"",
+        "order_Reward":"",
+        "order_Status":"",
+    }
+     */
     @PostMapping("/edit")
-    public JSONObject create(@RequestBody JSONObject jsonObject) {
-        Integer id = jsonObject.getInteger("id");
-        String user = jsonObject.getString("user");
-        String title = jsonObject.getString("title");
-        String content = jsonObject.getString("content");
-        String catalog = jsonObject.getString("catalog");
-        double longitude = jsonObject.getDouble("longitude");
-        double latitude= jsonObject.getDouble("latitude");
-        int reward= jsonObject.getInteger("reward");
-        JSONObject responseJSON = new JSONObject();
+    public JSONObject create(@RequestParam Order order) {
         boolean result;
-        Order order = new Order();
-        order.setUser(user);
-        order.setTitle(title);
-        order.setDate(new Date());
-        order.setContent(content);
-        order.setCatalog(catalog);
-        order.setLongitude(longitude);
-        order.setLatitude(latitude);
-        order.setReward(reward);
-        order.setStatus(0);
+        JSONObject responseJSON=new JSONObject();
+
         //判断是修改还是新增
-        if (id != null) {//修改
-            order.setId(id);
-            result=orderService.updateOrder(order);
-        } else {//新增
-           result=orderService.createOrder(order);
-        }
+        result=order.getOrder_Id()!=null?orderService.updateOrderInfo(order):orderService.createOrder(order);
         responseJSON.put("isOK", result);
         return responseJSON;
     }
@@ -69,10 +66,10 @@ public class OrderController {
      * @param id 订单id
      * @return json数据
      */
-    @RequestMapping("/delete")
-    public JSONObject delete(int id) {
+    @DeleteMapping("/delete")
+    public JSONObject delete(Long id) {
         //执行删除
-        boolean result=orderService.delete(id);
+        boolean result=orderService.deleteOrder(id);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
@@ -82,51 +79,159 @@ public class OrderController {
     /**
      * 根据id查询订单信息
      *
-     * @param orderid 订单id
+     * @param id 订单id
      * @return 返回订单json数据
      */
-    @RequestMapping("/list/{orderid}")
-    public String getMappingById(@PathVariable("orderid") int orderid) {
+    @GetMapping("/list/{id}")
+    public Order getMappingById(@PathVariable("id") Long id) {
         //执行查询
-        Order data = orderService.getMappingById(orderid);
-        //响应
-        String jsonOrder = JSON.toJSONString(data);
-        return jsonOrder;
+        Order data = orderService.getOrderById(id);
+        return data;
     }
+
 
     /**
      * 根据订单类型分页查询全部订单信息
-     *
-     * @param catalog 订单类型
-     * @param page    页数
-     * @param size    大小
-     * @return Order数据总体信息-json
+     * @param catalog
+     * @param orderBy
+     * @param pageIndex
+     * @param pageSize
+     * @return
      */
-    @RequestMapping("/list_catalog")
-    public String getMappingByCatalog(Catalog catalog, int page, int size) {
+    @GetMapping("/list_catalog")
+    public Page<Order> getMappingByCatalog(@RequestParam(value = "catalog") String catalog,
+                                           @RequestParam(value = "orderBy", required = false, defaultValue = "order_createdate") String orderBy,
+                                           @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
+                                           @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Page<Order> data = orderService.getMappingByCatalog(catalog, page, size);
-        //响应
-        String jsonOrder = JSON.toJSONString(data);
-        return jsonOrder;
+        Page<Order> data = orderService.getOrderByCatalogAndOrderBy(catalog,orderBy,pageIndex,pageSize);
+
+        return data;
     }
 
     /**
-     * 根据订单状态分页查询全部订单信息
-     *
-     * @param status 订单类型
-     * @param page   页数
-     * @param size   大小
-     * @return Order数据总体信息-json
+     * 根据订单状态和id分页查询全部订单信息
+     * @param id
+     * @param status
+     * @param pageIndex
+     * @param pageSize
+     * @return
      */
-    @RequestMapping("/list_status")
-    public String getMappingByStatus(int status, int page, int size) {
+    @GetMapping("/list_status")
+    public Page<Order> getMappingByIdAndStatus(@RequestParam(value = "openId")String id,
+                                               @RequestParam(value = "status")int status,
+                                               @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
+                                               @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Page<Order> data = orderService.getMappingByStatus(status, page, size);
-        //响应
-        String jsonOrder = JSON.toJSONString(data);
-        return jsonOrder;
+        Page<Order> data = orderService.getOrderByCreaterOrAccepterId(id,status,pageIndex,pageSize);
+        return data;
     }
+
+    /**
+     * 根据id分页查询全部订单信息
+     * @param id
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/list_status")
+    public Page<Order> getMappingById(@RequestParam(value = "openId")String id,
+                                      @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
+                                      @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        //执行查询
+        Page<Order> data = orderService.getOrderByCreaterOrAccepterId(id,pageIndex,pageSize);
+        return data;
+    }
+
+
+    /**
+     * 修改状态为已接单
+     * @param orderId
+     * @param accepterId
+     * @return
+     */
+    @GetMapping("/accept")
+    public JSONObject accept(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "accepterid")String accepterId){
+        boolean result=orderService.acceptOrder(orderId,accepterId);
+        //响应
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
+
+    }
+
+    /**
+     * 修改状态为送货中
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/deliver")
+    public JSONObject deliver(@RequestParam(value = "orderid")Long orderId){
+        boolean result=orderService.deliveringOrder(orderId);
+        //响应
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
+    }
+
+    /**
+     * 修改状态为已接收
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/receive")
+    public JSONObject receive(@RequestParam(value = "orderid")Long orderId){
+        boolean result=orderService.receivedOrder(orderId);
+        //响应
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
+    }
+
+    /**
+     * 修改状态为已评论
+     * @param orderId
+     * @param comment
+     * @return
+     */
+    @PostMapping("/comment")
+    public JSONObject comment(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "comment")String comment){
+        boolean result=orderService.commentOrder(orderId, comment);
+        //响应
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
+    }
+
+    /**
+     * 取消订单
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/cancel")
+    public JSONObject cancel(@RequestParam(value = "orderid")Long orderId){
+        boolean result=orderService.cancelOrder(orderId);
+        //响应
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
+    }
+
+    /**
+     * 根据名称模糊查询
+     * @param title
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/search")
+    public Page<Order> search(@RequestParam(value = "title")String title,
+                              @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
+                              @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize){
+        Page<Order> data=orderService.getOrderByTitle(title, pageIndex, pageSize);
+        return data;
+    }
+
 
 }
 

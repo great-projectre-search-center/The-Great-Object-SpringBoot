@@ -1,23 +1,23 @@
 package com.hdgs.great.object.domain;
 
 public class Location {
-    private double longitude;//位置的经度
+    private double longtitude;//位置的经度
     private double latitude;//位置的纬度
 
     public Location() {
     }
 
-    public Location(double longitude, double latitude) {
-        this.longitude = longitude;
+    public Location(double longtiude, double latitude) {
+        this.longtitude = longtitude;
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public double getLongtitude() {
+        return longtitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
     }
 
     public double getLatitude() {
@@ -26,5 +26,13 @@ public class Location {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "longtitude=" + longtitude +
+                ", latitude=" + latitude +
+                '}';
     }
 }

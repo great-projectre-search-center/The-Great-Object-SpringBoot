@@ -106,6 +106,16 @@ public interface OrderRepository {
 
 
     /**
+     * 根据放单人ID和接单人ID以及订单状态查找订单
+     * @param id
+     * @param page
+     * @param size
+     * @return
+     */
+    @Select("select * from order where order_createrid=#{id} or order_accepterid=#{id} order by order_createdate desc limit #{page}*#{size},(#{page}+1)*#{size}")
+    Page<Order>findOrderByCreaterIdOrAccepterId(String id,int page,int size);
+
+    /**
      * 根据分类分页查找全部订单
      * @param catalog
      * @param page
