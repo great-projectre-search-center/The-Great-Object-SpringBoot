@@ -28,10 +28,10 @@ public interface OrderService {
      * 修改状态为接单
      *
      * @param orderId
-     * @param acctpterId
+     * @param accepterId
      * @return
      */
-    boolean acceptOrder(Long orderId, String acctpterId);
+    boolean acceptOrder(Long orderId, String accepterId);
 
     /**
      * 修改状态为送货中

@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 @Service
@@ -24,7 +23,12 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean createOrder(Order order) {
-        return false;
+
+        //创建当前时间对象，封装Order属性
+        Date now = new Date();
+        order.setOrder_CreateDate(now);
+        int insertNum=orderRepository.insertOrder(order);
+        return insertNum>0?true:false;
     }
 
     /**
@@ -35,19 +39,24 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean updateOrderInfo(Order order) {
-        return false;
+        Date now = new Date();
+        order.setOrder_CreateDate(now);
+        int updateNum=orderRepository.updateOrder(order);
+        return updateNum>0?true:false;
     }
 
     /**
      * 修改状态为接单
      *
      * @param orderId
-     * @param acctpterId
+     * @param accepterId
      * @return
      */
     @Override
-    public boolean acceptOrder(Long orderId, String acctpterId) {
-        return false;
+    public boolean acceptOrder(Long orderId, String accepterId) {
+        Date now = new Date();
+        int updateNum=orderRepository.updateOrderStatus(orderId,1,"order_accepterid",accepterId,"order_acceptdate",now.toString());
+        return updateNum>0?true:false;
     }
 
     /**
@@ -58,7 +67,8 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deliveringOrder(Long orderId) {
-        return false;
+        int updateNum=orderRepository.updateOrderStatus(orderId,2);
+        return updateNum>0?true:false;
     }
 
     /**
@@ -69,7 +79,8 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean receivedOrder(Long orderId) {
-        return false;
+        int updateNum=orderRepository.updateOrderStatus(orderId,3);
+        return updateNum>0?true:false;
     }
 
     /**
@@ -81,7 +92,8 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean commentOrder(Long orderId, String comment) {
-        return false;
+        int updateNum=orderRepository.updateOrderStatus(orderId,4,"order_comment",comment);
+        return updateNum>0?true:false;
     }
 
     /**
@@ -92,7 +104,8 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean cancelOrder(Long orderId) {
-        return false;
+        int updateNum=orderRepository.updateOrderStatus(orderId,5);
+        return updateNum>0?true:false;
     }
 
     /**
@@ -103,7 +116,8 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deleteOrder(Long orderId) {
-        return false;
+        int updateNum=orderRepository.updateOrderStatus(orderId,6);
+        return updateNum>0?true:false;
     }
 
     /**
@@ -117,7 +131,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Page<Order> getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size) {
-        return null;
+        return orderRepository.findOrderByCatalog(catalog,orderBy,page,size);
     }
 
     /**
@@ -130,7 +144,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Page<Order> getOrderByTitle(String title, int page, int size) {
-        return null;
+        return orderRepository.findOrderByTitle("%"+title+"%",page,size);
     }
 
     /**
@@ -144,7 +158,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Page<Order> getOrderByCreaterOrAccepterId(String id, int status, int page, int size) {
-        return null;
+        return orderRepository.findOrderByCreaterIdOrAccepterIdAndStatus(id,status,page,size);
     }
 
     /**
@@ -155,60 +169,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Order getOrderById(Long id) {
-        return null;
+        return orderRepository.findOrderById(id);
     }
 
-
-
-    /*
-
-    @Override
-    public boolean createOrder(Order order) {
-        //创建当前时间对象，封装Order属性
-        Date now = new Date();
-        order.setDate(now);
-        //订单在最初创建时默认是未接单状态
-        order.setStatus(0);
-        int insertNum=orderRepository.insertOrder(order);
-        if(insertNum>0){
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean updateOrder(Order order) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        int delNum=orderRepository.deleteOrderById(id);
-        if (delNum>0){
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Order getMappingById(int id) {
-        Order data = orderRepository.findOrderById(id);
-        return data;
-    }
-
-    @Override
-    public Page<Order> getMappingByCatalog(Catalog catalog,int page ,int size) {
-        Pageable pageable = PageRequest.of(page,size);
-        Page<Order> data = orderRepository.findOrderByCatalog(catalog ,pageable);
-        return data;
-    }
-
-    @Override
-    public Page<Order> getMappingByStatus(int status,int page ,int size) {
-        Pageable pageable = PageRequest.of(page,size);
-        Page<Order> data = orderRepository.findOrderByStatus(status,pageable);
-        return data;
-    }
-
- */
 }
