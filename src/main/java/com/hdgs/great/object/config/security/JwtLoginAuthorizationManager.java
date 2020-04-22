@@ -60,7 +60,7 @@ public class JwtLoginAuthorizationManager implements AuthenticationManager {
 
             UserDetails wxAccount = wxAccountRepository.findByOpenid(openid);
             if (wxAccount == null) {
-                notificationService.insertSystemNotification(openid, "欢迎来到读书分享");
+                notificationService.insertSystemNotification(openid,"Welcome", "欢迎来到读书分享");
                 wxAccountRepository.insertOneByWxAccount(new WxAccount(openid, ""));
                 wxAccount = wxAccountRepository.findByOpenid(openid);
             }

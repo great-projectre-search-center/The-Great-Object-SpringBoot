@@ -94,7 +94,7 @@ public class Order {
         this.order_CreaterId = order_CreaterId;
     }
 
-    public String getOrder_AccepterId() {
+    public String getOrder_AccepterId(String accepterId) {
         return order_AccepterId;
     }
 
@@ -188,5 +188,29 @@ public class Order {
 
     public void setOrder_Status(int order_Status) {
         this.order_Status = order_Status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "order_Id=" + order_Id +
+                ", order_Catalog='" + order_Catalog + '\'' +
+                ", order_Title='" + order_Title + '\'' +
+                ", order_CreateDate=" + order_CreateDate +
+                ", order_AcceptDate=" + order_AcceptDate +
+                ", order_CreaterId='" + order_CreaterId + '\'' +
+                ", order_AccepterId='" + order_AccepterId + '\'' +
+                ", order_PublicField1='" + order_PublicField1 + '\'' +
+                ", order_PublicField2='" + order_PublicField2 + '\'' +
+                ", order_EstimateWorth=" + order_EstimateWorth +
+                ", order_Creater='" + order_Creater + '\'' +
+                ", order_CreaterTel='" + order_CreaterTel + '\'' +
+                ", order_CreaterLocation=" + order_CreaterLocation +
+                ", order_ShopsLocation=" + order_ShopsLocation +
+                ", order_Remark='" + order_Remark + '\'' +
+                ", order_Comment='" + order_Comment + '\'' +
+                ", order_Reward=" + order_Reward +
+                ", order_Status=" + order_Status +
+                '}';
     }
 }

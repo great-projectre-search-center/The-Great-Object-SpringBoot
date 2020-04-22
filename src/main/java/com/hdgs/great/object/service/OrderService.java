@@ -81,7 +81,7 @@ public interface OrderService {
      * @param orderBy
      * @return
      */
-    Page<Order> getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size);
+    Order[] getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size);
 
     /**
      * 根据订单名称模糊查询
@@ -89,7 +89,7 @@ public interface OrderService {
      * @param title
      * @return
      */
-    Page<Order> getOrderByTitle(String title, int page, int size);
+    Order[] getOrderByTitle(String title, int page, int size);
 
     /**
      * 根据放单人ID和接单人ID以及订单状态查找订单
@@ -97,7 +97,7 @@ public interface OrderService {
      * @param id
      * @return
      */
-    Page<Order> getOrderByCreaterOrAccepterId(String id, int status, int page, int size);
+    Order[] getOrderByCreaterOrAccepterId(String id, int status, int page, int size);
 
     /**
      * 根据放单人ID和接单人ID查找全部订单
@@ -106,7 +106,7 @@ public interface OrderService {
      * @param size
      * @return
      */
-    Page<Order> getOrderByCreaterOrAccepterId(String id, int page, int size);
+    Order[] getOrderByCreaterOrAccepterId(String id, int page, int size);
 
     /**
      * 根据订单Id查找订单

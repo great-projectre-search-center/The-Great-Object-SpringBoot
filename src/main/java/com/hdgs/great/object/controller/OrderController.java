@@ -99,12 +99,12 @@ public class OrderController {
      * @return
      */
     @GetMapping("/list_catalog")
-    public Page<Order> getMappingByCatalog(@RequestParam(value = "catalog") String catalog,
+    public Order[] getMappingByCatalog(@RequestParam(value = "catalog") String catalog,
                                            @RequestParam(value = "orderBy", required = false, defaultValue = "order_createdate") String orderBy,
                                            @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Page<Order> data = orderService.getOrderByCatalogAndOrderBy(catalog,orderBy,pageIndex,pageSize);
+        Order[] data = orderService.getOrderByCatalogAndOrderBy(catalog,orderBy,pageIndex,pageSize);
 
         return data;
     }
@@ -117,13 +117,13 @@ public class OrderController {
      * @param pageSize
      * @return
      */
-    @GetMapping("/list_status")
-    public Page<Order> getMappingByIdAndStatus(@RequestParam(value = "openId")String id,
+    @GetMapping("/list_idstatus")
+    public Order[] getMappingByIdAndStatus(@RequestParam(value = "openId")String id,
                                                @RequestParam(value = "status")int status,
                                                @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                                @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Page<Order> data = orderService.getOrderByCreaterOrAccepterId(id,status,pageIndex,pageSize);
+        Order[] data = orderService.getOrderByCreaterOrAccepterId(id,status,pageIndex,pageSize);
         return data;
     }
 
@@ -135,11 +135,11 @@ public class OrderController {
      * @return
      */
     @GetMapping("/list_status")
-    public Page<Order> getMappingById(@RequestParam(value = "openId")String id,
+    public Order[] getMappingById(@RequestParam(value = "openId")String id,
                                       @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                       @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Page<Order> data = orderService.getOrderByCreaterOrAccepterId(id,pageIndex,pageSize);
+        Order[] data = orderService.getOrderByCreaterOrAccepterId(id,pageIndex,pageSize);
         return data;
     }
 
@@ -225,10 +225,10 @@ public class OrderController {
      * @return
      */
     @GetMapping("/search")
-    public Page<Order> search(@RequestParam(value = "title")String title,
+    public Order[] search(@RequestParam(value = "title")String title,
                               @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                               @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize){
-        Page<Order> data=orderService.getOrderByTitle(title, pageIndex, pageSize);
+        Order[] data=orderService.getOrderByTitle(title, pageIndex, pageSize);
         return data;
     }
 

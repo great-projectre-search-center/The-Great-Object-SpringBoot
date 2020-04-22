@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.Date;
+import java.util.Random;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -26,6 +27,13 @@ public class OrderServiceImpl implements OrderService{
 
         //创建当前时间对象，封装Order属性
         Date now = new Date();
+        Long id=now.getTime();
+        id=id*10000+ (int)(Math.random()*10000);
+        Order oorder=orderRepository.findOrderById(id);
+        if(oorder==null){
+            createOrder(order);
+        }
+        order.setOrder_Id(id);
         order.setOrder_CreateDate(now);
         int insertNum=orderRepository.insertOrder(order);
         return insertNum>0?true:false;
@@ -54,8 +62,11 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean acceptOrder(Long orderId, String accepterId) {
-        Date now = new Date();
-        int updateNum=orderRepository.updateOrderStatus(orderId,1,"order_accepterid",accepterId,"order_acceptdate",now.toString());
+        Order order=orderRepository.findOrderById(orderId);
+        order.setOrder_AcceptDate(new Date());
+        order.setOrder_AccepterId(accepterId);
+        order.setOrder_Status(1);
+        int updateNum=orderRepository.updateOrder(order);
         return updateNum>0?true:false;
     }
 
@@ -67,7 +78,9 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deliveringOrder(Long orderId) {
-        int updateNum=orderRepository.updateOrderStatus(orderId,2);
+        Order order=orderRepository.findOrderById(orderId);
+        order.setOrder_Status(2);
+        int updateNum=orderRepository.updateOrder(order);
         return updateNum>0?true:false;
     }
 
@@ -79,7 +92,9 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean receivedOrder(Long orderId) {
-        int updateNum=orderRepository.updateOrderStatus(orderId,3);
+        Order order=orderRepository.findOrderById(orderId);
+        order.setOrder_Status(3);
+        int updateNum=orderRepository.updateOrder(order);
         return updateNum>0?true:false;
     }
 
@@ -92,7 +107,10 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean commentOrder(Long orderId, String comment) {
-        int updateNum=orderRepository.updateOrderStatus(orderId,4,"order_comment",comment);
+        Order order=orderRepository.findOrderById(orderId);
+        order.setOrder_Comment(comment);
+        order.setOrder_Status(4);
+        int updateNum=orderRepository.updateOrder(order);
         return updateNum>0?true:false;
     }
 
@@ -104,7 +122,9 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean cancelOrder(Long orderId) {
-        int updateNum=orderRepository.updateOrderStatus(orderId,5);
+        Order order=orderRepository.findOrderById(orderId);
+        order.setOrder_Status(5);
+        int updateNum=orderRepository.updateOrder(order);
         return updateNum>0?true:false;
     }
 
@@ -116,7 +136,9 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deleteOrder(Long orderId) {
-        int updateNum=orderRepository.updateOrderStatus(orderId,6);
+        Order order=orderRepository.findOrderById(orderId);
+        order.setOrder_Status(6);
+        int updateNum=orderRepository.updateOrder(order);
         return updateNum>0?true:false;
     }
 
@@ -130,7 +152,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public Page<Order> getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size) {
+    public Order[] getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size) {
         return orderRepository.findOrderByCatalog(catalog,orderBy,page,size);
     }
 
@@ -143,7 +165,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public Page<Order> getOrderByTitle(String title, int page, int size) {
+    public Order[] getOrderByTitle(String title, int page, int size) {
         return orderRepository.findOrderByTitle("%"+title+"%",page,size);
     }
 
@@ -157,7 +179,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public Page<Order> getOrderByCreaterOrAccepterId(String id, int status, int page, int size) {
+    public Order[] getOrderByCreaterOrAccepterId(String id, int status, int page, int size) {
         return orderRepository.findOrderByCreaterIdOrAccepterIdAndStatus(id,status,page,size);
     }
 
@@ -170,7 +192,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public Page<Order> getOrderByCreaterOrAccepterId(String id, int page, int size) {
+    public Order[] getOrderByCreaterOrAccepterId(String id, int page, int size) {
         return orderRepository.findOrderByCreaterIdOrAccepterId(id,page,size);
     }
 
