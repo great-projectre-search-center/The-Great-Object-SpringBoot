@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- namespace:该xml对应的哪个mapper接口 -->
+<mapper namespace="com.hdgs.great.object.repository.DistrictRepository">
+
+	<!-- 根据父级代号获得全国所有省/某省所有市/某市所有区-->
+	<!-- List<District> findByParent(String parent); -->
+	<select id="findByParent" resultType="com.hdgs.great.object.domain.District">
+		SELECT
+			id,parent,
+			code,name
+		FROM
+			t_dict_district
+		WHERE 
+			parent=#{parent}
+		ORDER BY
+			id
+	</select>
+	
+	<!-- 根据省市区代号查看详情信息-->
+	<!-- District findByCode(String code); -->
+	<select id="findByCode" resultType="com.hdgs.great.object.domain.District">
+		SELECT
+			name
+		FROM
+			t_dict_district
+		WHERE 
+			code=#{code}
+	</select>
+	
+</mapper>
