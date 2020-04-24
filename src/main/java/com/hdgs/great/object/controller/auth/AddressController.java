@@ -18,6 +18,7 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
+    //本地测试成功
     @RequestMapping("addNew")
     public String addNew(Address address, Integer uid, String username) {
 
@@ -27,6 +28,7 @@ public class AddressController {
         return "ok";
     }
 
+    //本地测试成功
     @RequestMapping("{aid}/delete")
     public String delete(@PathVariable("aid") Integer aid,Integer uid,String username){
 
@@ -36,6 +38,7 @@ public class AddressController {
         return "ok";
     }
 
+    //本地测试成功
     @GetMapping("/")
     public List<Address> getByUid(Integer uid) {
 
@@ -45,6 +48,8 @@ public class AddressController {
         return data;
     }
 
+
+    //本地测试成功
     @RequestMapping("{aid}/update")
     public  String update(@PathVariable("aid") Integer aid,Integer uid,String username,Address address){
 

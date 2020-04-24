@@ -10,18 +10,18 @@
 		INSERT INTO t_address (
 			aid,uid,
 			name,phone,
-			province_Code,province_Name,
-			city_Code,city_Name,
-			area_Code,area_Name,
+			province_Name,
+			city_Name,
+			area_Name,
 			address,receiving_Time,
 			created_User,created_Time,
 			modified_User,modified_Time
 		) VALUES (
 			#{aid},#{uid},
 			#{name},#{phone},
-			#{province_Code},#{province_Name},
-			#{city_Code},#{city_Name},
-			#{area_Code},#{area_Name},
+			#{province_Name},
+			#{city_Name},
+			#{area_Name},
 			#{address},#{receiving_Time},
 			#{created_User},#{created_Time},
 			#{modified_User},#{modified_Time}
@@ -54,16 +54,16 @@
 		SELECT
 			aid,
 			name,phone,
-			province_Code,province_Name,
-			city_Code,city_Name,
-			area_Code,area_Name,
-			address,receiving_Time,
+			province_Name,
+			city_Name,
+			area_Name,
+			address,receiving_Time
 		FROM
 			t_address
 		WHERE 
 			uid=#{uid}
 		ORDER BY
-			modified_time DESC
+			modified_Time DESC
 	</select>
 
 	<!--根据收货地址id修改收货地址数据 -->
@@ -73,13 +73,27 @@
 			t_address
 		SET
 			name=#{name},phone=#{phone},
-			province_Code=#{province_Code},province_Name=#{province_Name},
-			city_Code=#{city_Code},city_Name={city_Name},
-			area_Code=#{area_Code},area_Name=#{area_Name},
+			province_Name=#{province_Name},
+			city_Name=#{city_Name},
+			area_Name=#{area_Name},
 			address=#{address},receiving_Time=#{receiving_Time},
-			modified_user=#{modifiedUser},
-			modified_time=#{modifiedTime}
+			modified_User=#{modified_User},
+			modified_Time=#{modified_Time}
 		WHERE
 			aid=#{aid}
 	</update>
+
+	<!-- 根据收货地址id查该收货地址所归属的用户数据 -->
+	<!-- Address findByAid(Integer aid); -->
+	<select id="findByAid" resultType="com.hdgs.great.object.domain.Address">
+		SELECT
+			uid
+			name,phone,
+			province_Name,city_Name,
+			area_Name,address
+		FROM
+			t_address
+		WHERE
+			aid=#{aid}
+	</select>
 </mapper>

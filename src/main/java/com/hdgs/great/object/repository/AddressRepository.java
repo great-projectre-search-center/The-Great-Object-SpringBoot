@@ -40,9 +40,16 @@ public interface AddressRepository {
 
     /**
      * 根据收货地址id修改收货地址数据
-     * @param aid 收货地址的id
+     * @param Address 新的收货地址数据，封装了aid
      * @return 受影响的行数
      */
     Integer updateByAid(Address address);
 
+
+    /**
+     * 根据收货地址id查该收货地址所归属的用户数据
+     * @param aid 收货地址的id
+     * @return 该收货地址归属的数据，例如uid,如果没有匹配的数据，则返回null
+     */
+    Address findByAid(Integer aid);
 }

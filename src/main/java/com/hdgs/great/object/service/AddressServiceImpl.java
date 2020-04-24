@@ -2,7 +2,6 @@ package com.hdgs.great.object.service;
 
 
 import com.hdgs.great.object.domain.Address;
-import com.hdgs.great.object.domain.District;
 import com.hdgs.great.object.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +20,6 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
-    @Autowired
-    private DistrictService districtService;
 
     @Override
     public void addNew(Address address, Integer uid, String username) {
@@ -37,25 +34,7 @@ public class AddressServiceImpl implements AddressService {
         //补全数据
         //封装uid
         address.setUid(uid);
-        //封装省市区名称
-        District province=districtService.getByCode(address.getProvince_Code());
-        District city=districtService.getByCode(address.getCity_Code());
-        District area=districtService.getByCode(address.getArea_Code());
-        if(province==null) {
-            address.setProvince_Code(null);
-        }else {
-            address.setProvince_Name(province.getName());
-        }
-        if(city==null) {
-            address.setCity_Code(null);
-        }else {
-            address.setCity_Name(city.getName());
-        }
-        if(area==null) {
-            address.setArea_Code(null);
-        }else {
-            address.setArea_Name(area.getName());
-        }
+
 
         //创建当前时间对象
         Date now =new Date();
@@ -70,9 +49,17 @@ public class AddressServiceImpl implements AddressService {
     @Override
     @Transactional
     public void deleteByAid(Integer aid, Integer uid, String username) {
+
+        //根据aid查询收货地址数据，得到查询结果
+        Address result = addressRepository.findByAid(aid);
+        //判断该结果是否存在
+        if(result == null) {
+            //若为null，则结束
+            return;
+        }
+
         //执行删除
         deleteByAid(aid);
-
     }
 
     @Override
@@ -138,7 +125,7 @@ public class AddressServiceImpl implements AddressService {
 
     /**
      * 根据收货地址id修改收货地址数据
-     * @param aid 收货地址的id
+     * @param address 收货地址的id
      * @return 受影响的行数
      */
     private void updateByAid(Address address){
