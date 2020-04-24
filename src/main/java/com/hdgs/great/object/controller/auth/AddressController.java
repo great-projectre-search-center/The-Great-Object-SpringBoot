@@ -1,7 +1,11 @@
 package com.hdgs.great.object.controller.auth;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.hdgs.great.object.domain.Address;
+import com.hdgs.great.object.service.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -10,43 +14,45 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("addresses")
 public class AddressController {
-    /*
+
     @Autowired
     AddressService addressService;
 
-    //TODO
-    @PostMapping("addnew")
-    public String addnew(AddressController address,) {
+    @RequestMapping("addNew")
+    public String addNew(Address address, Integer uid, String username) {
 
         // 调用业务层执行添加
-        addressService.addnew(address, uid, username);
+        addressService.addNew(address, uid, username);
+
+        return "ok";
     }
 
-    //TODO
-    @PostMapping("{aid}/delete")
-    public String delete(@PathVariable("aid") Integer aid,){
+    @RequestMapping("{aid}/delete")
+    public String delete(@PathVariable("aid") Integer aid,Integer uid,String username){
 
         //调用业务层执行删除
         addressService.deleteByAid(aid, uid, username);
 
+        return "ok";
     }
 
-    //TODO
     @GetMapping("/")
-    public String getByUid() {
+    public List<Address> getByUid(Integer uid) {
 
         // 调用业务层获取收获地址数据集合
         List<Address> data = addressService.getByUid(uid);
 
+        return data;
     }
 
-    //TODO
-    @PostMapping("{aid}/update")
-    public  String update(@PathVariable("aid") Integer aid,){
+    @RequestMapping("{aid}/update")
+    public  String update(@PathVariable("aid") Integer aid,Integer uid,String username,Address address){
 
         //调用业务层执行修改
         addressService.update(aid, uid, username, address);
 
+        //响应
+        return "ok";
     }
-    */
+
 }
