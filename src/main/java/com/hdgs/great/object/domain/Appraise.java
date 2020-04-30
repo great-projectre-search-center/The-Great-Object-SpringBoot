@@ -7,12 +7,12 @@ import java.util.Date;
  * @author jingfeng999
  */
 public class Appraise {
-    Integer aid;
-    Integer oid;
-    Integer grade;
-    String content;
+    Integer aid; //评价id
+    Integer oid; //订单id
+    Integer grade; //评价等级0，1，2，3
+    String content; //评价内容
 
-
+    //日志
     String created_User;
     Date created_Time;
     String modified_User;

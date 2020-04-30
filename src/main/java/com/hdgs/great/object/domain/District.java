@@ -4,6 +4,7 @@ package com.hdgs.great.object.domain;
  * 省/市/区的实体类
  * @author jingfeng999
  */
+//TODO
 public class District {
 
     private Integer id;

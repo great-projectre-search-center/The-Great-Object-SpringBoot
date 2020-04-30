@@ -1,7 +1,6 @@
 package com.hdgs.great.object.service;
 
 import com.hdgs.great.object.domain.Appraise;
-import com.hdgs.great.object.domain.Order;
 import com.hdgs.great.object.repository.AppraiseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,8 @@ public class AppraiseServiceImpl implements AppraiseService {
         Date now = new Date();
         appraise.setCreated_Time(now);
         long id = oid.longValue();
-        Order data = orderService.getOrderById(id);
-        String creater = data.getOrder_Creater();
+        //Order data = orderService.getOrderById(id);
+        String creater = "jingfeng";
         appraise.setCreated_User(creater);
         appraise.setModified_Time(now);
         appraise.setModified_User(creater);

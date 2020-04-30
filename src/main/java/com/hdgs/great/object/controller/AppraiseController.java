@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 评价管理的控制层
+ * 评价管理的控制层(已测试)
  * @author jingfeng999
  */
 @RestController
-@RequestMapping("appraise")
+@RequestMapping("appraises")
 public class AppraiseController {
 
     @Autowired
@@ -46,8 +46,8 @@ public class AppraiseController {
         return  data;
     }
 
-    @GetMapping("/")
-    public Appraise getByOid(Integer oid){
+    @GetMapping("{oid}/")
+    public Appraise getByOid(@PathVariable("oid") Integer oid){
         //执行查询
         Appraise data = appraiseService.getByOid(oid);
 

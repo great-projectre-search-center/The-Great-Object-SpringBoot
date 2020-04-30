@@ -1,9 +1,6 @@
 package com.hdgs.great.object.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
+//TODO
 public class Catalog {
 
     private Long id;
