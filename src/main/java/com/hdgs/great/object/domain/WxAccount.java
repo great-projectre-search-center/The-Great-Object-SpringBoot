@@ -167,5 +167,19 @@ public class WxAccount implements UserDetails {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "WxAccount{" +
+                "id=" + id +
+                ", openId='" + openId + '\'' +
+                ", sessionKey='" + sessionKey + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", city='" + city + '\'' +
+                ", province='" + province + '\'' +
+                ", country='" + country + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", encodedPassword='" + encodedPassword + '\'' +
+                '}';
+    }
 }

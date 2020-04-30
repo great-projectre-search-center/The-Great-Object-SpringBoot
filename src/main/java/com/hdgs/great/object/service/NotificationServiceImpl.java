@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class NotificationServiceImpl {
+public class NotificationServiceImpl implements NotificationService {
 
 
     @Autowired
@@ -20,23 +20,43 @@ public class NotificationServiceImpl {
     @Autowired
     WxAccountRepository wxAccountRepository;
 
-    public boolean insertSystemNotification(String toopenid, String msg) {
-        return insertNotification("0", toopenid, msg);
+    /**
+     * 增加系统通知
+     *
+     * @param toopenid
+     * @param msg
+     * @return
+     */
+    public boolean insertSystemNotification(String toopenid, String title, String msg) {
+        return insertNotification("0", toopenid, title, msg);
+    }
+
+    /**
+     * 增加通知
+     *
+     * @param fromopenid
+     * @param toopenid
+     * @param msg
+     * @return
+     */
+    public boolean insertNotification(String fromopenid, String toopenid, String title, String msg) {
+        Notification notification = new Notification(fromopenid, toopenid, title, msg);
+        int insertNum=notificationRepository.insertByNotification(notification);
+        if(insertNum>0){
+            return true;
+        }
+        return false;
     }
 
 
-    public boolean insertNotification(String fromopenid, String toopenid, String msg) {
-        Notification notification = new Notification();
-        notification.setFromopenid(fromopenid);
-        notification.setToopenid(toopenid);
-        notification.setMsg(msg);
-
-        notificationRepository.insertByNotification(notification);
-        return true;
-    }
-
-    public boolean deleteNotification(WxAccount wxAccount, int notificationid) {
-        String openid = wxAccount.getOpenId();
+    /**
+     * 删除通知
+     *
+     * @param openid
+     * @param notificationid
+     * @return
+     */
+    public boolean deleteNotification(String openid, int notificationid) {
         int delnum = notificationRepository.delete(openid, notificationid);
         if (delnum >= 1) {
             return true;
@@ -46,18 +66,18 @@ public class NotificationServiceImpl {
     }
 
 
+    /**
+     * 获取全部通知
+     *
+     * @param toopenid
+     * @return
+     */
     public ArrayList<JSONObject> getAllNotificationByToOpenid(String toopenid) {
-
         Notification[] notifications = notificationRepository.findByToopenid(toopenid);
-
         ArrayList<JSONObject> responsejson = new ArrayList<>();
-
         for (Notification notification : notifications) {
-
             String fromopidtemp = notification.getFromopenid();
-
             WxAccount fromwxAccount = wxAccountRepository.findByOpenid(fromopidtemp);
-
             JSONObject temp = new JSONObject();
             temp.put("notificationid", notification.getId());
             if (!notification.getFromopenid().equals("0")) {
@@ -67,20 +87,50 @@ public class NotificationServiceImpl {
                 temp.put("fromnickname", "系统消息");
                 temp.put("fromavatarurl", "/sysimg/sysnotification.png");
             }
-            String msg = notification.getMsg();
-            if (msg.contains("|")) {
-                String[] msgsplit = msg.split("\\|");
-                msg = msgsplit[1];
-                int feedid = Integer.valueOf(msgsplit[0]);
-                temp.put("feedid", feedid);
-            }
-            temp.put("msg", msg);
-
-
-            temp.put("id", notification.getId());
-
+            temp.put("title",notification.getTitle());
+            temp.put("msg", notification.getMsg());
             responsejson.add(temp);
         }
         return responsejson;
     }
+
+    /**
+     * 根据id获取通知
+     *
+     * @param notificationid
+     * @return
+     */
+    @Override
+    public JSONObject getNotificationById(int notificationid) {
+        Notification notification = notificationRepository.findById(notificationid);
+        JSONObject responsejson = new JSONObject();
+
+        String fromopid = notification.getFromopenid();
+        WxAccount fromwxAccount = wxAccountRepository.findByOpenid(fromopid);
+        responsejson.put("notificationid", notification.getId());
+        if (!notification.getFromopenid().equals("0")) {
+            responsejson.put("fromnickname", fromwxAccount.getNickName());
+            responsejson.put("fromavatarurl", fromwxAccount.getAvatarUrl());
+        } else {
+            responsejson.put("fromnickname", "系统消息");
+            responsejson.put("fromavatarurl", "/sysimg/sysnotification.png");
+        }
+        responsejson.put("title",notification.getTitle());
+        responsejson.put("msg", notification.getMsg());
+        return responsejson;
+    }
+
 }
+
+/*
+responsejson
+{
+"notificationid"="1",
+"fromnickname"="系统消息",
+"fromavatarurl"="/sysimg/sysnotification.png",
+"title"="我是标题",
+"msg"="我是内容",
+}
+
+
+*/
