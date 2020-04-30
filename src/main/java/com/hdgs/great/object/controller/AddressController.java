@@ -1,4 +1,4 @@
-package com.hdgs.great.object.controller.auth;
+package com.hdgs.great.object.controller;
 
 import com.hdgs.great.object.domain.Address;
 import com.hdgs.great.object.service.AddressService;

@@ -1,4 +1,4 @@
-package com.hdgs.great.object.controller.auth;
+package com.hdgs.great.object.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
