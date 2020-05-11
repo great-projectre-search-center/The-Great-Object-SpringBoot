@@ -2,25 +2,43 @@ package com.hdgs.great.object.repository;
 
 
 import com.hdgs.great.object.domain.Notification;
-import org.apache.ibatis.annotations.*;
 
-@Mapper
 public interface NotificationRepository {
 
-    @Select("select count(*) from notification")
-    int count();
 
-    @Insert("insert into notification(fromopenid, toopenid, msg) values (#{fromopenid}, #{toopenid}, #{msg})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    int insertByNotification(Notification notification);
+    /**
+     * 插入新的通知数据
+     * @param notification 通知数据
+     * @return 受影响的行数
+     */
+    Integer insertByNotification(Notification notification);
 
-    @Select("select * from notification where toopenid=#{toopenid} order by id desc")
-    Notification[] findByToopenid(String toopenid);
+    /**
+     *根据通知数据的id和被通知的openid删除对应的通知数据
+     * @param to_Open_Id 被通知的openid
+     * @param nid 通知id
+     * @return 受影响的行数
+     */
+    Integer delete(String to_Open_Id,Integer nid);
 
-    @Select("select * from notification where id=#{id}")
-    Notification findById(int id);
+    /**
+     * 查询通知的数量
+     * @return 通知数据的数量
+     */
+    Integer countAll();
 
-    @Delete("delete from notification where id=#{id} and toopenid=#{toopenid}")
-    int delete(@Param("toopenid") String toopenid, @Param("id") int id);
+    /**
+     * 根据被通知的openid查询通知数据
+     * @param to_Open_Id 被通知的openid
+     * @return 通知的数据集合
+     */
+    Notification[] findByToopenid(String to_Open_Id);
+
+    /**
+     * 根据通知id查询对应通知数据
+     * @param nid 通知id
+     * @return 通知数据
+     */
+    Notification findById(Integer nid);
 
 }

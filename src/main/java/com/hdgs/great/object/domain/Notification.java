@@ -1,69 +1,55 @@
 package com.hdgs.great.object.domain;
 
+import lombok.Data;
+
+import java.util.Date;
+
+/**
+ * 通知实体类
+ */
+@Data
 public class Notification {
 
-    int id;
-    String fromopenid;
-    String toopenid;
-    String title;
-    String msg;
+    private Integer nid;
+    private String from_Open_Id;
+    private Integer from_Uid;
+    private String to_Open_Id;
+    private Integer to_Uid;
+    private String title;
+    private String message;
 
+    //日志字段
+    private String created_User;
+    private Date created_Time;
+    private String modified_User;
+    private Date modified_Time;
+
+    //无参构造器
     protected Notification() {
     }
 
-    public Notification(int id, String fromopenid, String toopenid, String title, String msg) {
-        this.id = id;
-        this.fromopenid = fromopenid;
-        this.toopenid = toopenid;
+    //全属性构造器
+    public Notification(Integer nid, String from_Open_Id, Integer from_Uid, String to_Open_Id, Integer to_Uid, String title, String message, String created_User, Date created_Time, String modified_User, Date modified_Time) {
+        this.nid = nid;
+        this.from_Open_Id = from_Open_Id;
+        this.from_Uid = from_Uid;
+        this.to_Open_Id = to_Open_Id;
+        this.to_Uid = to_Uid;
         this.title = title;
-        this.msg = msg;
+        this.message = message;
+        this.created_User = created_User;
+        this.created_Time = created_Time;
+        this.modified_User = modified_User;
+        this.modified_Time = modified_Time;
     }
 
-    public Notification(String fromopenid, String toopenid, String title, String msg) {
-        this.fromopenid = fromopenid;
-        this.toopenid = toopenid;
+    //除了nid和日志的全属性构造器
+    public Notification(String from_Open_Id, Integer from_Uid, String to_Open_Id, Integer to_Uid, String title, String message) {
+        this.from_Open_Id = from_Open_Id;
+        this.from_Uid = from_Uid;
+        this.to_Open_Id = to_Open_Id;
+        this.to_Uid = to_Uid;
         this.title = title;
-        this.msg = msg;
+        this.message = message;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFromopenid() {
-        return fromopenid;
-    }
-
-    public void setFromopenid(String fromopenid) {
-        this.fromopenid = fromopenid;
-    }
-
-    public String getToopenid() {
-        return toopenid;
-    }
-
-    public void setToopenid(String toopenid) {
-        this.toopenid = toopenid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
 }

@@ -1,8 +1,6 @@
 package com.hdgs.great.object.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hdgs.great.object.domain.Notification;
-import com.hdgs.great.object.domain.WxAccount;
 
 import java.util.ArrayList;
 
@@ -25,7 +23,7 @@ public interface NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertNotification(String fromopenid, String toopenid,String title, String msg);
+    public boolean insertNotification(String fromopenid, Integer fromuid,String toopenid,Integer touid,String title, String msg);
 
     /**
      * 删除通知

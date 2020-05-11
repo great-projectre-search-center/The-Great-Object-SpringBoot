@@ -28,7 +28,7 @@ public class NotificationServiceImpl implements NotificationService {
      * @return
      */
     public boolean insertSystemNotification(String toopenid, String title, String msg) {
-        return insertNotification("0", toopenid, title, msg);
+        return insertNotification("0",-1, toopenid,-1, title, msg);
     }
 
     /**
@@ -39,8 +39,8 @@ public class NotificationServiceImpl implements NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertNotification(String fromopenid, String toopenid, String title, String msg) {
-        Notification notification = new Notification(fromopenid, toopenid, title, msg);
+    public boolean insertNotification(String fromopenid, Integer fromuid,String toopenid,Integer touid,String title, String msg) {
+        Notification notification = new Notification(fromopenid,fromuid,toopenid,touid,title,msg);
         int insertNum=notificationRepository.insertByNotification(notification);
         if(insertNum>0){
             return true;
@@ -76,19 +76,19 @@ public class NotificationServiceImpl implements NotificationService {
         Notification[] notifications = notificationRepository.findByToopenid(toopenid);
         ArrayList<JSONObject> responsejson = new ArrayList<>();
         for (Notification notification : notifications) {
-            String fromopidtemp = notification.getFromopenid();
+            String fromopidtemp = notification.getFrom_Open_Id();
             WxAccount fromwxAccount = wxAccountRepository.findByOpenid(fromopidtemp);
             JSONObject temp = new JSONObject();
-            temp.put("notificationid", notification.getId());
-            if (!notification.getFromopenid().equals("0")) {
-                temp.put("fromnickname", fromwxAccount.getNickName());
-                temp.put("fromavatarurl", fromwxAccount.getAvatarUrl());
+            temp.put("notificationid", notification.getNid());
+            if (!notification.getFrom_Open_Id().equals("0")) {
+                temp.put("fromnickname", fromwxAccount.getNick_Name());
+                temp.put("fromavatarurl", fromwxAccount.getAvatar_Url());
             } else {
                 temp.put("fromnickname", "系统消息");
                 temp.put("fromavatarurl", "/sysimg/sysnotification.png");
             }
             temp.put("title",notification.getTitle());
-            temp.put("msg", notification.getMsg());
+            temp.put("msg", notification.getMessage());
             responsejson.add(temp);
         }
         return responsejson;
@@ -105,18 +105,18 @@ public class NotificationServiceImpl implements NotificationService {
         Notification notification = notificationRepository.findById(notificationid);
         JSONObject responsejson = new JSONObject();
 
-        String fromopid = notification.getFromopenid();
+        String fromopid = notification.getFrom_Open_Id();
         WxAccount fromwxAccount = wxAccountRepository.findByOpenid(fromopid);
-        responsejson.put("notificationid", notification.getId());
-        if (!notification.getFromopenid().equals("0")) {
-            responsejson.put("fromnickname", fromwxAccount.getNickName());
-            responsejson.put("fromavatarurl", fromwxAccount.getAvatarUrl());
+        responsejson.put("notificationid", notification.getNid());
+        if (!notification.getFrom_Open_Id().equals("0")) {
+            responsejson.put("fromnickname", fromwxAccount.getNick_Name());
+            responsejson.put("fromavatarurl", fromwxAccount.getAvatar_Url());
         } else {
             responsejson.put("fromnickname", "系统消息");
             responsejson.put("fromavatarurl", "/sysimg/sysnotification.png");
         }
         responsejson.put("title",notification.getTitle());
-        responsejson.put("msg", notification.getMsg());
+        responsejson.put("msg", notification.getMessage());
         return responsejson;
     }
 
