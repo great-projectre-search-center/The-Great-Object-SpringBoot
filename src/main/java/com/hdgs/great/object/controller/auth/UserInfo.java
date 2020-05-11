@@ -37,12 +37,12 @@ public class UserInfo {
         JSONObject responsejson = new JSONObject();
 
         WxAccount wxAccount = wxAccountService.getWxAccount((Integer) wxAuthenticationToken.getCredentials());
-        responsejson.put("nickname", wxAccount.getNickName());
-        String avatarUrl = wxAccount.getAvatarUrl();
+        responsejson.put("nickname", wxAccount.getNick_Name());
+        String avatarUrl = wxAccount.getAvatar_Url();
         if (avatarUrl == null || avatarUrl.equals("")) {
             responsejson.put("avatarUrl", "/sysimg/defaultavatar.png");
         } else {
-            responsejson.put("avatarUrl", wxAccount.getAvatarUrl());
+            responsejson.put("avatarUrl", wxAccount.getAvatar_Url());
         }
         return responsejson;
     }

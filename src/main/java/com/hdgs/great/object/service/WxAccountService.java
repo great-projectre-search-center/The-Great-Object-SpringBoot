@@ -1,12 +1,22 @@
 package com.hdgs.great.object.service;
 
 import com.hdgs.great.object.domain.WxAccount;
-import org.apache.ibatis.annotations.*;
 
 public interface WxAccountService {
 
-    public WxAccount getWxAccount(int id);
+    /**
+     * 根据用户id获取用户信息
+     * @param uid 用户id
+     * @return 用户信息
+     */
+    public WxAccount getWxAccount(int uid);
 
+    /**
+     * 添加新的用户
+     * @param nickName 昵称
+     * @param password 密码
+     * @return 新用户的信息
+     */
     public WxAccount addAccount(String nickName, String password);
 
     /**
@@ -18,7 +28,7 @@ public interface WxAccountService {
     public String code2Session(String js_code);
 
     /**
-     * 昵称是否存在
+     * 检查昵称是否存在
      * @param nickName
      * @return
      */

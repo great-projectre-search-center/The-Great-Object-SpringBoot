@@ -3,8 +3,6 @@ package com.hdgs.great.object.service;
 import com.alibaba.fastjson.JSONObject;
 import com.hdgs.great.object.domain.WxAccount;
 import com.hdgs.great.object.repository.WxAccountRepository;
-import com.hdgs.great.object.util.HttpServletRequestUtil;
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,8 +33,8 @@ public class WxAccountServiceImpl implements WxAccountService {
     String secret;
 
     @Override
-    public WxAccount getWxAccount(int id) {
-        return wxAccountRepository.findById(id);
+    public WxAccount getWxAccount(int uid) {
+        return wxAccountRepository.findById(uid);
     }
 
     @Override

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- namespace:该xml对应的哪个mapper接口 -->
+<mapper namespace="com.hdgs.great.object.repository.WxAccountRepository ">
+
+    <!-- 插入新的用户数据-->
+    <!-- Integer insertByNickNameEncodedPassword(WxAccount wxAccount); -->
+    <insert id="insertByNickNameEncodedPassword" useGeneratedKeys="true" keyProperty="uid">
+		INSERT INTO t_wx_user (
+		    open_Id,nick_Name,
+		    session_Key,encoded_Password,
+		    created_User,created_Time,
+			modified_User,modified_Time
+		) VALUES (
+		    #{open_Id},#{nick_Name},
+		    #{session_Key},#{encoded_Password},
+		    #{created_User},#{created_Time},
+			#{modified_User},#{modified_Time}
+		)
+	</insert>
+
+	<!--根据用户id修改用户信息-->
+	<!--Integer updateByWxAccount(WxAccount wxAccount);-->
+	<update id="updateByWxAccount">
+		UPDATE
+			t_wx_user
+		SET
+		 	nick_Name=#{nick_Name},gender=#{gender},
+		 	city=#{city},province=#{province},
+		 	country=#{country},avatar_Url=#{avatar_Url},
+		 	modified_User=#{modified_User},
+			modified_Time=#{modified_Time}
+		WHERE
+			uid=#{uid}
+	</update>
+
+	<!-- 查询相同用户名数量 -->
+	<!-- Integer selectNicknamecount(String nick_Name);-->
+	<select id="selectNicknamecount" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			t_wx_user
+		WHERE
+			nick_Name=#{nick_Name}
+	</select>
+
+	<!-- 根据openid查询对应用户信息 -->
+	<!-- WxAccount findByOpenid(String open_Id);-->
+	<select id="findByOpenid" resultType="com.hdgs.great.object.domain.WxAccount">
+		SELECT
+		 	*
+		FROM
+		 	t_wx_user
+		WHERE
+			open_Id=#{open_Id}
+		limit
+			1
+	</select>
+
+	<!-- 根据用户id查询对应用户信息 -->
+	<!-- WxAccount findById(Integer uid);-->
+	<select id="findById" resultType="com.hdgs.great.object.domain.WxAccount">
+		SELECT
+		 	*
+		FROM
+		 	t_wx_user
+		WHERE
+			uid=#{uid}
+		limit
+			1
+	</select>
+
+	<!-- 根据openid查询对应的昵称-->
+	<!-- String findNickNameByOpenid(String open_id);-->
+	<select id="findNickNameByOpenid" resultType="java.lang.String">
+		SELECT
+		 	nick_Name
+		FROM
+		 	t_wx_user
+		WHERE
+			open_Id=#{open_Id}
+	</select>
+
+	<!-- 查询所有相同用户名的用户数据-->
+	<!-- List<WxAccount> selectAllByNickName(String nick_Name);-->
+	<select id="selectAllByNickName" resultType="com.hdgs.great.object.domain.WxAccount">
+		SELECT
+		 	*
+		FROM
+		 	t_wx_user
+		WHERE
+			nick_Name=#{nick_Name}
+	</select>
+
+</mapper>

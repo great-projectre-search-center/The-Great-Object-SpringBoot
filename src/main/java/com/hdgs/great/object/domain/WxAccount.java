@@ -1,131 +1,71 @@
 package com.hdgs.great.object.domain;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
+@Data
 public class WxAccount implements UserDetails {
-    int id;
+    private Integer uid;//用户id
 
-    String openId;
-    String sessionKey;
+    private String open_Id;
+    private String session_Key;
 
-    String nickName;//昵称
-    String gender;//性别
-    String city;//城市
-    String province;//省份
-    String country;//国家
-    String avatarUrl;//头像地址
-    String encodedPassword;//加密的密码
+    private String nick_Name;//昵称
+    private String gender;//性别
+    private String city;//城市
+    private String province;//省份
+    private String country;//国家
+    private String avatar_Url;//头像地址
+    private String encoded_Password;//加密的密码
 
+    //日志属性
+    private String created_User;
+    private Date created_Time;
+    private String modified_User;
+    private Date modified_Time;
 
-    public WxAccount(String openId, String sessionKey) {
-        this.openId = openId;
-        this.sessionKey = sessionKey;
+    //无参构造方法
+    public WxAccount() {
+
     }
 
-    public int getId() {
-        return id;
+    //open_ID和session_Key的构造方法
+    public WxAccount(String open_Id, String session_Key) {
+        this.open_Id = open_Id;
+        this.session_Key = session_Key;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    //open_Id,nick_Name,encoded_Password的构造方法
+    public WxAccount(String open_Id, String nick_Name, String encoded_Password) {
+        this.open_Id = open_Id;
+        this.nick_Name = nick_Name;
+        this.encoded_Password = encoded_Password;
     }
 
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId;
-    }
-
-    public String getSessionKey() {
-        return sessionKey;
-    }
-
-    public void setSessionKey(String sessionKey) {
-        this.sessionKey = sessionKey;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getEncodedPassword() {
-        return encodedPassword;
-    }
-
-    public void setEncodedPassword(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
-    }
-
-
-    public WxAccount(String openId, String nickName, String encodedPassword) {
-        this.openId = openId;
-        this.nickName = nickName;
-        this.encodedPassword = encodedPassword;
-    }
-
-    public WxAccount(int id, String openId, String sessionKey, String nickName, String gender, String city, String province, String country, String avatarUrl, String encodedPassword) {
-        this.id = id;
-        this.openId = openId;
-        this.sessionKey = sessionKey;
-        this.nickName = nickName;
+    //全属性的构造方法
+    public WxAccount(Integer uid, String open_Id, String session_Key, String nick_Name, String gender, String city, String province, String country, String avatar_Url, String encoded_Password, String created_User, Date created_Time, String modified_User, Date modified_Time) {
+        this.uid = uid;
+        this.open_Id = open_Id;
+        this.session_Key = session_Key;
+        this.nick_Name = nick_Name;
         this.gender = gender;
         this.city = city;
         this.province = province;
         this.country = country;
-        this.avatarUrl = avatarUrl;
-        this.encodedPassword = encodedPassword;
+        this.avatar_Url = avatar_Url;
+        this.encoded_Password = encoded_Password;
+        this.created_User = created_User;
+        this.created_Time = created_Time;
+        this.modified_User = modified_User;
+        this.modified_Time = modified_Time;
     }
+
 
 
     @Override
@@ -144,7 +84,7 @@ public class WxAccount implements UserDetails {
 
     @Override
     public String getUsername() {
-        return String.valueOf(id);
+        return String.valueOf(uid);
     }
 
     @Override
@@ -167,19 +107,5 @@ public class WxAccount implements UserDetails {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "WxAccount{" +
-                "id=" + id +
-                ", openId='" + openId + '\'' +
-                ", sessionKey='" + sessionKey + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", city='" + city + '\'' +
-                ", province='" + province + '\'' +
-                ", country='" + country + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
-                ", encodedPassword='" + encodedPassword + '\'' +
-                '}';
-    }
+
 }

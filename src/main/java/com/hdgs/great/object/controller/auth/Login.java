@@ -54,10 +54,10 @@ public class Login {
         JSONObject jsonrestlt = new JSONObject();
         jsonrestlt.put("errcode", "0");
         jsonrestlt.put("token", token);
-        jsonrestlt.put("userid", wxAccount.getId());
+        jsonrestlt.put("userid", wxAccount.getUid());
 
 
-        if (wxAccount.getNickName() == null) {
+        if (wxAccount.getNick_Name() == null) {
             jsonrestlt.put("hasuserinfo", false);
         } else {
             jsonrestlt.put("hasuserinfo", true);
@@ -104,19 +104,19 @@ public class Login {
 
         JSONObject responsejson=new JSONObject();
 
-        List<WxAccount> wxAccounts = wxAccountRepository.selectByNickName(nickname);
+        List<WxAccount> wxAccounts = wxAccountRepository.selectAllByNickName(nickname);
 
         int sumUuidAccount = 0;
         int index = -1;
         for (WxAccount wxAccount : wxAccounts) {
             index++;
-            if (AccountTypeUtil.judge(wxAccount.getOpenId()) == AccountTypeUtil.UUIDACCOUNT) {
+            if (AccountTypeUtil.judge(wxAccount.getOpen_Id()) == AccountTypeUtil.UUIDACCOUNT) {
                 sumUuidAccount++;
             }
         }
 
         if (sumUuidAccount == 1) {
-            if (passwordService.matches(password,wxAccounts.get(index).getEncodedPassword())) {
+            if (passwordService.matches(password,wxAccounts.get(index).getEncoded_Password())) {
                 responsejson.put("errcode",0);
                 responsejson.put("errmsg","");
                 String token=jwtTokenService.generateToken(wxAccounts.get(index).getUsername());

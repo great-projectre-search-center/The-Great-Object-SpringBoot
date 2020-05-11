@@ -40,7 +40,7 @@ public interface AddressRepository {
 
     /**
      * 根据收货地址id修改收货地址数据
-     * @param Address 新的收货地址数据，封装了aid
+     * @param address 新的收货地址数据，封装了aid
      * @return 受影响的行数
      */
     Integer updateByAid(Address address);

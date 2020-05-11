@@ -1,41 +1,59 @@
 package com.hdgs.great.object.repository;
 
 import com.hdgs.great.object.domain.WxAccount;
-import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-@Mapper
 public interface WxAccountRepository {
 
+    /**
+     * 插入新的用户数据
+     * @param wxAccount 用户数据
+     * @return 受影响的行数
+     */
+    Integer insertByNickNameEncodedPassword(WxAccount wxAccount);
 
-    @Insert("insert into wxaccount(openid,nickName,encodedPassword)value(#{openId},#{nickName},#{encodedPassword})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    int insertByNickNameEncodedPassword(WxAccount wxAccount);
+    /**
+     * 根据用户id修改用户信息
+     * @param wxAccount 新的用户数据
+     * @return 受影响的行数
+     */
+    Integer updateByWxAccount(WxAccount wxAccount);
 
-    @Select("select count(*) from wxaccount where nickName=#{nickName}")
-    int selectNicknamecount(@Param("nickName") String nickName);
+    /**
+     * 查询该用户名的用户数量
+     * @param nick_Name
+     * @return 受影响行数
+     */
+    Integer selectNicknamecount(String nick_Name);
 
-    @Select("select * from wxaccount where openid=#{openid} limit 1")
-    WxAccount findByOpenid(@Param("openid") String openid);
+    /**
+     * 根据openid查询对应用户信息
+     * @param open_Id 用户的唯一标识
+     * @return 用户数据
+     */
+    WxAccount findByOpenid(String open_Id);
 
-    @Select("select * from wxaccount where id=#{id} limit 1")
-    WxAccount findById(@Param("id") Integer id);
+    /**
+     * 根据用户id查询对应用户信息
+     * @param uid
+     * @return 用户数据
+     */
+    WxAccount findById(Integer uid);
 
+    /**
+     *  根据openid查询对应的昵称
+     * @param open_Id 用户唯一标识
+     * @return 用户昵称
+     */
+    String findNickNameByOpenid(String open_Id);
 
-    @Insert("insert into wxaccount (openid,session_key) value(#{openId},#{sessionKey})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    int insertOneByWxAccount(WxAccount wxAccount);
+    /**
+     * 查询所有相同用户名的用户数据
+     * @param nick_Name
+     * @return 用户数据集合
+     */
+    List<WxAccount> selectAllByNickName(String nick_Name);
 
-
-    @Update("update wxaccount set nickname=#{nickName},gender=#{gender},city=#{city},province=#{province},country=#{country},avatarUrl=#{avatarUrl} where id=#{id}")
-    int updateByWxAccount(WxAccount wxAccount);
-
-
-    @Select("select nickname from wxaccount where openId=#{openid}")
-    String findNickNameByOpenid(@Param("openid") String openid);
-
-    @Select("select * from wxaccount where nickName=#{nickname}")
-    List<WxAccount> selectByNickName(@Param("nickname") String nickname);
 
 }
