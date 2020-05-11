@@ -1,6 +1,9 @@
 package com.hdgs.great.object.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +13,9 @@ import java.util.Collection;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class WxAccount implements UserDetails {
     private Integer uid;//用户id
 
@@ -30,11 +36,6 @@ public class WxAccount implements UserDetails {
     private String modified_User;
     private Date modified_Time;
 
-    //无参构造方法
-    public WxAccount() {
-
-    }
-
     //open_ID和session_Key的构造方法
     public WxAccount(String open_Id, String session_Key) {
         this.open_Id = open_Id;
@@ -47,26 +48,6 @@ public class WxAccount implements UserDetails {
         this.nick_Name = nick_Name;
         this.encoded_Password = encoded_Password;
     }
-
-    //全属性的构造方法
-    public WxAccount(Integer uid, String open_Id, String session_Key, String nick_Name, String gender, String city, String province, String country, String avatar_Url, String encoded_Password, String created_User, Date created_Time, String modified_User, Date modified_Time) {
-        this.uid = uid;
-        this.open_Id = open_Id;
-        this.session_Key = session_Key;
-        this.nick_Name = nick_Name;
-        this.gender = gender;
-        this.city = city;
-        this.province = province;
-        this.country = country;
-        this.avatar_Url = avatar_Url;
-        this.encoded_Password = encoded_Password;
-        this.created_User = created_User;
-        this.created_Time = created_Time;
-        this.modified_User = modified_User;
-        this.modified_Time = modified_Time;
-    }
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

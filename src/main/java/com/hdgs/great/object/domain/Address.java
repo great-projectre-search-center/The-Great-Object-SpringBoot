@@ -1,6 +1,10 @@
 package com.hdgs.great.object.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
@@ -9,6 +13,9 @@ import java.util.Date;
  * @author jingfeng999
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Address {
 
     private Integer aid;    //收货地址id

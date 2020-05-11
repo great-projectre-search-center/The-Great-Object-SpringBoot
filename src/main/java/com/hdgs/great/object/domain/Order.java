@@ -1,11 +1,17 @@
 package com.hdgs.great.object.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 订单实体类
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Order {
     private Integer oid;//订单Id
     private String title;//订单名称
@@ -20,10 +26,6 @@ public class Order {
     private String acctpter_Id;//接单人ID
 
 
-    //无参构造器
-    public Order() {
-    }
 
-    //全参构造器
 
 }

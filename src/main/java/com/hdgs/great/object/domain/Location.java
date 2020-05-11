@@ -1,6 +1,9 @@
 package com.hdgs.great.object.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -8,6 +11,9 @@ import java.util.Date;
  * 位置实体类
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Location {
 
     private Integer lid;
@@ -21,14 +27,5 @@ public class Location {
     private String modified_User;
     private Date modified_Time;
 
-    //无参构造器
-    public Location() {
-    }
-
-    //经度纬度的构造器
-    public Location(double longtitude, double latitude) {
-        this.longtitude = longtitude;
-        this.latitude = latitude;
-    }
 
 }
