@@ -1,8 +1,6 @@
 package com.hdgs.great.object.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hdgs.great.object.domain.Notification;
-import com.hdgs.great.object.domain.WxAccount;
 import com.hdgs.great.object.service.NotificationService;
 import com.hdgs.great.object.service.WxAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,12 +70,12 @@ public class NotificationController {
      */
     @PreAuthorize("hasAuthority('ROLE_WXUSER')")
     @PostMapping("/{openid}/postnotification")
-    public JSONObject postNotification(@RequestParam("openid") String openid, @RequestBody JSONObject jsonObject) {
+    public JSONObject postNotification(@RequestParam("openid") String openid, @RequestBody JSONObject jsonObject,Integer fromuid,Integer touid) {
         String fromopenid = (String) jsonObject.get("fromopenid");
         String toopenid = (String) jsonObject.get("toopenid");
         String title = (String) jsonObject.get("title");
         String msg = (String) jsonObject.get("msg");
-        boolean result = notificationService.insertNotification(fromopenid, toopenid, title, msg);
+        boolean result = notificationService.insertNotification(fromopenid,fromuid, toopenid,touid,title, msg);
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
         return responseJSON;

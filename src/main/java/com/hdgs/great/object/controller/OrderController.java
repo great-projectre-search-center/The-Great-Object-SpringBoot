@@ -1,17 +1,11 @@
 package com.hdgs.great.object.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.hdgs.great.object.domain.Catalog;
-import com.hdgs.great.object.domain.Location;
 import com.hdgs.great.object.domain.Order;
 import com.hdgs.great.object.service.OrderService;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
 
 
 @RestController
@@ -55,7 +49,7 @@ public class OrderController {
         JSONObject responseJSON=new JSONObject();
 
         //判断是修改还是新增
-        result=order.getOrder_Id()!=null?orderService.updateOrderInfo(order):orderService.createOrder(order);
+        result=order.getOid()!=null?orderService.updateOrderInfo(order):orderService.createOrder(order);
         responseJSON.put("isOK", result);
         return responseJSON;
     }
@@ -188,20 +182,20 @@ public class OrderController {
         return responseJSON;
     }
 
-    /**
+   /* *//**
      * 修改状态为已评论
      * @param orderId
      * @param comment
      * @return
-     */
+     *//*
     @PostMapping("/comment")
     public JSONObject comment(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "comment")String comment){
-        boolean result=orderService.commentOrder(orderId, comment);
+        boolean result=orderService.commentOrder(orderId, aid);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
         return responseJSON;
-    }
+    }*/
 
     /**
      * 取消订单

@@ -97,7 +97,7 @@
 
 	<!-- 根据放单人ID和接单人ID以及订单状态查找订单 -->
 	<!-- Order[] findOrderByCreaterIdOrAccepterIdAndStatus(String id,int status,int page,int size);-->
-	<select id="findOrderByTitle" resultType="com.hdgs.great.object.domain.Order">
+	<select id="findOrderByCreaterIdOrAccepterIdAndStatus" resultType="com.hdgs.great.object.domain.Order">
 		SELECT
 			*
 		FROM

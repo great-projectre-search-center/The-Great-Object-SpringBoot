@@ -24,9 +24,9 @@ public class UploadUserInfoServiceImpl implements UploadUserInfoService {
         wxAccount.setGender(userinfo.getString("gender"));
         wxAccount.setProvince(userinfo.getString("province"));
         wxAccount.setCity(userinfo.getString("city"));
-        wxAccount.setAvatarUrl(userinfo.getString("avatarUrl"));
-        wxAccount.setAvatarUrl(userinfo.getString("avatarUrl"));
-        wxAccount.setNickName(userinfo.getString("nickName"));
+        wxAccount.setAvatar_Url(userinfo.getString("avatarUrl"));
+        wxAccount.setAvatar_Url(userinfo.getString("avatarUrl"));
+        wxAccount.setNick_Name(userinfo.getString("nickName"));
 //       wxAccount.set(userinfo.getString("language"));
         wxAccountRepository.updateByWxAccount(wxAccount);
         return true;

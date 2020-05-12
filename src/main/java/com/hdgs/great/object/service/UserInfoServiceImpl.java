@@ -21,7 +21,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     public String changeAvatar(WxAccount wxAccount, MultipartFile multipartFile) throws IOException {
         String a = uploadFileService.uuidFile(multipartFile, "avatar/");
-        wxAccount.setAvatarUrl("/avatar/" + a);
+        wxAccount.setAvatar_Url("/avatar/" + a);
         wxAccountRepository.updateByWxAccount(wxAccount);
         return a;
 

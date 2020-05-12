@@ -1,10 +1,9 @@
 package com.hdgs.great.object.config.security;
 
 import com.hdgs.great.object.config.security.GrantedAuthority.WxAuthenticationToken;
-import com.hdgs.great.object.repository.WxAccountRepository;
 import com.hdgs.great.object.domain.WxAccount;
+import com.hdgs.great.object.repository.WxAccountRepository;
 import com.hdgs.great.object.service.JwtTokenService;
-import com.hdgs.great.object.service.JwtTokenServiceImpl;
 import com.hdgs.great.object.service.NotificationServiceImpl;
 import com.hdgs.great.object.service.WxAccountService;
 import com.hdgs.great.object.vo.BadJsCodeException;
@@ -61,7 +60,7 @@ public class JwtLoginAuthorizationManager implements AuthenticationManager {
             UserDetails wxAccount = wxAccountRepository.findByOpenid(openid);
             if (wxAccount == null) {
                 notificationService.insertSystemNotification(openid,"Welcome", "欢迎来到读书分享");
-                wxAccountRepository.insertOneByWxAccount(new WxAccount(openid, ""));
+                wxAccountRepository.insertByNickNameEncodedPassword(new WxAccount(openid, ""));
                 wxAccount = wxAccountRepository.findByOpenid(openid);
             }
 
