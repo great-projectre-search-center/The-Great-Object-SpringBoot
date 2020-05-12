@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- namespace:该xml对应的哪个mapper接口 -->
+<mapper namespace="com.hdgs.great.object.repository.OrderRepository">
+
+	<!-- 插入新的订单数据 -->
+	<!-- Integer insertOrder(Order order); -->
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="oid">
+		INSERT INTO t_order (
+			title,catalog,
+			creater_Id,creater_Name,creater_Tel,creater_Longitude,creater_Latitude,
+			shops_Longtitude,shops_Latitude,
+			acctpter_Id,create_Date,accept_Date,
+			public_field1,public_field2,
+			estimated_Worth,remark,
+			aid,reward,status,
+			created_User,created_Time,
+			modified_User,modified_Time
+		) VALUES (
+			#{title},#{catalog},
+			#{creater_Id},#{creater_Name},#{creater_Tel},#{creater_Longitude},#{creater_Latitude},
+			#{shops_Longtitude},#{shops_Latitude},
+			#{acctpter_Id},#{create_Date},#{accept_Date},
+			#{public_field1},#{public_field2},
+			#{estimated_Worth},#{remark},
+			#{aid},#{reward},#{status},
+			#{created_User},#{created_Time},
+			#{modified_User},#{modified_Time}
+		)
+
+
+	</insert>
+
+	<!--根据订单id修改订单数据 -->
+	<!-- Integer updateOrderByOid(Order order);-->
+	<update id="updateOrderByOid">
+		UPDATE
+			t_order
+		SET
+			title=#{title},catalog=#{catalog},
+			creater_Id=#{creater_Id},creater_Name=#{creater_Name},creater_Tel=#{creater_Tel},creater_Longitude=#{creater_Longitude},creater_Latitude=#{creater_Latitude},
+			shops_Longtitude=#{shops_Longtitude},shops_Latitude=#{shops_Latitude},
+			acctpter_Id=#{acctpter_Id},create_Date=#{create_Date},accept_Date=#{accept_Date},
+			public_field1=#{public_field1},public_field2=#{public_field2},
+			estimated_Worth=#{estimated_Worth},remark=#{remark},
+			aid=#{aid},reward=#{reward},status=#{status},
+			modified_User=#{modified_User},modified_Time=#{modified_Time}
+		WHERE
+			oid=#{oid}
+	</update>
+
+	<!-- 根据订单Id查找订单数据 -->
+	<!-- Order findOrderById(Integer oid);-->
+	<select id="findOrderById" resultType="com.hdgs.great.object.domain.Order">
+		SELECT
+			*
+		FROM
+			t_order
+		WHERE
+			oid=#{oid}
+	</select>
+
+	<!-- 分页查询两个时间段之间的订单 -->
+	<!-- Order[] findOrderByCreateDateBetweenAnd(Date headdate, Date taildate, int page , int size);-->
+	<select id="findOrderByCreateDateBetweenAnd" resultType="com.hdgs.great.object.domain.Order">
+		SELECT
+			*
+		FROM
+			t_order
+		WHERE
+			create_Date BETWEEN #{headdate} AND #{taildate}
+		AND
+			status=0
+		ORDER BY
+		 	create_Date
+		DESC
+			limit ${(page-1)*size},${size}
+	</select>
+
+	<!-- 根据订单名称模糊查询 -->
+	<!-- Order[] findOrderByTitle(String title,int page,int size);-->
+	<select id="findOrderByTitle" resultType="com.hdgs.great.object.domain.Order">
+		SELECT
+			*
+		FROM
+			t_order
+		WHERE
+			title LIKE #{title}
+		AND
+			status=0
+		ORDER BY
+		 	create_Date
+		DESC
+			limit ${(page-1)*size},${size}
+	</select>
+
+	<!-- 根据放单人ID和接单人ID以及订单状态查找订单 -->
+	<!-- Order[] findOrderByCreaterIdOrAccepterIdAndStatus(String id,int status,int page,int size);-->
+	<select id="findOrderByTitle" resultType="com.hdgs.great.object.domain.Order">
+		SELECT
+			*
+		FROM
+			t_order
+		WHERE
+			creater_Id=#{id} OR accepter_Id=#{id}
+		AND
+			status={status}
+		ORDER BY
+		 	create_Date
+		DESC
+			limit ${(page-1)*size},${size}
+	</select>
+
+	<!-- 根据放单人ID和接单人ID查找订单 -->
+	<!-- Order[] findOrderByCreaterIdOrAccepterId(String id,int page,int size);-->
+	<select id="findOrderByCreaterIdOrAccepterId" resultType="com.hdgs.great.object.domain.Order">
+		SELECT
+			*
+		FROM
+			t_order
+		WHERE
+			creater_Id=#{id} OR accepter_Id=#{id}
+		ORDER BY
+		 	create_Date
+		DESC
+			limit ${(page-1)*size},${size}
+	</select>
+
+	<!-- 根据分类分页查找全部订单 -->
+	<!-- Order[] findOrderByCatalog(String catalog,String orderBy,int page,int size);-->
+	<select id="findOrderByCatalog" resultType="com.hdgs.great.object.domain.Order">
+		SELECT
+			*
+		FROM
+			t_order
+		WHERE
+			catalog=#{catalog} AND status=0
+		ORDER BY
+		 	#{orderBy}
+		DESC
+			limit ${(page-1)*size},${size}
+	</select>
+
+</mapper>

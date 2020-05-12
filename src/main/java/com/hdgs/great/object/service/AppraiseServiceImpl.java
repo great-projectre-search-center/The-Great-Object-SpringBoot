@@ -21,21 +21,20 @@ public class AppraiseServiceImpl implements AppraiseService {
     OrderService orderService;
 
     @Override
-    public void creat(Integer oid, Appraise appraise) {
+    public void creat(long oid, Appraise appraise) {
         //封装订单id
         appraise.setOid(oid);
         //封装日志
         Date now = new Date();
         appraise.setCreated_Time(now);
-        long id = oid.longValue();
-        //Order data = orderService.getOrderById(id);
         String creater = "jingfeng";
         appraise.setCreated_User(creater);
         appraise.setModified_Time(now);
         appraise.setModified_User(creater);
 
         //执行插入
-        insert(appraise);
+        Integer aid=insert(appraise);
+        orderService.commentOrder(oid, aid);
     }
 
     @Override
@@ -57,12 +56,11 @@ public class AppraiseServiceImpl implements AppraiseService {
     /**
      * 插入评价数据
      * @param appraise 评价数据对象
+     * @return  新增订单的id
      */
-    private void insert(Appraise appraise){
-        Integer rows = appraiseRepository.insert(appraise);
-        if(rows != 1){
-            return;
-        }
+    private Integer insert(Appraise appraise){
+        Integer aid = appraiseRepository.insert(appraise);
+        return aid;
     }
 
     /**

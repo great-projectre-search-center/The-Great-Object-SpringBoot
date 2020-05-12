@@ -1,15 +1,11 @@
 package com.hdgs.great.object.service;
 
-import com.hdgs.great.object.domain.Catalog;
 import com.hdgs.great.object.domain.Order;
 import com.hdgs.great.object.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
-import java.util.Random;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -24,7 +20,6 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean createOrder(Order order) {
-
         //创建当前时间对象，封装Order属性
         Date now = new Date();
         Long id=now.getTime();
@@ -33,8 +28,11 @@ public class OrderServiceImpl implements OrderService{
         if(oorder==null){
             createOrder(order);
         }
-        order.setOrder_Id(id);
-        order.setOrder_CreateDate(now);
+        order.setOid(id);
+        order.setCreate_Date(now);
+        //封装日志
+        order.setCreated_Time(now);
+        order.setModified_Time(now);
         int insertNum=orderRepository.insertOrder(order);
         return insertNum>0?true:false;
     }
@@ -48,8 +46,9 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public boolean updateOrderInfo(Order order) {
         Date now = new Date();
-        order.setOrder_CreateDate(now);
-        int updateNum=orderRepository.updateOrder(order);
+        order.setCreate_Date(now);
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
 
@@ -63,10 +62,12 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public boolean acceptOrder(Long orderId, String accepterId) {
         Order order=orderRepository.findOrderById(orderId);
-        order.setOrder_AcceptDate(new Date());
-        order.setOrder_AccepterId(accepterId);
-        order.setOrder_Status(1);
-        int updateNum=orderRepository.updateOrder(order);
+        Date now = new Date();
+        order.setAccept_Date(now);
+        order.setAcctpter_Id(accepterId);
+        order.setStatus(1);
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
 
@@ -78,9 +79,15 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deliveringOrder(Long orderId) {
+        Date now = new Date();
+
         Order order=orderRepository.findOrderById(orderId);
-        order.setOrder_Status(2);
-        int updateNum=orderRepository.updateOrder(order);
+
+        order.setStatus(2);
+
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
+
         return updateNum>0?true:false;
     }
 
@@ -92,9 +99,11 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean receivedOrder(Long orderId) {
+        Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
-        order.setOrder_Status(3);
-        int updateNum=orderRepository.updateOrder(order);
+        order.setStatus(3);
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
 
@@ -102,15 +111,17 @@ public class OrderServiceImpl implements OrderService{
      * 评价订单
      *
      * @param orderId
-     * @param comment
+     * @param aid 评价id
      * @return
      */
     @Override
-    public boolean commentOrder(Long orderId, String comment) {
+    public boolean commentOrder(Long orderId, Integer aid) {
+        Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
-        order.setOrder_Comment(comment);
-        order.setOrder_Status(4);
-        int updateNum=orderRepository.updateOrder(order);
+        order.setAid(aid);
+        order.setStatus(4);
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
 
@@ -122,9 +133,11 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean cancelOrder(Long orderId) {
+        Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
-        order.setOrder_Status(5);
-        int updateNum=orderRepository.updateOrder(order);
+        order.setStatus(5);
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
 
@@ -136,9 +149,11 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deleteOrder(Long orderId) {
+        Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
-        order.setOrder_Status(6);
-        int updateNum=orderRepository.updateOrder(order);
+        order.setStatus(6);
+        order.setModified_Time(now);
+        int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
 

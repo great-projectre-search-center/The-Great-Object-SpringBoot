@@ -1,11 +1,6 @@
 package com.hdgs.great.object.service;
 
-import com.hdgs.great.object.domain.Catalog;
 import com.hdgs.great.object.domain.Order;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
 
@@ -53,10 +48,10 @@ public interface OrderService {
      * 评价订单
      *
      * @param orderId
-     * @param comment
+     * @param aid
      * @return
      */
-    boolean commentOrder(Long orderId, String comment);
+    boolean commentOrder(Long orderId, Integer aid);
 
     /**
      * 取消订单

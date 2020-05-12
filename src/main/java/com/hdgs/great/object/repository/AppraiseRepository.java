@@ -11,7 +11,7 @@ public interface AppraiseRepository {
     /**
      * 插入评价数据
      * @param appraise 评价数据对象
-     * @return 受影响的行数
+     * @return 新增订单的id
      */
     Integer insert(Appraise appraise);
 

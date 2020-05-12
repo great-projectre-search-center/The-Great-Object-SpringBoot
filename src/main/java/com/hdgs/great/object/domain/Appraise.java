@@ -17,7 +17,7 @@ import java.util.Date;
 @Builder
 public class Appraise {
     Integer aid; //评价id
-    Integer oid; //订单id
+    Long oid; //订单id
     Integer grade; //评价等级0，1，2，3
     String content; //评价内容
 

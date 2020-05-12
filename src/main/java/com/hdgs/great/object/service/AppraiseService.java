@@ -13,7 +13,7 @@ public interface AppraiseService {
      * @param oid 订单id
      * @param appraise 评价数据
      */
-    void creat(Integer oid, Appraise appraise);
+    void creat(long oid, Appraise appraise);
 
     /**
      * 根据评价id删除评价数据
