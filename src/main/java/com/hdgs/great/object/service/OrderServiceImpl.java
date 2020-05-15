@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService{
         Long id=now.getTime();
         id=id*10000+ (int)(Math.random()*10000);
         Order oorder=orderRepository.findOrderById(id);
-        if(oorder==null){
+        if(oorder!=null){
             createOrder(order);
         }
         order.setOid(id);
