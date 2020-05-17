@@ -25,7 +25,7 @@ public class Order {
     private Double creater_Latitude;//放单人位置纬度
     private Double shops_Longtitude;//商家位置经度
     private Double shops_Latitude;//商家位置纬度
-    private String acctpter_Id;//接单人ID
+    private String accepter_Id;//接单人ID
     private Date create_Date;//订单放单时间
     private Date accept_Date;//订单接受时间
     private String public_field1;//公共字段1

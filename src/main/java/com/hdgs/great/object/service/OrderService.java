@@ -4,6 +4,7 @@ import com.hdgs.great.object.domain.Order;
 
 public interface OrderService {
 
+    //测试成功
     /**
      * 创建订单
      *
@@ -11,6 +12,7 @@ public interface OrderService {
      */
     boolean createOrder(Order order);
 
+    //测试成功
     /**
      * 修改订单信息
      *
@@ -19,6 +21,7 @@ public interface OrderService {
      */
     boolean updateOrderInfo(Order order);
 
+    //测试成功
     /**
      * 修改状态为接单
      *
@@ -28,6 +31,7 @@ public interface OrderService {
      */
     boolean acceptOrder(Long orderId, String accepterId);
 
+    //测试成功
     /**
      * 修改状态为送货中
      *
@@ -36,6 +40,7 @@ public interface OrderService {
      */
     boolean deliveringOrder(Long orderId);
 
+    //测试成功
     /**
      * 修改状态为已接收
      *
@@ -44,6 +49,7 @@ public interface OrderService {
      */
     boolean receivedOrder(Long orderId);
 
+    //测试成功
     /**
      * 评价订单
      *
@@ -53,6 +59,7 @@ public interface OrderService {
      */
     boolean commentOrder(Long orderId, Integer aid);
 
+    //测试成功
     /**
      * 取消订单
      *
@@ -61,6 +68,7 @@ public interface OrderService {
      */
     boolean cancelOrder(Long orderId);
 
+    //测试成功
     /**
      * 删除订单
      *
@@ -69,6 +77,7 @@ public interface OrderService {
      */
     boolean deleteOrder(Long orderId);
 
+    //测试成功
     /**
      * 根据订单类型查找订单按照指定字段排序（时间、奖励积分）
      *
@@ -86,6 +95,7 @@ public interface OrderService {
      */
     Order[] getOrderByTitle(String title, int page, int size);
 
+    //测试成功
     /**
      * 根据放单人ID和接单人ID以及订单状态查找订单
      *
@@ -94,6 +104,7 @@ public interface OrderService {
      */
     Order[] getOrderByCreaterOrAccepterId(String id, int status, int page, int size);
 
+    //测试成功
     /**
      * 根据放单人ID和接单人ID查找全部订单
      * @param id
@@ -103,6 +114,7 @@ public interface OrderService {
      */
     Order[] getOrderByCreaterOrAccepterId(String id, int page, int size);
 
+    //测试成功
     /**
      * 根据订单Id查找订单
      *

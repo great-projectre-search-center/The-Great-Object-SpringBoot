@@ -22,12 +22,16 @@ public class OrderServiceImpl implements OrderService{
     public boolean createOrder(Order order) {
         //创建当前时间对象，封装Order属性
         Date now = new Date();
+        //创建id值
         Long id=now.getTime();
         id=id*10000+ (int)(Math.random()*10000);
+
+        //检查是否已经存在相同id的数据
         Order oorder=orderRepository.findOrderById(id);
         if(oorder!=null){
-            createOrder(order);
+            return false ;
         }
+
         order.setOid(id);
         order.setCreate_Date(now);
         //封装日志
@@ -64,7 +68,7 @@ public class OrderServiceImpl implements OrderService{
         Order order=orderRepository.findOrderById(orderId);
         Date now = new Date();
         order.setAccept_Date(now);
-        order.setAcctpter_Id(accepterId);
+        order.setAccepter_Id(accepterId);
         order.setStatus(1);
         order.setModified_Time(now);
         int updateNum=orderRepository.updateOrderById(order);
