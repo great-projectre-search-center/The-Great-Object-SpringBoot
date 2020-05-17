@@ -20,6 +20,7 @@ public class AppraiseServiceImpl implements AppraiseService {
     @Autowired
     OrderService orderService;
 
+
     @Override
     public void creat(long oid, Appraise appraise) {
         //封装订单id
@@ -33,8 +34,8 @@ public class AppraiseServiceImpl implements AppraiseService {
         appraise.setModified_User(creater);
 
         //执行插入
-        Integer aid=insert(appraise);
-        orderService.commentOrder(oid, aid);
+        insert(appraise);
+        orderService.commentOrder(oid, appraise.getAid());
     }
 
     @Override
