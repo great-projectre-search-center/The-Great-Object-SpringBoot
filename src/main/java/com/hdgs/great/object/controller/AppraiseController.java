@@ -3,24 +3,28 @@ package com.hdgs.great.object.controller;
 import com.hdgs.great.object.domain.Appraise;
 import com.hdgs.great.object.service.AppraiseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 评价管理的控制层(已测试)
  * @author jingfeng999
  */
 @RestController
-@RequestMapping("appraises")
+@RequestMapping("/appraise")
 public class AppraiseController {
 
     @Autowired
     AppraiseService appraiseService;
 
-    @RequestMapping("create")
-    public String  create(Appraise appraise, Integer oid){
+    /**
+     * 添加评价
+     * @param appraise
+     * @param oid
+     * @return
+     */
+    @PostMapping("/create")
+    public String  create(@RequestParam(value = "appraise") Appraise appraise,
+                          @RequestParam(value = "oid") Integer oid){
         //执行插入
         appraiseService.creat(oid, appraise);
 
@@ -28,7 +32,12 @@ public class AppraiseController {
         return  "OK";
     }
 
-    @RequestMapping("{aid}/delete")
+    /**
+     * 删除评价
+     * @param aid
+     * @return
+     */
+    @DeleteMapping("/{aid}/delete")
     public String delete(@PathVariable("aid") Integer aid){
         //执行删除
         appraiseService.delete(aid);
@@ -37,7 +46,12 @@ public class AppraiseController {
         return "OK";
     }
 
-    @GetMapping("{aid}/get")
+    /**
+     * 查询某个评价
+     * @param aid
+     * @return
+     */
+    @GetMapping("/{aid}/get")
     public Appraise getByAid(@PathVariable("aid") Integer aid){
         //执行查询
         Appraise data = appraiseService.getByAid(aid);
@@ -46,7 +60,12 @@ public class AppraiseController {
         return  data;
     }
 
-    @GetMapping("{oid}/")
+    /**
+     * 根据某订单的所有评价
+     * @param oid
+     * @return
+     */
+    @GetMapping("/{oid}/")
     public Appraise getByOid(@PathVariable("oid") Integer oid){
         //执行查询
         Appraise data = appraiseService.getByOid(oid);

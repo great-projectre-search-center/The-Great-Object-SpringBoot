@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author jingfeng999
  */
 @RestController
-@RequestMapping("districts")
+@RequestMapping("/districts")
 public class DistrictController {
     /*
     @Autowired

@@ -30,12 +30,12 @@ public class OrderServiceTests {
         orderService.receivedOrder(15896927030265915L);
     }
 
-    //成功，但是只能查到一条数据，可能跟jpa内容有关
+    //成功
     @Test
     public void getOrderByCreaterOrAccepterId() {
-        String accepterId="111111";
+        String accepterId="0000111111";
         Integer status = 0;
-        int page = 2;
+        int page = 1;
         int size = 2;
         Order[] data = orderService.getOrderByCreaterOrAccepterId(accepterId,status,page, size);
         for (int i = 0 ;i<data.length ;i++){
@@ -49,7 +49,7 @@ public class OrderServiceTests {
 
     }
 
-    //成功，但是只能查到一条数据，可能跟jpa内容有关
+    //成功
     @Test
     public void getOrderByCatalogAndOrderBy() {
         String catalog = "快递";
@@ -58,10 +58,12 @@ public class OrderServiceTests {
         int size = 2;
         Order[] data = orderService.getOrderByCatalogAndOrderBy(catalog, orderBy, page, size);
         System.out.println("长度:"+data.length);
-        System.out.println("数据:"+Arrays.toString(data));
+        for (int i = 0 ;i<data.length ;i++){
+            System.out.println("数据: "+ data[i]);
+        }
     }
 
-    //能运行，但查不到数据
+    //成功
     @Test
     public void getOrderByTitle() {
         String title = "kuaidi";
@@ -69,7 +71,9 @@ public class OrderServiceTests {
         int size = 2;
         Order[] data = orderService.getOrderByTitle(title, page, size);
         System.out.println("长度:"+data.length);
-        System.out.println("数据:"+Arrays.toString(data));
+        for (int i = 0 ;i<data.length ;i++){
+            System.out.println("数据: "+ data[i]);
+        }
     }
 
     //成功

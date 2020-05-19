@@ -14,7 +14,7 @@ public class NotificationServiceTests {
 
     @Test
     public void insertSystemNotification() {
-        notificationService.insertSystemNotification("1", "title", "messge");
+        notificationService.insertSystemNotification("1", "title", "messege");
     }
 
     @Test

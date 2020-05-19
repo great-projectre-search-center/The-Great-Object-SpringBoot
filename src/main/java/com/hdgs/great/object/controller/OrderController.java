@@ -44,7 +44,7 @@ public class OrderController {
     }
      */
     @PostMapping("/edit")
-    public JSONObject create(@RequestParam Order order) {
+    public JSONObject create(@RequestParam(value = "order") Order order) {
         boolean result;
         JSONObject responseJSON=new JSONObject();
 
@@ -61,7 +61,7 @@ public class OrderController {
      * @return json数据
      */
     @DeleteMapping("/delete")
-    public JSONObject delete(Long id) {
+    public JSONObject delete(@RequestParam(value = "id") Long id) {
         //执行删除
         boolean result=orderService.deleteOrder(id);
         //响应
@@ -112,7 +112,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/list_idstatus")
-    public Order[] getMappingByIdAndStatus(@RequestParam(value = "openId")String id,
+    public Order[] getMappingByIdAndStatus(@RequestParam(value = "id")String id,
                                                @RequestParam(value = "status")int status,
                                                @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                                @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
@@ -129,7 +129,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/list_status")
-    public Order[] getMappingById(@RequestParam(value = "openId")String id,
+    public Order[] getMappingById(@RequestParam(value = "id")String id,
                                       @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                       @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
@@ -145,7 +145,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/accept")
-    public JSONObject accept(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "accepterid")String accepterId){
+    public JSONObject accept(@RequestParam(value = "orderId")Long orderId,
+                             @RequestParam(value = "accepterId")String accepterId){
         boolean result=orderService.acceptOrder(orderId,accepterId);
         //响应
         JSONObject responseJSON = new JSONObject();
@@ -160,7 +161,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/deliver")
-    public JSONObject deliver(@RequestParam(value = "orderid")Long orderId){
+    public JSONObject deliver(@RequestParam(value = "orderId")Long orderId){
         boolean result=orderService.deliveringOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
@@ -174,7 +175,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/receive")
-    public JSONObject receive(@RequestParam(value = "orderid")Long orderId){
+    public JSONObject receive(@RequestParam(value = "orderId")Long orderId){
         boolean result=orderService.receivedOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
@@ -182,20 +183,20 @@ public class OrderController {
         return responseJSON;
     }
 
-   /* *//**
-     * 修改状态为已评论
-     * @param orderId
-     * @param comment
-     * @return
-     *//*
-    @PostMapping("/comment")
-    public JSONObject comment(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "comment")String comment){
-        boolean result=orderService.commentOrder(orderId, aid);
-        //响应
-        JSONObject responseJSON = new JSONObject();
-        responseJSON.put("isOK", result);
-        return responseJSON;
-    }*/
+//    /*
+//     * 修改状态为已评价
+//     * @param orderId
+//     * @param comment
+//     * @return
+//     */
+//    @PostMapping("/comment")
+//    public JSONObject comment(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "comment")String comment,Integer aid){
+//        boolean result=orderService.commentOrder(orderId,);
+//        //响应
+//        JSONObject responseJSON = new JSONObject();
+//        responseJSON.put("isOK", result);
+//        return responseJSON;
+//    }
 
     /**
      * 取消订单
@@ -203,7 +204,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/cancel")
-    public JSONObject cancel(@RequestParam(value = "orderid")Long orderId){
+    public JSONObject cancel(@RequestParam(value = "orderId")Long orderId){
         boolean result=orderService.cancelOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
