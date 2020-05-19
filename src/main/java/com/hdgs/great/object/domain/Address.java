@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * 收获地址的实体类
+ *
  * @author jingfeng999
  */
 @Data
