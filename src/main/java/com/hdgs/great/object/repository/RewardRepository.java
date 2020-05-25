@@ -16,7 +16,6 @@ public interface RewardRepository {
     public boolean change(Reward reward,int lastReward);
 
 
-
     /**
      * 获取某人的交易明细
      * @param openid
