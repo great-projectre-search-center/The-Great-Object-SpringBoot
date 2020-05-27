@@ -86,21 +86,17 @@ public class OrderController {
 
 
     /**
-     * 根据订单类型分页查询全部订单信息
+     * 分页查询全部未接受订单信息
      *
-     * @param catalog
-     * @param orderBy
      * @param pageIndex
      * @param pageSize
      * @return
      */
-    @GetMapping("/list_catalog")
-    public Order[] getMappingByCatalog(@RequestParam(value = "catalog") String catalog,
-                                       @RequestParam(value = "orderBy", required = false, defaultValue = "order_createdate") String orderBy,
-                                       @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
+    @GetMapping("/list_status0")
+    public Order[] getMappingByCatalog(@RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                        @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Order[] data = orderService.getOrderByCatalogAndOrderBy(catalog, orderBy, pageIndex, pageSize);
+        Order[] data = orderService.getOrderByCatalogAndOrderBy(pageIndex, pageSize);
 
         return data;
     }

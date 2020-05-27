@@ -78,14 +78,14 @@ public interface OrderService {
     boolean deleteOrder(Long orderId);
 
     //测试成功
+
     /**
      * 根据订单类型查找订单按照指定字段排序（时间、奖励积分）
-     *
-     * @param catalog
-     * @param orderBy
+     * @param page
+     * @param size
      * @return
      */
-    Order[] getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size);
+    Order[] getOrderByCatalogAndOrderBy(int page, int size);
 
     /**
      * 根据订单名称模糊查询

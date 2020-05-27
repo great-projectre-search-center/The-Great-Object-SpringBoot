@@ -164,15 +164,13 @@ public class OrderServiceImpl implements OrderService{
     /**
      * 根据订单类型查找订单按照指定字段排序（时间、奖励积分）
      *
-     * @param catalog
-     * @param orderBy
      * @param page
      * @param size
      * @return
      */
     @Override
-    public Order[] getOrderByCatalogAndOrderBy(String catalog, String orderBy, int page, int size) {
-        return orderRepository.findOrderByCatalog(catalog,orderBy,page,size);
+    public Order[] getOrderByCatalogAndOrderBy(int page, int size) {
+        return orderRepository.findOrderByStatus0(page,size);
     }
 
     /**

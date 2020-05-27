@@ -56,6 +56,8 @@ public class Login {
         jsonrestlt.put("token", token);
         jsonrestlt.put("userid", wxAccount.getUid());
 
+        jsonrestlt.put("openid",wxAccount.getOpen_Id());
+
 
         if (wxAccount.getNick_Name() == null) {
             jsonrestlt.put("hasuserinfo", false);

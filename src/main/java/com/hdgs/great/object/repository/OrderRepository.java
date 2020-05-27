@@ -77,12 +77,11 @@ public interface OrderRepository {
 
     /**
      * 根据分类分页查找全部订单
-     * @param catalog 订单分类
      * @param page 页数
      * @param size 每页的数量
      * @return 订单数据集合
      */
-    Order[] findOrderByCatalog(String catalog,String orderBy,int page,int size);
+    Order[] findOrderByStatus0(int page,int size);
 
 
 }

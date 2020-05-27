@@ -1,6 +1,7 @@
 package com.hdgs.great.object.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hdgs.great.object.repository.AddressRepository;
 import com.hdgs.great.object.repository.NotificationRepository;
 import com.hdgs.great.object.repository.WxAccountRepository;
 import com.hdgs.great.object.domain.Notification;
@@ -19,6 +20,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
     WxAccountRepository wxAccountRepository;
+
 
     /**
      * 增加系统通知

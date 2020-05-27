@@ -138,16 +138,16 @@
 
 	<!--测试成功-->
 	<!-- 根据分类分页查找全部订单 -->
-	<!-- Order[] findOrderByCatalog(String catalog,String orderBy,int page,int size);-->
-	<select id="findOrderByCatalog" resultType="com.hdgs.great.object.domain.Order">
+	<!-- Order[] findOrderByStatus0(String catalog,String orderBy,int page,int size);-->
+	<select id="findOrderByStatus0" resultType="com.hdgs.great.object.domain.Order">
 		SELECT
 			*
 		FROM
 			t_order
 		WHERE
-			catalog=#{catalog} AND status=0
+			 status=0
 		ORDER BY
-		 	#{orderBy}
+		 	create_Date
 		DESC
 			limit ${(page-1)*size},${size}
 	</select>

@@ -97,12 +97,10 @@
 ###### 请求方法：GET
 ###### 参数：
 ###### Long id 订单id
-#### 根据订单类型分页查询全部订单信息：
-###### URI：/order/list_catalog
+#### 分页查询全部未接单订单信息：
+###### URI：/order/list_status0
 ###### 请求方法：GET
 ###### 参数：
-###### String catalog 分类
-###### String orderBy 排序
 ###### int pageIndex 分页的页号
 ###### int pageSize 分页的size
 #### 根据订单状态和id分页查询全部订单信息：
