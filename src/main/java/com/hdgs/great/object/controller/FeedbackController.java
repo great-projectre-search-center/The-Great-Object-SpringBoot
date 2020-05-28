@@ -13,7 +13,7 @@ public class FeedbackController {
      * 获取用户反馈
      * @return
      */
-    @GetMapping
+    @GetMapping("/")
     public JSONObject feedback(){
         JSONObject responseJSON=new JSONObject();
         responseJSON.put("isOK", true);

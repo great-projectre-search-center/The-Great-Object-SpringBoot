@@ -4,6 +4,7 @@
  <!-- namespace:该xml对应的哪个mapper接口 -->
 <mapper namespace="com.hdgs.great.object.repository.NotificationRepository">
 
+	<!-- 测试成功 -->
 	<!-- 插入新的通知数据-->
 	<!-- Integer insertByNotification(Notification notification); -->
 	<insert id="insertByNotification" useGeneratedKeys="true" keyProperty="nid">
@@ -14,14 +15,15 @@
 		    created_User,created_Time,
 			modified_User,modified_Time
 		) VALUES (
-		    #{from_Open_Id},#{from_uid},
-		    #{to_Open_Id},#{to_uid},
+		    #{from_Open_Id},#{from_Uid},
+		    #{to_Open_Id},#{to_Uid},
 		    #{title},#{message},
 		    #{created_User},#{created_Time},
 			#{modified_User},#{modified_Time}
 		)
 	</insert>
 
+	<!-- 测试成功 -->
 	<!-- 根据通知数据的id和被通知的openid删除对应的通知数据 -->
 	<!-- Integer delete(String to_Open_Id,Integer nid);-->
 	<delete id="delete">
@@ -30,6 +32,7 @@
 		WHERE
 			nid=#{nid} AND to_Open_Id=#{to_Open_Id}
 	</delete>
+
 
 	<!-- 查询通知的数量 -->
 	<!-- Integer countAll();-->
@@ -40,6 +43,7 @@
 			t_notification
 	</select>
 
+	<!-- 测试成功 -->
 	<!-- 根据被通知的openid查询通知数据 -->
 	<!-- Notification[] findByToopenid(String toopenid);-->
 	<select id="findByToopenid" resultType="com.hdgs.great.object.domain.Notification">
@@ -52,6 +56,7 @@
 		ORDER BY nid DESC
 	</select>
 
+	<!-- 测试成功 -->
 	<!-- 根据通知id查询对应通知数据 -->
 	<!-- Notification findById(int nid);-->
 	<select id="findById" resultType="com.hdgs.great.object.domain.Notification">

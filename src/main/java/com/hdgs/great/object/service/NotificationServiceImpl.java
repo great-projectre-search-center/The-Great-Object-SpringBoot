@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {
@@ -43,6 +44,12 @@ public class NotificationServiceImpl implements NotificationService {
      */
     public boolean insertNotification(String fromopenid, Integer fromuid,String toopenid,Integer touid,String title, String msg) {
         Notification notification = new Notification(fromopenid,fromuid,toopenid,touid,title,msg);
+
+        //封装时间日志
+        Date now = new Date();
+        notification.setCreated_Time(now);
+        notification.setModified_Time(now);
+
         int insertNum=notificationRepository.insertByNotification(notification);
         if(insertNum>0){
             return true;
