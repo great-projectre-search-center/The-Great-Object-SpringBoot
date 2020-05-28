@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+
 @SpringBootTest
 public class NotificationServiceTests {
 
@@ -44,4 +46,12 @@ public class NotificationServiceTests {
         notificationService.deleteNotification("2",3);
     }
 
+
+    @Test
+    public void getAllSystemNotification() {
+        ArrayList<JSONObject> data = notificationService.getAllSystemNotification();
+        for (int i = 0 ; i < data.size() ; i++){
+            System.out.println(data.get(i));
+        }
+    }
 }

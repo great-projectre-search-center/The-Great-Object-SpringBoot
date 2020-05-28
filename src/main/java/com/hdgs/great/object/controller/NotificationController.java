@@ -32,6 +32,13 @@ public class NotificationController {
         return notification;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_WXUSER')")
+    @GetMapping("/getsystemnotification")
+    public ArrayList<JSONObject> getSystemNotification(){
+        ArrayList<JSONObject> systemNotification = notificationService.getAllSystemNotification();
+        return systemNotification;
+    }
+
     /**
      * 获取一条消息通知
      *

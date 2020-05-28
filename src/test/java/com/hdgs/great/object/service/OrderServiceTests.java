@@ -56,11 +56,7 @@ public class OrderServiceTests {
         String orderBy = "create_Date";
         int page = 2;
         int size = 2;
-        Order[] data = orderService.getOrderByCatalogAndOrderBy(catalog, orderBy, page, size);
-        System.out.println("长度:"+data.length);
-        for (int i = 0 ;i<data.length ;i++){
-            System.out.println("数据: "+ data[i]);
-        }
+
     }
 
     //成功

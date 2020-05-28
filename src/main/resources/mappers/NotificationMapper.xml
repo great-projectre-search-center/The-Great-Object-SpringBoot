@@ -43,6 +43,17 @@
 			t_notification
 	</select>
 
+	<!--查询全部系统通知 -->
+	<!--  Notification[] findAllSystemNotification(); -->
+	<select id="findAllSystemNotification" resultType="com.hdgs.great.object.domain.Notification">
+		SELECT
+			*
+		FROM
+			t_notification
+		WHERE
+			from_uid=-1 AND from_Open_Id=0
+	</select>
+
 	<!-- 测试成功 -->
 	<!-- 根据被通知的openid查询通知数据 -->
 	<!-- Notification[] findByToopenid(String toopenid);-->

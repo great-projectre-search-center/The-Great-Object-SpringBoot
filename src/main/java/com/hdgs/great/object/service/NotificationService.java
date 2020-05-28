@@ -49,4 +49,10 @@ public interface NotificationService {
      * @return
      */
     public JSONObject getNotificationById(int notificationid);
+
+    /**
+     *  获取全部系统通知
+     * @return
+     */
+    public ArrayList<JSONObject> getAllSystemNotification();
 }

@@ -28,6 +28,12 @@ public interface NotificationRepository {
     Integer countAll();
 
     /**
+     * 查询全部系统通知
+     * @return 系统通知集合
+     */
+    Notification[] findAllSystemNotification();
+
+    /**
      * 根据被通知的openid查询通知数据
      * @param to_Open_Id 被通知的openid
      * @return 通知的数据集合

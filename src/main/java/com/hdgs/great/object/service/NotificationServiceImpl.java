@@ -129,6 +129,22 @@ public class NotificationServiceImpl implements NotificationService {
         return responsejson;
     }
 
+
+    @Override
+    public ArrayList<JSONObject> getAllSystemNotification() {
+        Notification[] notifications = notificationRepository.findAllSystemNotification();
+        ArrayList<JSONObject> responsejson = new ArrayList<>();
+        for (Notification notification : notifications) {
+            JSONObject temp = new JSONObject();
+            temp.put("notificationid", notification.getNid());
+                temp.put("fromnickname", "系统消息");
+                temp.put("fromavatarurl", "/sysimg/sysnotification.png");
+            temp.put("title",notification.getTitle());
+            temp.put("msg", notification.getMessage());
+            responsejson.add(temp);
+        }
+        return responsejson;
+    }
 }
 
 /*
