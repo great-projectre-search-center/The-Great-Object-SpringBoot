@@ -23,7 +23,7 @@ public interface NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertNotification(String fromopenid, Integer fromuid,String toopenid,Integer touid,String title, String msg);
+    public boolean insertNotification(String fromopenid,String toopenid,String title, String msg);
 
     /**
      * 删除通知
@@ -54,5 +54,5 @@ public interface NotificationService {
      *  获取全部系统通知
      * @return
      */
-    public ArrayList<JSONObject> getAllSystemNotification();
+    public ArrayList<JSONObject> getAllSystemNotification(String to_Open_Id);
 }

@@ -31,7 +31,7 @@ public interface NotificationRepository {
      * 查询全部系统通知
      * @return 系统通知集合
      */
-    Notification[] findAllSystemNotification();
+    Notification[] findAllSystemNotification(String to_Open_Id);
 
     /**
      * 根据被通知的openid查询通知数据
