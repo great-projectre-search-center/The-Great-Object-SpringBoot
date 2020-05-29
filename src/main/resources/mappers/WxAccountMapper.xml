@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <!-- namespace:该xml对应的哪个mapper接口 -->
-<mapper namespace="com.hdgs.great.object.repository.WxAccountRepository ">
+<mapper namespace="com.hdgs.great.object.repository.WxAccountRepository">
 
     <!-- 插入新的用户数据-->
     <!-- Integer insertByNickNameEncodedPassword(WxAccount wxAccount); -->

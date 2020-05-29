@@ -19,7 +19,6 @@ public class UploadUserInfoServiceImpl implements UploadUserInfoService {
     public boolean upload(int id, JSONObject userinfo) {
         WxAccount wxAccount = wxAccountRepository.findById(id);
         userinfo = userinfo.getJSONObject("userinfo");
-
         wxAccount.setCountry(userinfo.getString("country"));
         wxAccount.setGender(userinfo.getString("gender"));
         wxAccount.setProvince(userinfo.getString("province"));

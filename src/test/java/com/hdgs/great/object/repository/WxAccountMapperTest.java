@@ -53,7 +53,7 @@ public class WxAccountMapperTest {
 
     @Test
     public void findByOpenid(){
-        String openId = "java";
+        String openId = "123";
         WxAccount wxAccount = wxAccountRepository.findByOpenid(openId);
         System.out.println("***********************************************************");
         System.out.println(wxAccount.toString());
