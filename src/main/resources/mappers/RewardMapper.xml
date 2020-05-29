@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- namespace:该xml对应的哪个mapper接口 -->
+<mapper namespace="com.hdgs.great.object.repository.RewardRepository">
+	<!-- 积分变动 -->
+	<!-- public int change(Reward reward,int lastReward); -->
+	<insert id="change" useGeneratedKeys="true" keyProperty="rid">
+		INSERT INTO t_reward (
+			open_Id,
+			date,
+			matter,
+			changed,
+			reward,
+			created_User,created_Time,
+			modified_User,modified_Time
+		) VALUES (
+			#{open_Id},
+			#{date},
+			#{matter},
+			#{changed},
+			#{reward},
+			#{created_User},#{created_Time},
+			#{modified_User},#{modified_Time}
+		)
+	</insert>
+
+	<!-- 获取某人的交易明细 -->
+	<!-- public Reward[] getDetails(String openid);-->
+	<select id="getDetails" resultType="com.hdgs.great.object.domain.Reward">
+		SELECT
+			*
+		FROM
+			t_reward
+		WHERE
+			open_Id=#{open_Id}
+		ORDER BY
+			date
+		DESC
+	</select>
+
+	<!-- 获取某人最后一次变动 -->
+	<!-- public Reward getLastChanged(String open_Id);-->
+	<select id="getLastChanged" resultType="com.hdgs.great.object.domain.Reward">
+		SELECT
+			*
+		FROM
+			t_reward
+		WHERE
+			open_Id=#{open_Id}
+		ORDER BY
+			date
+		DESC  limit 1
+	</select>
+
+</mapper>
