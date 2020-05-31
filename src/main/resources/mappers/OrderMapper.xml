@@ -24,7 +24,7 @@
 			#{title},#{catalog},
 			#{creater_Id},#{creater_Name},#{creater_Tel},#{creater_Longitude},#{creater_Latitude},
 			#{shops_Longtitude},#{shops_Latitude},
-			#{acctpter_Id},#{create_Date},#{accept_Date},
+			#{accepter_Id},#{create_Date},#{accept_Date},
 			#{public_field1},#{public_field2},
 			#{estimated_Worth},#{remark},
 			#{aid},#{reward},#{status},

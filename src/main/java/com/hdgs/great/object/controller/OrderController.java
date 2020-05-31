@@ -45,7 +45,7 @@ public class OrderController {
     }
      */
     @PostMapping("/edit")
-    public JSONObject create(@RequestParam(value = "order") Order order) {
+    public JSONObject create(@RequestBody Order order) {
         boolean result;
         JSONObject responseJSON = new JSONObject();
 
