@@ -19,7 +19,8 @@ public class RewardServiceImpl implements RewardService {
      */
     @Override
     public boolean change(Reward reward, int lastReward) {
-        return rewardRepository.change(reward,lastReward)?true:false;
+        reward.setReward(lastReward);
+        return rewardRepository.change(reward)?true:false;
     }
 
     /**

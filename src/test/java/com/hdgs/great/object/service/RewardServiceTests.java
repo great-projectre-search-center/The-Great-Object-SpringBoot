@@ -15,17 +15,22 @@ public class RewardServiceTests {
 
     @Test
     public void change(){
-        Reward reward=new Reward("aa",new Date(),"24154",100,1000);
+        Reward reward=new Reward();
+        reward.setOpen_Id("aaa");
+        reward.setDate(new Date());
+        reward.setChanged(100);
+        reward.setMatter("加分了！！！！");
+
         rewardService.change(reward,100);
     }
     @Test
     public void getDetails(){
-        Reward[] reward=rewardService.getDetails("aa");
+        Reward[] reward=rewardService.getDetails("aaa");
         System.out.println(reward.toString());
     }
     @Test
     public void getLastChanged(){
-        Reward reward=rewardService.getLastChanged("aa");
+        Reward reward=rewardService.getLastChanged("aaa");
         System.out.println(reward.toString());
 
     }

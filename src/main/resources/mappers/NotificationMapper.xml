@@ -9,14 +9,14 @@
 	<!-- Integer insertByNotification(Notification notification); -->
 	<insert id="insertByNotification" useGeneratedKeys="true" keyProperty="nid">
 		INSERT INTO t_notification (
-		    from_Open_Id,from_Uid,
-		    to_Open_Id,to_Uid,
+		    from_Open_Id,
+		    to_Open_Id,
 		    title,message,
 		    created_User,created_Time,
 			modified_User,modified_Time
 		) VALUES (
-		    #{from_Open_Id},#{from_Uid},
-		    #{to_Open_Id},#{to_Uid},
+		    #{from_Open_Id},
+		    #{to_Open_Id},
 		    #{title},#{message},
 		    #{created_User},#{created_Time},
 			#{modified_User},#{modified_Time}
@@ -51,7 +51,7 @@
 		FROM
 			t_notification
 		WHERE
-			from_uid=-1 AND from_Open_Id=0
+			from_uid=-1 AND from_Open_Id=0 AND to_Open_Id=#{to_Open_Id}
 	</select>
 
 	<!-- 测试成功 -->

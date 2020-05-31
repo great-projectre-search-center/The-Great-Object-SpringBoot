@@ -12,10 +12,17 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class Reward {
-    String openid; //用户的id
-    Date date;//时间
-    String matter;//事情
-    int changed;//变化
-    int reward;//剩余积分
 
+    private int rid;
+    private String open_Id; //用户的id
+    private Date date;//时间
+    private String matter;//事情
+    private int changed;//变化
+    private int reward;//剩余积分
+
+    //日志字段
+    private String created_User;
+    private Date created_Time;
+    private String modified_User;
+    private Date modified_Time;
 }

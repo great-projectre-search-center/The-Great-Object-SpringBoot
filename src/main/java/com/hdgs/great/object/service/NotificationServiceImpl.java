@@ -31,7 +31,7 @@ public class NotificationServiceImpl implements NotificationService {
      * @return
      */
     public boolean insertSystemNotification(String toopenid, String title, String msg) {
-        return insertNotification("0",-1, toopenid,-1, title, msg);
+        return insertNotification("0", toopenid, title, msg);
     }
 
     /**
@@ -42,8 +42,8 @@ public class NotificationServiceImpl implements NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertNotification(String fromopenid, Integer fromuid,String toopenid,Integer touid,String title, String msg) {
-        Notification notification = new Notification(fromopenid,fromuid,toopenid,touid,title,msg);
+    public boolean insertNotification(String fromopenid,String toopenid,String title, String msg) {
+        Notification notification = new Notification(fromopenid,toopenid,title,msg);
 
         //封装时间日志
         Date now = new Date();
@@ -131,8 +131,8 @@ public class NotificationServiceImpl implements NotificationService {
 
 
     @Override
-    public ArrayList<JSONObject> getAllSystemNotification() {
-        Notification[] notifications = notificationRepository.findAllSystemNotification();
+    public ArrayList<JSONObject> getAllSystemNotification(String to_Open_Id) {
+        Notification[] notifications = notificationRepository.findAllSystemNotification(to_Open_Id);
         ArrayList<JSONObject> responsejson = new ArrayList<>();
         for (Notification notification : notifications) {
             JSONObject temp = new JSONObject();

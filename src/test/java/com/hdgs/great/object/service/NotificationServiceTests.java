@@ -22,7 +22,7 @@ public class NotificationServiceTests {
     //测试成功
     @Test
     public void insertNotification() {
-        notificationService.insertNotification("1", 1, "2", 2, "title", "message");
+        notificationService.insertNotification("1",  "2", "title", "message");
     }
 
     //TODO 测试失败
@@ -49,7 +49,7 @@ public class NotificationServiceTests {
 
     @Test
     public void getAllSystemNotification() {
-        ArrayList<JSONObject> data = notificationService.getAllSystemNotification();
+        ArrayList<JSONObject> data = notificationService.getAllSystemNotification("1");
         for (int i = 0 ; i < data.size() ; i++){
             System.out.println(data.get(i));
         }

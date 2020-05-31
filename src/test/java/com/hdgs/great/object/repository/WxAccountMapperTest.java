@@ -20,12 +20,12 @@ public class WxAccountMapperTest {
     @Test
     public void insertByNickNameEncodedPassword(){
         WxAccount wxAccount = new WxAccount();
-        wxAccount.setNick_Name("jingfeng");
-        wxAccount.setEncoded_Password("mmmmm");
-        wxAccount.setOpen_Id("java");
-        for (int i = 0 ; i <5 ; i++){
-            wxAccountRepository.insertByNickNameEncodedPassword(wxAccount);
-        }
+        wxAccount.setEncoded_Password("123456");
+        WxAccount wxAccount1 = new WxAccount();
+        wxAccount1.setEncoded_Password("123456");
+        wxAccountRepository.insertByNickNameEncodedPassword(wxAccount);
+        wxAccountRepository.insertByNickNameEncodedPassword(wxAccount1);
+
     }
 
     @Test
