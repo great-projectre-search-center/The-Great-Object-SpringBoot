@@ -3,6 +3,7 @@ package com.hdgs.great.object.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdgs.great.object.domain.Order;
+import com.hdgs.great.object.domain.Wangtan;
 import com.hdgs.great.object.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -139,16 +140,15 @@ public class OrderController {
 
     /**
      * 修改状态为已接单
-     *
-     * @param orderId
-     * @param accepterId
+     * @param jsonObject
      * @return
      */
     @PostMapping("/accept")
-    public JSONObject accept(@RequestParam(value = "orderId") String orderId,
-                             @RequestParam(value = "accepterId") String accepterId) {
-        Long oorderId=Long.parseLong(orderId);
-        boolean result = orderService.acceptOrder(oorderId, accepterId);
+    public JSONObject accept(@RequestBody JSONObject jsonObject) {
+
+
+        Long oorderId=Long.parseLong(jsonObject.getString("orderId"));
+        boolean result = orderService.acceptOrder(oorderId, jsonObject.getString("accepterId"));
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
