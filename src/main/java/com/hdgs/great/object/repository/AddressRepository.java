@@ -1,6 +1,7 @@
 package com.hdgs.great.object.repository;
 
 import com.hdgs.great.object.domain.Address;
+import org.apache.ibatis.annotations.Insert;
 
 import java.util.List;
 

@@ -29,7 +29,7 @@ public interface OrderService {
      * @param accepterId
      * @return
      */
-    boolean acceptOrder(Long orderId, String accepterId);
+    boolean acceptOrder(Integer orderId, String accepterId);
 
     //测试成功
     /**
@@ -38,7 +38,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean deliveringOrder(Long orderId);
+    boolean deliveringOrder(Integer orderId);
 
     //测试成功
     /**
@@ -47,7 +47,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean receivedOrder(Long orderId);
+    boolean receivedOrder(Integer orderId);
 
     //测试成功
     /**
@@ -57,7 +57,7 @@ public interface OrderService {
      * @param aid
      * @return
      */
-    boolean commentOrder(Long orderId, Integer aid);
+    boolean commentOrder(Integer orderId, Integer aid);
 
     //测试成功
     /**
@@ -66,7 +66,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean cancelOrder(Long orderId);
+    boolean cancelOrder(Integer orderId);
 
     //测试成功
     /**
@@ -75,7 +75,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean deleteOrder(Long orderId);
+    boolean deleteOrder(Integer orderId);
 
     //测试成功
 
@@ -121,7 +121,7 @@ public interface OrderService {
      * @param id
      * @return 订单数据
      */
-    Order getOrderById(Long id);
+    Order getOrderById(Integer id);
 
 
 }

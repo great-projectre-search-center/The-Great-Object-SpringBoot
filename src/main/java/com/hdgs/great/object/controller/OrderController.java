@@ -3,7 +3,6 @@ package com.hdgs.great.object.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdgs.great.object.domain.Order;
-import com.hdgs.great.object.domain.Wangtan;
 import com.hdgs.great.object.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,20 +51,21 @@ public class OrderController {
 
         //判断是修改还是新增
         result = order.getOid() != null ? orderService.updateOrderInfo(order) : orderService.createOrder(order);
+
         responseJSON.put("isOK", result);
         return responseJSON;
     }
 
     /**
      * 删除订单
-     *
-     * @param id 订单id
-     * @return json数据
+     * @param jsonObject
+     * @return
      */
     @DeleteMapping("/delete")
-    public JSONObject delete(@RequestParam(value = "id") Long id) {
+    public JSONObject delete(@RequestBody JSONObject jsonObject) {
+        Integer orderId=Integer.parseInt(jsonObject.getString("id"));
         //执行删除
-        boolean result = orderService.deleteOrder(id);
+        boolean result = orderService.deleteOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
@@ -79,7 +79,7 @@ public class OrderController {
      * @return 返回订单json数据
      */
     @GetMapping("/list/{id}")
-    public Order getMappingById(@PathVariable("id") Long id) {
+    public Order getMappingById(@PathVariable("id") Integer id) {
         //执行查询
         Order data = orderService.getOrderById(id);
         return data;
@@ -98,6 +98,7 @@ public class OrderController {
                                        @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
         Order[] data = orderService.getOrderByCatalogAndOrderBy(pageIndex, pageSize);
+        int a=5;
         return data;
     }
 
@@ -147,7 +148,7 @@ public class OrderController {
     public JSONObject accept(@RequestBody JSONObject jsonObject) {
 
 
-        Long oorderId=Long.parseLong(jsonObject.getString("orderId"));
+        Integer oorderId=Integer.parseInt(jsonObject.getString("orderId"));
         boolean result = orderService.acceptOrder(oorderId, jsonObject.getString("accepterId"));
         //响应
         JSONObject responseJSON = new JSONObject();
@@ -163,7 +164,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/deliver")
-    public JSONObject deliver(@RequestParam(value = "orderId") Long orderId) {
+    public JSONObject deliver(@RequestParam(value = "orderId") Integer orderId) {
         boolean result = orderService.deliveringOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
@@ -173,12 +174,12 @@ public class OrderController {
 
     /**
      * 修改状态为已接收
-     *
-     * @param orderId
+     * @param jsonObject
      * @return
      */
     @PostMapping("/receive")
-    public JSONObject receive(@RequestParam(value = "orderId") Long orderId) {
+    public JSONObject receive(@RequestBody JSONObject jsonObject) {
+        Integer orderId=Integer.parseInt(jsonObject.getString("id"));
         boolean result = orderService.receivedOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
@@ -203,12 +204,12 @@ public class OrderController {
 
     /**
      * 取消订单
-     *
-     * @param orderId
+     * @param jsonObject
      * @return
      */
     @PostMapping("/cancel")
-    public JSONObject cancel(@RequestParam(value = "orderId") Long orderId) {
+    public JSONObject cancel(@RequestBody JSONObject jsonObject) {
+        Integer orderId=Integer.parseInt(jsonObject.getString("id"));
         boolean result = orderService.cancelOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();

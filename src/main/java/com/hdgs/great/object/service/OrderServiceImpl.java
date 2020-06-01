@@ -23,8 +23,8 @@ public class OrderServiceImpl implements OrderService{
         //创建当前时间对象，封装Order属性
         Date now = new Date();
         //创建id值
-        Long id=now.getTime();
-        id=id*10000+ (int)(Math.random()*10000);
+        Integer id=null;now.getTime();
+        id= (int)(Math.random()*Integer.MAX_VALUE);
 
         //检查是否已经存在相同id的数据
         Order oorder=orderRepository.findOrderById(id);
@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean acceptOrder(Long orderId, String accepterId) {
+    public boolean acceptOrder(Integer orderId, String accepterId) {
         Order order=orderRepository.findOrderById(orderId);
         Date now = new Date();
         order.setAccept_Date(now);
@@ -82,7 +82,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean deliveringOrder(Long orderId) {
+    public boolean deliveringOrder(Integer orderId) {
         Date now = new Date();
 
         Order order=orderRepository.findOrderById(orderId);
@@ -102,7 +102,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean receivedOrder(Long orderId) {
+    public boolean receivedOrder(Integer orderId) {
         Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
         order.setStatus(3);
@@ -119,7 +119,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean commentOrder(Long orderId, Integer aid) {
+    public boolean commentOrder(Integer orderId, Integer aid) {
         Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
         order.setAid(aid);
@@ -136,7 +136,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean cancelOrder(Long orderId) {
+    public boolean cancelOrder(Integer orderId) {
         Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
         order.setStatus(5);
@@ -152,7 +152,7 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean deleteOrder(Long orderId) {
+    public boolean deleteOrder(Integer orderId) {
         Date now = new Date();
         Order order=orderRepository.findOrderById(orderId);
         order.setStatus(6);
@@ -220,7 +220,7 @@ public class OrderServiceImpl implements OrderService{
      * @return 订单数据
      */
     @Override
-    public Order getOrderById(Long id) {
+    public Order getOrderById(Integer id) {
         return orderRepository.findOrderById(id);
     }
 
