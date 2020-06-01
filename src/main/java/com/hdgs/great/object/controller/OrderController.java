@@ -97,7 +97,6 @@ public class OrderController {
                                        @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
         Order[] data = orderService.getOrderByCatalogAndOrderBy(pageIndex, pageSize);
-
         return data;
     }
 
@@ -145,10 +144,11 @@ public class OrderController {
      * @param accepterId
      * @return
      */
-    @GetMapping("/accept")
-    public JSONObject accept(@RequestParam(value = "orderId") Long orderId,
+    @PostMapping("/accept")
+    public JSONObject accept(@RequestParam(value = "orderId") String orderId,
                              @RequestParam(value = "accepterId") String accepterId) {
-        boolean result = orderService.acceptOrder(orderId, accepterId);
+        Long oorderId=Long.parseLong(orderId);
+        boolean result = orderService.acceptOrder(oorderId, accepterId);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);

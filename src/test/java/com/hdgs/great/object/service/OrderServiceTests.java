@@ -20,7 +20,7 @@ public class OrderServiceTests {
     //成功
     @Test
     public void createOrder() {
-        Order order = new Order(1L, "kuaidi", "快递", "111", "juxing", "132303015643", 1.1, 1.1, 1.1, 1.1, "111111", new Date(), new Date(), "", "", 100, "备注", 123, 123, 0, "juxing", new Date(), "juxing", new Date());
+        Order order = new Order(2341L, "帮我取一下谢谢", "帮我取", "142344213", "巨星", "132303015643", null, null, null, null, null, new Date(), new Date(), "", "", 100, "备注", 123, 123, 0, "juxing", new Date(), "juxing", new Date());
         orderService.createOrder(order);
     }
 
@@ -56,7 +56,8 @@ public class OrderServiceTests {
         String orderBy = "create_Date";
         int page = 2;
         int size = 2;
-
+        Order [] orders=orderService.getOrderByCatalogAndOrderBy(2,10);
+        System.out.println(orders.toString());
     }
 
     //成功
@@ -75,7 +76,7 @@ public class OrderServiceTests {
     //成功
     @Test
     public void acceptOrder() {
-        boolean flag = orderService.acceptOrder(0L,"999");
+        boolean flag = orderService.acceptOrder( 15909391635573729L,"999");
         System.out.println("成功否?"+flag);
     }
 
