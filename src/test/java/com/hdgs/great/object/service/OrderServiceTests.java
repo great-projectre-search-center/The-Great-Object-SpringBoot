@@ -14,6 +14,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class OrderServiceTests {
+    /*
     @Autowired
     OrderService orderService;
 
@@ -115,7 +116,7 @@ public class OrderServiceTests {
         boolean flag = orderService.commentOrder(1L,10);
         System.out.println("成功否?"+flag);
     }
-
+    */
 
 
 

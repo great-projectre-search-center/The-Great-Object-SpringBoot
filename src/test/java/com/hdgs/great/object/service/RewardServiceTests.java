@@ -21,7 +21,7 @@ public class RewardServiceTests {
         reward.setChanged(100);
         reward.setMatter("加分了！！！！");
 
-        rewardService.change(reward,100);
+        rewardService.change(reward);
     }
     @Test
     public void getDetails(){
