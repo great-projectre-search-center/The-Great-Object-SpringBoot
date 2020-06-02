@@ -112,7 +112,7 @@
 		FROM
 			t_order
 		WHERE
-			creater_Id=#{id} OR accepter_Id=#{id} AND status=#{status}
+			( creater_Id=#{id} OR accepter_Id=#{id} ) AND status=#{status}
 		ORDER BY
 		 	create_Date
 		DESC

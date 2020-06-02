@@ -23,7 +23,7 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public JSONObject addNew(Address address, Integer uid, String username) {
+    public JSONObject addNew(Address address, String uid, String username) {
         //根据参数uid查询该用户的收货地址数量
         Integer count = addressRepository.countByUid(uid);
         JSONObject responseJSON = new JSONObject();
@@ -52,18 +52,18 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     @Transactional
-    public boolean deleteByAid(Integer aid, Integer uid, String username) {
+    public boolean deleteByAid(Integer aid, String uid, String username) {
         //执行删除
         return addressRepository.deleteByAid(aid) > 0 ? true : false;
     }
 
     @Override
-    public List<Address> getByUid(Integer uid) {
+    public List<Address> getByUid(String uid) {
         return addressRepository.findByUid(uid);
     }
 
     @Override
-    public boolean update(Integer aid, Integer uid, String username, Address address) {
+    public boolean update(Integer aid, String uid, String username, Address address) {
         //封装地址id
         address.setAid(aid);
         //创建当前时间对象,更新日志
