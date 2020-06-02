@@ -9,7 +9,7 @@ public interface RewardService {
      * @param lastReward
      * @return
      */
-    public boolean change(Reward reward,int lastReward);
+    public boolean change(Reward reward);
 
     /**
      * 获取用户的积分变动明细

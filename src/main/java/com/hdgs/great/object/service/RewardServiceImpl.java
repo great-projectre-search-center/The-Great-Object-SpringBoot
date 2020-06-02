@@ -14,12 +14,10 @@ public class RewardServiceImpl implements RewardService {
      * 变动积分
      *
      * @param reward
-     * @param lastReward
      * @return
      */
     @Override
-    public boolean change(Reward reward, int lastReward) {
-        reward.setReward(lastReward);
+    public boolean change(Reward reward) {
         return rewardRepository.change(reward)?true:false;
     }
 
