@@ -25,7 +25,7 @@ public class AppraiseController {
      * @return
      */
     @PostMapping("/create")
-    public String create(@RequestParam(value = "appraise") Appraise appraise,
+    public String create(@RequestBody Appraise appraise,
                          @RequestParam(value = "oid") Integer oid) {
         //执行插入
         appraiseService.creat(oid, appraise);

@@ -29,7 +29,7 @@ public class AddressController {
      */
     //本地测试成功
     @PostMapping("/addNew")
-    public JSONObject addNew(@RequestParam(value = "address") Address address, @RequestParam(value = "uid") Integer uid, @RequestParam(value = "username") String username) {
+    public JSONObject addNew(@RequestBody Address address, @RequestParam(value = "uid") Integer uid, @RequestParam(value = "username") String username) {
 
         // 调用业务层执行添加
         JSONObject responseObject =addressService.addNew(address, uid, username);
@@ -85,7 +85,7 @@ public class AddressController {
     public String update(@PathVariable("aid") Integer aid,
                          @RequestParam(value = "uid") Integer uid,
                          @RequestParam(value = "username") String username,
-                         @RequestParam(value = "address") Address address) {
+                         @RequestBody Address address) {
 
         //调用业务层执行修改
         addressService.update(aid, uid, username, address);
