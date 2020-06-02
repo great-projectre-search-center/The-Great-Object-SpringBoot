@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class Order {
-    private Long oid;//订单Id
+    private Integer oid;//订单Id
     private String title;//订单名称
     private String catalog;//订单类型
     private String creater_Id;//放单人Id

@@ -33,7 +33,7 @@ public interface OrderRepository {
      * @param oid 订单id
      * @return 订单数据
      */
-    Order findOrderById(long oid);
+    Order findOrderById(Integer oid);
 
     /**
      * 分页查询两个时间段之间的订单

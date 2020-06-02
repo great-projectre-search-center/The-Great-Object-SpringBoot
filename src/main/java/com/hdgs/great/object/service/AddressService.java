@@ -21,7 +21,7 @@ public interface AddressService {
      * @param uid      用户id
      * @param username 用户名
      */
-    JSONObject addNew(Address address, Integer uid, String username);
+    JSONObject addNew(Address address, String uid, String username);
 
     /**
      * 根据收货地址id删除对应数据
@@ -30,7 +30,7 @@ public interface AddressService {
      * @param uid      当前登录的用户id
      * @param username 当前登录的用户名
      */
-    boolean deleteByAid(Integer aid, Integer uid, String username);
+    boolean deleteByAid(Integer aid, String uid, String username);
 
     /**
      * 根据用户id查询该用户的所有收货地址数据
@@ -38,7 +38,7 @@ public interface AddressService {
      * @param uid 用户id
      * @return 返回所有的收货地址数据的集合
      */
-    List<Address> getByUid(Integer uid);
+    List<Address> getByUid(String uid);
 
     /**
      * 根据收货地址id修改对应数据
@@ -47,5 +47,5 @@ public interface AddressService {
      * @param uid      当前登录的用户id
      * @param username 当前登录的用户名
      */
-    boolean update(Integer aid, Integer uid, String username, Address address);
+    boolean update(Integer aid, String uid, String username, Address address);
 }

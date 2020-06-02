@@ -20,14 +20,14 @@ import java.util.Date;
 public class Address {
 
     private Integer aid;    //收货地址id
-    private Integer uid;    //用户id
+    private String uid;    //用户id
     private String name;    //收获人姓名
     private String phone;   //手机号码
-    private String province_Code;    //省编号
+//    private String province_Code;    //省编号
     private String province_Name;    //省名称
-    private String city_Code;    //市编号
+//    private String city_Code;    //市编号
     private String city_Name;    //市名称
-    private String area_Code;    //区编号
+//    private String area_Code;    //区编号
     private String area_Name;    //区名称
     private String address;     //详细收货地址
     private Date receiving_Time;     //收货时间

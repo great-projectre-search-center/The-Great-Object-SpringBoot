@@ -1,6 +1,7 @@
 package com.hdgs.great.object.repository;
 
 import com.hdgs.great.object.domain.Address;
+import org.apache.ibatis.annotations.Insert;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public interface AddressRepository {
      * @param uid 用户id
      * @return 该用户收获地址的数量
      */
-    int countByUid(Integer uid);
+    int countByUid(String uid);
 
     /**
      * 根据用户id查询该用户的所有收货地址数据
@@ -41,7 +42,7 @@ public interface AddressRepository {
      * @param uid 用户id
      * @return 返回所有的收货地址数据的集合
      */
-    List<Address> findByUid(Integer uid);
+    List<Address> findByUid(String uid);
 
     /**
      * 根据收货地址id修改收货地址数据
