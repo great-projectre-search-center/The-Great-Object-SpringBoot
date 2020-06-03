@@ -30,7 +30,7 @@ public class NotificationServiceImpl implements NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertSystemNotification(String toopenid, String title, String msg) {
+    public Notification insertSystemNotification(String toopenid, String title, String msg) {
         return insertNotification("0", toopenid, title, msg);
     }
 
@@ -42,19 +42,21 @@ public class NotificationServiceImpl implements NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertNotification(String fromopenid,String toopenid,String title, String msg) {
+    public Notification insertNotification(String fromopenid,String toopenid,String title, String msg) {
         Notification notification = new Notification(fromopenid,toopenid,title,msg);
 
         //封装时间日志
         Date now = new Date();
+        notification.setCreated_User(toopenid);
         notification.setCreated_Time(now);
+        notification.setModified_User(toopenid);
         notification.setModified_Time(now);
 
         int insertNum=notificationRepository.insertByNotification(notification);
-        if(insertNum>0){
-            return true;
+        if(insertNum != 1){
+            return null;
         }
-        return false;
+        return notification;
     }
 
 

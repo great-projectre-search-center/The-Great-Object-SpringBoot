@@ -2,6 +2,7 @@ package com.hdgs.great.object.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.hdgs.great.object.domain.Notification;
 import com.hdgs.great.object.domain.Order;
 import com.hdgs.great.object.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,26 +147,24 @@ public class OrderController {
      */
     @PostMapping("/accept")
     public JSONObject accept(@RequestBody JSONObject jsonObject) {
-
-
         Integer oorderId=Integer.parseInt(jsonObject.getString("orderId"));
-        boolean result = orderService.acceptOrder(oorderId, jsonObject.getString("accepterId"));
+        Notification notification = orderService.acceptOrder(oorderId, jsonObject.getString("accepterId"));
         //响应
         JSONObject responseJSON = new JSONObject();
-        responseJSON.put("isOK", result);
+        responseJSON.put("isOK", notification);
         return responseJSON;
-
     }
 
     /**
      * 修改状态为送货中
      *
-     * @param orderId
+     * @param jsonObject
      * @return
      */
     @PostMapping("/deliver")
-    public JSONObject deliver(@RequestParam(value = "orderId") Integer orderId) {
-        boolean result = orderService.deliveringOrder(orderId);
+    public JSONObject deliver(@RequestBody JSONObject jsonObject) {
+        Integer oorderId=Integer.parseInt(jsonObject.getString("orderId"));
+        Notification result = orderService.deliveringOrder(oorderId);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
@@ -180,27 +179,12 @@ public class OrderController {
     @PostMapping("/receive")
     public JSONObject receive(@RequestBody JSONObject jsonObject) {
         Integer orderId=Integer.parseInt(jsonObject.getString("id"));
-        boolean result = orderService.receivedOrder(orderId);
+        Notification result = orderService.receivedOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);
         return responseJSON;
     }
-
-//    /*
-//     * 修改状态为已评价
-//     * @param orderId
-//     * @param comment
-//     * @return
-//     */
-//    @PostMapping("/comment")
-//    public JSONObject comment(@RequestParam(value = "orderid")Long orderId,@RequestParam(value = "comment")String comment,Integer aid){
-//        boolean result=orderService.commentOrder(orderId,);
-//        //响应
-//        JSONObject responseJSON = new JSONObject();
-//        responseJSON.put("isOK", result);
-//        return responseJSON;
-//    }
 
     /**
      * 取消订单
@@ -210,7 +194,7 @@ public class OrderController {
     @PostMapping("/cancel")
     public JSONObject cancel(@RequestBody JSONObject jsonObject) {
         Integer orderId=Integer.parseInt(jsonObject.getString("id"));
-        boolean result = orderService.cancelOrder(orderId);
+        Notification result = orderService.cancelOrder(orderId);
         //响应
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("isOK", result);

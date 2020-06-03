@@ -12,6 +12,13 @@ public interface WxAccountService {
     public WxAccount getWxAccount(int uid);
 
     /**
+     * 根据用户的openid获取用户信息
+     * @param openId
+     * @return
+     */
+    public WxAccount getWxAccountByOpenId(String openId);
+
+    /**
      * 添加新的用户
      * @param nickName 昵称
      * @param password 密码

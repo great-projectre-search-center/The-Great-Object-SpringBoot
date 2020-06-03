@@ -1,5 +1,6 @@
 package com.hdgs.great.object.service;
 
+import com.hdgs.great.object.domain.Notification;
 import com.hdgs.great.object.domain.Order;
 
 public interface OrderService {
@@ -29,7 +30,7 @@ public interface OrderService {
      * @param accepterId
      * @return
      */
-    boolean acceptOrder(Integer orderId, String accepterId);
+    Notification acceptOrder(Integer orderId, String accepterId);
 
     //测试成功
     /**
@@ -38,7 +39,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean deliveringOrder(Integer orderId);
+    Notification deliveringOrder(Integer orderId);
 
     //测试成功
     /**
@@ -47,17 +48,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean receivedOrder(Integer orderId);
-
-    //测试成功
-    /**
-     * 评价订单
-     *
-     * @param orderId
-     * @param aid
-     * @return
-     */
-    boolean commentOrder(Integer orderId, Integer aid);
+    Notification receivedOrder(Integer orderId);
 
     //测试成功
     /**
@@ -66,7 +57,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    boolean cancelOrder(Integer orderId);
+    Notification cancelOrder(Integer orderId);
 
     //测试成功
     /**

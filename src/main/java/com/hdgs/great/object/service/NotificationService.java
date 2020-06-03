@@ -1,6 +1,7 @@
 package com.hdgs.great.object.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hdgs.great.object.domain.Notification;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public interface NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertSystemNotification(String toopenid,String title, String msg);
+    public Notification insertSystemNotification(String toopenid, String title, String msg);
 
     /**
      * 增加通知
@@ -23,7 +24,7 @@ public interface NotificationService {
      * @param msg
      * @return
      */
-    public boolean insertNotification(String fromopenid,String toopenid,String title, String msg);
+    public Notification insertNotification(String fromopenid,String toopenid,String title, String msg);
 
     /**
      * 删除通知

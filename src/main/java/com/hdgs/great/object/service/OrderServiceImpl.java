@@ -1,6 +1,8 @@
 package com.hdgs.great.object.service;
 
+import com.hdgs.great.object.domain.Notification;
 import com.hdgs.great.object.domain.Order;
+import com.hdgs.great.object.domain.WxAccount;
 import com.hdgs.great.object.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,12 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    NotificationService notificationService;
+
+    @Autowired
+    WxAccountService wxAccountService;
 
     /**
      * 创建订单
@@ -49,9 +57,18 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean updateOrderInfo(Order order) {
+
+        //创建时间对象，封装数据
         Date now = new Date();
         order.setCreate_Date(now);
+        order.setModified_User(order.getCreater_Name());
         order.setModified_Time(now);
+
+        //判断是否是未接单，若不是，则不能修改
+        if(order.getStatus() != 0){
+            return false;
+        }
+
         int updateNum=orderRepository.updateOrderById(order);
         return updateNum>0?true:false;
     }
@@ -64,16 +81,30 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean acceptOrder(Integer orderId, String accepterId) {
+    public Notification acceptOrder(Integer orderId, String accepterId) {
+        //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
+
+        //判断订单状态是否合法
+        if(!isOrderAlive(order.getStatus())){
+            return null;
+        }
+
+        //创建时间对象
         Date now = new Date();
+        //封装数据
         order.setAccept_Date(now);
         order.setAccepter_Id(accepterId);
         order.setStatus(1);
         order.setModified_Time(now);
-        int updateNum=orderRepository.updateOrderById(order);
-        return updateNum>0?true:false;
+        orderRepository.updateOrderById(order);
+
+        //获取接单人用户信息
+        WxAccount accepter = wxAccountService.getWxAccountByOpenId(accepterId);
+        //返回通知数据
+        return  createNotification(accepterId , order.getCreater_Id() ,accepter.getNick_Name()+"已接受你的订单");
     }
+
 
     /**
      * 修改状态为送货中
@@ -82,17 +113,26 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean deliveringOrder(Integer orderId) {
-        Date now = new Date();
-
+    public Notification deliveringOrder(Integer orderId) {
+        //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
 
+        //判断订单状态是否合法
+        if(!isOrderAlive(order.getStatus())){
+            return null;
+        }
+
+        //创建时间对象
+        Date now = new Date();
+       //封装数据
         order.setStatus(2);
-
         order.setModified_Time(now);
-        int updateNum=orderRepository.updateOrderById(order);
+        orderRepository.updateOrderById(order);
 
-        return updateNum>0?true:false;
+        //获取接单人用户信息
+        WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
+
+        return createNotification(order.getAccepter_Id() , order.getCreater_Id(), accepter.getNick_Name() + "正在为你送货中");
     }
 
     /**
@@ -102,32 +142,28 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean receivedOrder(Integer orderId) {
-        Date now = new Date();
+    public Notification receivedOrder(Integer orderId) {
+        //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
+
+        //判断订单状态是否合法
+        if(!isOrderAlive(order.getStatus())){
+            return null;
+        }
+
+        //创建时间对象
+        Date now = new Date();
+        //封装数据
         order.setStatus(3);
         order.setModified_Time(now);
-        int updateNum=orderRepository.updateOrderById(order);
-        return updateNum>0?true:false;
+        orderRepository.updateOrderById(order);
+
+        //获取接单人用户信息
+        WxAccount accepter = wxAccountService.getWxAccountByOpenId( order.getCreater_Id());
+
+        return createNotification( order.getCreater_Id(), order.getAccepter_Id() ,accepter.getNick_Name() + "已经接收你完成的订单");
     }
 
-    /**
-     * 评价订单
-     *
-     * @param orderId
-     * @param aid 评价id
-     * @return
-     */
-    @Override
-    public boolean commentOrder(Integer orderId, Integer aid) {
-        Date now = new Date();
-        Order order=orderRepository.findOrderById(orderId);
-        order.setAid(aid);
-        order.setStatus(4);
-        order.setModified_Time(now);
-        int updateNum=orderRepository.updateOrderById(order);
-        return updateNum>0?true:false;
-    }
 
     /**
      * 取消订单
@@ -136,13 +172,27 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public boolean cancelOrder(Integer orderId) {
-        Date now = new Date();
+    public Notification cancelOrder(Integer orderId) {
+        //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
+
+        //判断订单状态是否合法
+        if(!isOrderAlive(order.getStatus())){
+            return null;
+        }
+
+        //创建时间对象
+        Date now = new Date();
+        //封装数据
         order.setStatus(5);
         order.setModified_Time(now);
-        int updateNum=orderRepository.updateOrderById(order);
-        return updateNum>0?true:false;
+        orderRepository.updateOrderById(order);
+
+        //获取接单人用户信息
+        WxAccount accepter = wxAccountService.getWxAccountByOpenId( order.getAccepter_Id());
+
+        return createNotification(  order.getAccepter_Id() ,order.getCreater_Id(),accepter.getNick_Name() + "取消了你的订单");
+
     }
 
     /**
@@ -153,12 +203,24 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public boolean deleteOrder(Integer orderId) {
-        Date now = new Date();
+        //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
+
+        //判断订单状态是否合法
+        if(!isOrderAlive(order.getStatus())){
+            return false;
+        }
+
+        //创建时间对象
+        Date now = new Date();
+        //封装数据
         order.setStatus(6);
         order.setModified_Time(now);
-        int updateNum=orderRepository.updateOrderById(order);
-        return updateNum>0?true:false;
+        int row = orderRepository.updateOrderById(order);
+
+
+        return row == 1 ? true : false ;
+
     }
 
     /**
@@ -222,6 +284,34 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order getOrderById(Integer id) {
         return orderRepository.findOrderById(id);
+    }
+
+    /**
+     * 判断订单是否还可以合法修改订单状态
+     * @param status
+     * @return
+     */
+    private boolean isOrderAlive (int status){
+        if(status == 6 && status == 5 && status == 4 && status == 3){
+            return  false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 创建通知数据
+     * @param fromopenid
+     * @param toopenid
+     * @param msg
+     * @return
+     */
+    private Notification createNotification(String fromopenid , String toopenid, String msg){
+        String title = "订单消息";
+        //插入通知数据，并获得通知数据
+        Notification notification = notificationService.insertNotification(fromopenid, toopenid, title, msg);
+        //返回通知数据
+        return notification;
     }
 
 }

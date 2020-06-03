@@ -38,6 +38,11 @@ public class WxAccountServiceImpl implements WxAccountService {
     }
 
     @Override
+    public WxAccount getWxAccountByOpenId(String openId) {
+        return wxAccountRepository.findByOpenid(openId);
+    }
+
+    @Override
     public WxAccount addAccount(String nickName, String password) {
         String uuid = UUID.randomUUID().toString();
         String encodedPassword = passwordService.encode(password);
