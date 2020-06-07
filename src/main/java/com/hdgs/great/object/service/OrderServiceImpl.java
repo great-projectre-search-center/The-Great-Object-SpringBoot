@@ -6,6 +6,7 @@ import com.hdgs.great.object.domain.WxAccount;
 import com.hdgs.great.object.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -85,6 +86,11 @@ public class OrderServiceImpl implements OrderService{
         //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
 
+        //判断该订单数据是否存在
+        if(order == null){
+            return null;
+        }
+
         //判断订单状态是否合法
         if(!isOrderAlive(order.getStatus())){
             return null;
@@ -117,6 +123,11 @@ public class OrderServiceImpl implements OrderService{
         //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
 
+        //判断该订单数据是否存在
+        if(order == null){
+            return null;
+        }
+
         //判断订单状态是否合法
         if(!isOrderAlive(order.getStatus())){
             return null;
@@ -145,6 +156,11 @@ public class OrderServiceImpl implements OrderService{
     public Notification receivedOrder(Integer orderId) {
         //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
+
+        //判断该订单数据是否存在
+        if(order == null){
+            return null;
+        }
 
         //判断订单状态是否合法
         if(!isOrderAlive(order.getStatus())){
@@ -176,6 +192,11 @@ public class OrderServiceImpl implements OrderService{
         //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
 
+        //判断该订单数据是否存在
+        if(order == null){
+            return null;
+        }
+
         //判断订单状态是否合法
         if(!isOrderAlive(order.getStatus())){
             return null;
@@ -205,6 +226,11 @@ public class OrderServiceImpl implements OrderService{
     public boolean deleteOrder(Integer orderId) {
         //查出对应订单信息
         Order order=orderRepository.findOrderById(orderId);
+
+        //判断该订单数据是否存在
+        if(order == null){
+            return false;
+        }
 
         //判断订单状态是否合法
         if(!isOrderAlive(order.getStatus())){

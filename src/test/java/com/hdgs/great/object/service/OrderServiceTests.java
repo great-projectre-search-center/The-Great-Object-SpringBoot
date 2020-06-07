@@ -1,6 +1,7 @@
 package com.hdgs.great.object.service;
 
 
+import com.hdgs.great.object.domain.Notification;
 import com.hdgs.great.object.domain.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -14,23 +15,24 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class OrderServiceTests {
-    /*
+
     @Autowired
     OrderService orderService;
 
     //成功
     @Test
     public void createOrder() {
-        Order order = new Order(2341L, "帮我取一下谢谢", "帮我取", "142344213", "巨星", "132303015643", null, null, null, null, null, new Date(), new Date(), "", "", 100, "备注", 123, 123, 0, "juxing", new Date(), "juxing", new Date());
+        Order order = new Order();
+        order.setCatalog("恶心的订单");
         orderService.createOrder(order);
     }
 
     //成功
     @Test
     public void receivedOrder() {
-        orderService.receivedOrder(15896927030265915L);
+        orderService.receivedOrder(45776318);
     }
-
+    /*
     //成功
     @Test
     public void getOrderByCreaterOrAccepterId() {
@@ -73,33 +75,30 @@ public class OrderServiceTests {
             System.out.println("数据: "+ data[i]);
         }
     }
-
+    */
     //成功
     @Test
     public void acceptOrder() {
-        boolean flag = orderService.acceptOrder( 15909391635573729L,"999");
-        System.out.println("成功否?"+flag);
+        orderService.acceptOrder( 45776318,"oV9m45b5S1RGPf6gTCXu3a5dAgF4");
     }
 
     //成功
     @Test
     public void cancelOrder(){
-        boolean flag = orderService.cancelOrder(2L);
-        System.out.println("成功否?"+flag);
+        Notification notification = orderService.cancelOrder(45776318);
+        System.out.println(notification);
     }
 
     //成功
     @Test
     public void deleteOrder(){
-        boolean flag = orderService.deleteOrder(2L);
-        System.out.println("成功否?"+flag);
+       orderService.deleteOrder(45776318);
     }
 
     //成功
     @Test
     public void deliveringOrder(){
-        boolean flag = orderService.deliveringOrder(2L);
-        System.out.println("成功否?"+flag);
+       orderService.deliveringOrder(45776318);
     }
 
 
@@ -110,13 +109,7 @@ public class OrderServiceTests {
     }
 
 
-    //成功
-    @Test
-    public void commentOrder(){
-        boolean flag = orderService.commentOrder(1L,10);
-        System.out.println("成功否?"+flag);
-    }
-    */
+
 
 
 

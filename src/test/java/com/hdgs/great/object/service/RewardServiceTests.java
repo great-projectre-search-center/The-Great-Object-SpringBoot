@@ -25,13 +25,13 @@ public class RewardServiceTests {
     }
     @Test
     public void getDetails(){
-        Reward[] reward=rewardService.getDetails("aaa");
-        System.out.println(reward.toString());
+        Reward[] reward=rewardService.getDetails("oV9m45b5S1RGPf6gTCXu3a5dAgF4");
+        System.out.println(reward);
     }
     @Test
     public void getLastChanged(){
-        Reward reward=rewardService.getLastChanged("aaa");
-        System.out.println(reward.toString());
+        Reward reward=rewardService.getLastChanged("oV9m45b5S1RGPf6gTCXu3a5dAgF4");
+        System.out.println(reward);
 
     }
 

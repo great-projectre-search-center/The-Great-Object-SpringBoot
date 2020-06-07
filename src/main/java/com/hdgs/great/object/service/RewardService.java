@@ -6,7 +6,6 @@ public interface RewardService {
     /**
      * 变动积分
      * @param reward
-     * @param lastReward
      * @return
      */
     public boolean change(Reward reward);
