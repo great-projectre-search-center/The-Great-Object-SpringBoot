@@ -1,0 +1,509 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>帮跑跑API文档3.0</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><p>&nbsp;</p><h1><a name="创建或修改订单帮跑跑api文档" class="md-header-anchor"></a><span>创建或修改订单：帮跑跑API文档</span></h1><h2><a name="用户管理" class="md-header-anchor"></a><span>用户管理</span></h2><h3><a name="1用户注册" class="md-header-anchor"></a><span>1.用户注册</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/signup</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>用户注册</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject requestjson 带有nickname，password，repeatpassword的json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="2微信用户授权登录" class="md-header-anchor"></a><span>2.微信用户授权登录</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/auth/wxlogin</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>微信用户授权登录</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>WxAuthenticationToken wxAuthenticationToken 微信用户的登录凭证</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="3用户名和密码登录" class="md-header-anchor"></a><span>3.用户名和密码登录</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/restlogin</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>用户名和密码登录</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject requestjson 带有nickname，password的Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json、</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="4加载用户信息" class="md-header-anchor"></a><span>4.加载用户信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/auth/uploadWxUserinfo</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>加载用户信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject userinfo 带有用户信息的json, WxAuthenticationToken wxAuthenticationToken 微信用户的登录凭证</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="5加载头像信息" class="md-header-anchor"></a><span>5.加载头像信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/auth/uploadAvatar</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>加载头像信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>WxAuthenticationToken wxAuthenticationToken 微信用户的登录凭证, MultipartFile file 头像文件路径</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="6获取用户信息" class="md-header-anchor"></a><span>6.获取用户信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/getuserinfo</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>获取用户信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>WxAuthenticationToken wxAuthenticationToken 微信用户的登录凭证</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="7更改头像" class="md-header-anchor"></a><span>7.更改头像</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/setavatar</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>更改头像</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>ServletRequest request, WxAuthenticationToken wxAuthenticationToken, @RequestParam(&quot;file&quot;) MultipartFile[] multipartFile, ServletRequest servletRequest</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="地址管理" class="md-header-anchor"></a><span>地址管理:</span></h2><h3><a name="1添加新的收货地址" class="md-header-anchor"></a><span>1.添加新的收货地址</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/address/addNew</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>点击保存按钮后，新增用户想要新添加的一条收货地址数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Address address 地址数据，Integer uid 用户id，String username 用户名</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="2删除收货地址" class="md-header-anchor"></a><span>2.删除收货地址</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/address/{aid}/delete</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>点击地址管理某条地址的删除按钮后，删除改该用户的此地址数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>DELETE</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer aid 地址id，Integer uid 用户id，String username 用户名</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="3更新修改地址" class="md-header-anchor"></a><span>3.更新/修改地址</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/address/{aid}/update</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>用户重新编辑某条已经存在的地址数据后，点保存按钮后，修改用户的某条地址数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer aid 地址id，Integer uid 用户id，String username 用户名，Address address 修改后的地址</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="4获取全部地址" class="md-header-anchor"></a><span>4.获取全部地址</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/address</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>某用户进入地址管理页面后，应该能够看到属于自己的所有地址数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer uid 用户名</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="5根据aid获取地址" class="md-header-anchor"></a><span>5.根据aid获取地址</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>null</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>一条地址数据在多个页面需要出现，就可通过传递该地址的id，将id传入后端查表即可</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer aid 地址id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><h2><a name="订单管理" class="md-header-anchor"></a><span>订单管理:</span></h2><h3><a name="1创建或修改订单" class="md-header-anchor"></a><span>1.创建或修改订单</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/edit</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>用户创建新的订单数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Order order 订单</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="2删除订单" class="md-header-anchor"></a><span>2.删除订单</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/delete</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>删除对应订单数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>DELETE</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject jsonObject（带有orderId的JSON对象）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="3取消订单" class="md-header-anchor"></a><span>3.取消订单</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/cancel</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>将订单数据修改为取消状态</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject jsonObject（带有orderId的JSON对象）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json（带有通知数据）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="4修改状态为已接单" class="md-header-anchor"></a><span>4.修改状态为已接单</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/accept</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>将订单数据修改为已接单状态</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Long orderId 订单id，String accepterId 接单人id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json（ 包含通知数据）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="5修改状态为送货中" class="md-header-anchor"></a><span>5.修改状态为送货中</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/deliver</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>将订单数据修改为送货中状态</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject jsonObject（带有orderId的JSON对象）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json（ 包含通知数据）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="6修改状态为已接收" class="md-header-anchor"></a><span>6.修改状态为已接收</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/receive</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>将订单数据修改为已接收状态</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>JSONObject jsonObject（带有orderId的JSON对象）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json（ 包含通知数据）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="7根据id查询订单信息" class="md-header-anchor"></a><span>7.根据id查询订单信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/list/{id}</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>查出对应id的订单信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Long id 订单id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="8根据订单类型分页查询全部订单信息" class="md-header-anchor"></a><span>8.根据订单类型分页查询全部订单信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/list_catalog</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据订单类型分页查询全部订单信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>String catalog 分类，String orderBy 排序，int pageIndex 分页的页号，int pageSize 分页的size</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="9根据订单状态和用户的openid分页查询全部订单信息" class="md-header-anchor"></a><span>9.根据订单状态和用户的openid分页查询全部订单信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/list_idstatus</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据订单状态和用户的openid分页查询全部订单信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>String id 用户的openId，int status 订单状态，int pageIndex 分页的页号，int pageSize 分页的size</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="10根据用户的openid分页查询全部订单信息" class="md-header-anchor"></a><span>10.根据用户的openid分页查询全部订单信息</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/list_status</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据用户的openid分页查询全部订单信息</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>String id 用户的openID，int pageIndex 分页的页号，int pageSize 分页的size</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="11根据名称模糊查询" class="md-header-anchor"></a><span>11.根据名称模糊查询</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/order/search</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据名称模糊查询</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>String title 查询关键词，int pageIndex 分页的页号，int pageSize 分页的size</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><h2><a name="评价管理" class="md-header-anchor"></a><span>评价管理：</span></h2><h3><a name="1添加评价" class="md-header-anchor"></a><span>1.添加评价</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/appraise/create</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>在某个已经完成订单上添加新的评价数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer oid 订单id，Appraise appraise 评价</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="2删除评价" class="md-header-anchor"></a><span>2.删除评价</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/appraise/{aid}/delete</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>删除某个订单数据上已经存在的评价</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>DELETE</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer aid 评价id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="3查询某个评价" class="md-header-anchor"></a><span>3.查询某个评价</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/appraises/{aid}/get</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据id获得对应评价数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer aid 评价id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="4查询某订单的所有评价" class="md-header-anchor"></a><span>4.查询某订单的所有评价</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/appraises/{oid}</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>查看某订单数据时应该获得该订单的所有评价数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Integer oid 订单id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="通知管理" class="md-header-anchor"></a><span>通知管理：</span></h2><h3><a name="11获取全部消息通知" class="md-header-anchor"></a><span>1.1获取全部消息通知</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/notification/{openid}/getnotification</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据被通知的id获得所有通知数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>url上的String openid被通知的id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="12获取某用户的全部系统通知" class="md-header-anchor"></a><span>1.2获取某用户的全部系统通知</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/notification/{openid}/getsystemnotification</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据被通知的id获取某用户的全部系统通知</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>url上的String openid被通知的id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="2获取一条消息通知" class="md-header-anchor"></a><span>2.获取一条消息通知</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/notification/{openid}/getnotification/{notificationid}</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据被通知的id和通知id获得对应通知数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>url上的String openid被通知的id，url上的int notificationid通知数据id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="3删除通知" class="md-header-anchor"></a><span>3.删除通知</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/notification/{openid}/deletenotification/{notificationid}</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>根据通知id删除对应通知数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>DELETE</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>url上的 String openid （被通知的id），url上的String notificationid （通知数据的id）</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="4发送通知" class="md-header-anchor"></a><span>4.发送通知</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/notification/{fromopenid}/postnotification/toopenid/</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>新增通知数据</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>url上的String fromopenid(通知的id)和String toopenid（被通知的id）。String title 消息头，String msg 消息内容</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><h2><a name="用户反馈" class="md-header-anchor"></a><span>用户反馈</span></h2><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/feedback/</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>搞笑的用户反馈，参考王者荣耀的举报机制</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>无</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>Json</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="积分管理" class="md-header-anchor"></a><span>积分管理</span></h2><h3><a name="1获取用户最后一次积分变动" class="md-header-anchor"></a><span>1.获取用户最后一次积分变动</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/reward/{openid}/getlast</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>获取用户最后一次积分变动</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>String openid 用户id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>JSON</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="2获取用户积分明细" class="md-header-anchor"></a><span>2.获取用户积分明细</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/reward/{openid}/getdetails</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>获取用户积分明细</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>GET</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>String openid 用户id</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>JSON</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><h3><a name="3积分变动" class="md-header-anchor"></a><span>3.积分变动</span></h3><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' ><span>/reward/change</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' ><span>积分变动</span></td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' ><span>POST</span></td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' ><span>Reward reward 积分数据对象</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' ><span>JSON</span></td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th style='text-align:center;' ><span>URI</span></th><th style='text-align:center;' >&nbsp;</th></tr></thead><tbody><tr><td style='text-align:center;' ><span>作用描述</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>请求方式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>传入 api 的参数</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式</span></td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' ><span>返回数据格式样例</span></td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure></div>
+</body>
+</html>
