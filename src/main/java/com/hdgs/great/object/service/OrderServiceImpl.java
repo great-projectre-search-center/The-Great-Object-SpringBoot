@@ -2,6 +2,7 @@ package com.hdgs.great.object.service;
 
 import com.hdgs.great.object.domain.Notification;
 import com.hdgs.great.object.domain.Order;
+import com.hdgs.great.object.domain.Reward;
 import com.hdgs.great.object.domain.WxAccount;
 import com.hdgs.great.object.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderRepository orderRepository;
@@ -21,6 +22,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     WxAccountService wxAccountService;
+
+    @Autowired
+    RewardService rewardService;
 
     /**
      * 创建订单
@@ -32,13 +36,16 @@ public class OrderServiceImpl implements OrderService{
         //创建当前时间对象，封装Order属性
         Date now = new Date();
         //创建id值
-        Integer id=null;now.getTime();
-        id= (int)(Math.random()*Integer.MAX_VALUE);
-
+        Integer id = null;
+        now.getTime();
+        id = (int) (Math.random() * Integer.MAX_VALUE);
+        if (order.getReward() < 10 || order.getReward() == null) {
+            order.setReward(10);
+        }
         //检查是否已经存在相同id的数据
-        Order oorder=orderRepository.findOrderById(id);
-        if(oorder!=null){
-            return false ;
+        Order oorder = orderRepository.findOrderById(id);
+        if (oorder != null) {
+            return false;
         }
 
         order.setOid(id);
@@ -46,8 +53,8 @@ public class OrderServiceImpl implements OrderService{
         //封装日志
         order.setCreated_Time(now);
         order.setModified_Time(now);
-        int insertNum=orderRepository.insertOrder(order);
-        return insertNum>0?true:false;
+        int insertNum = orderRepository.insertOrder(order);
+        return insertNum > 0 ? true : false;
     }
 
     /**
@@ -66,12 +73,12 @@ public class OrderServiceImpl implements OrderService{
         order.setModified_Time(now);
 
         //判断是否是未接单，若不是，则不能修改
-        if(order.getStatus() != 0){
+        if (order.getStatus() != 0) {
             return false;
         }
 
-        int updateNum=orderRepository.updateOrderById(order);
-        return updateNum>0?true:false;
+        int updateNum = orderRepository.updateOrderById(order);
+        return updateNum > 0 ? true : false;
     }
 
     /**
@@ -84,15 +91,15 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Notification acceptOrder(Integer orderId, String accepterId) {
         //查出对应订单信息
-        Order order=orderRepository.findOrderById(orderId);
+        Order order = orderRepository.findOrderById(orderId);
 
         //判断该订单数据是否存在
-        if(order == null){
+        if (order == null) {
             return null;
         }
 
         //判断订单状态是否合法
-        if(!isOrderAlive(order.getStatus())){
+        if (!isOrderAlive(order.getStatus())) {
             return null;
         }
 
@@ -108,7 +115,7 @@ public class OrderServiceImpl implements OrderService{
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(accepterId);
         //返回通知数据
-        return  createNotification(accepterId , order.getCreater_Id() ,accepter.getNick_Name()+"已接受你的订单");
+        return createNotification(accepterId, order.getCreater_Id(), accepter.getNick_Name() + "已接受你的订单");
     }
 
 
@@ -121,21 +128,21 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Notification deliveringOrder(Integer orderId) {
         //查出对应订单信息
-        Order order=orderRepository.findOrderById(orderId);
+        Order order = orderRepository.findOrderById(orderId);
 
         //判断该订单数据是否存在
-        if(order == null){
+        if (order == null) {
             return null;
         }
 
         //判断订单状态是否合法
-        if(!isOrderAlive(order.getStatus())){
+        if (!isOrderAlive(order.getStatus())) {
             return null;
         }
 
         //创建时间对象
         Date now = new Date();
-       //封装数据
+        //封装数据
         order.setStatus(2);
         order.setModified_Time(now);
         orderRepository.updateOrderById(order);
@@ -143,7 +150,7 @@ public class OrderServiceImpl implements OrderService{
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
 
-        return createNotification(order.getAccepter_Id() , order.getCreater_Id(), accepter.getNick_Name() + "正在为你送货中");
+        return createNotification(order.getAccepter_Id(), order.getCreater_Id(), accepter.getNick_Name() + "正在为你送货中");
     }
 
     /**
@@ -155,15 +162,15 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Notification receivedOrder(Integer orderId) {
         //查出对应订单信息
-        Order order=orderRepository.findOrderById(orderId);
+        Order order = orderRepository.findOrderById(orderId);
 
         //判断该订单数据是否存在
-        if(order == null){
+        if (order == null) {
             return null;
         }
 
         //判断订单状态是否合法
-        if(!isOrderAlive(order.getStatus())){
+        if (!isOrderAlive(order.getStatus())) {
             return null;
         }
 
@@ -175,9 +182,15 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.updateOrderById(order);
 
         //获取接单人用户信息
-        WxAccount accepter = wxAccountService.getWxAccountByOpenId( order.getCreater_Id());
-
-        return createNotification( order.getCreater_Id(), order.getAccepter_Id() ,accepter.getNick_Name() + "已经接收你完成的订单");
+        WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getCreater_Id());
+        Reward reward = new Reward();
+        reward.setOpen_Id(accepter.getOpen_Id());
+        reward.setDate(new Date());
+        reward.setChanged(order.getReward());
+        reward.setMatter("接单");
+        reward.setReward(rewardService.getLastChanged(accepter.getOpen_Id()).getReward()+order.getReward());
+        rewardService.change(reward);
+        return createNotification(order.getCreater_Id(), order.getAccepter_Id(), accepter.getNick_Name() + "已经接收你完成的订单");
     }
 
 
@@ -190,15 +203,15 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Notification cancelOrder(Integer orderId) {
         //查出对应订单信息
-        Order order=orderRepository.findOrderById(orderId);
+        Order order = orderRepository.findOrderById(orderId);
 
         //判断该订单数据是否存在
-        if(order == null){
+        if (order == null) {
             return null;
         }
 
         //判断订单状态是否合法
-        if(!isOrderAlive(order.getStatus())){
+        if (!isOrderAlive(order.getStatus())) {
             return null;
         }
 
@@ -210,9 +223,9 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.updateOrderById(order);
 
         //获取接单人用户信息
-        WxAccount accepter = wxAccountService.getWxAccountByOpenId( order.getAccepter_Id());
+        WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
 
-        return createNotification(  order.getAccepter_Id() ,order.getCreater_Id(),accepter.getNick_Name() + "取消了你的订单");
+        return createNotification(order.getAccepter_Id(), order.getCreater_Id(), accepter.getNick_Name() + "取消了你的订单");
 
     }
 
@@ -225,15 +238,15 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public boolean deleteOrder(Integer orderId) {
         //查出对应订单信息
-        Order order=orderRepository.findOrderById(orderId);
+        Order order = orderRepository.findOrderById(orderId);
 
         //判断该订单数据是否存在
-        if(order == null){
+        if (order == null) {
             return false;
         }
 
         //判断订单状态是否合法
-        if(!isOrderAlive(order.getStatus())){
+        if (!isOrderAlive(order.getStatus())) {
             return false;
         }
 
@@ -245,7 +258,7 @@ public class OrderServiceImpl implements OrderService{
         int row = orderRepository.updateOrderById(order);
 
 
-        return row == 1 ? true : false ;
+        return row == 1 ? true : false;
 
     }
 
@@ -257,8 +270,8 @@ public class OrderServiceImpl implements OrderService{
      * @return
      */
     @Override
-    public Order[] getOrderByCatalogAndOrderBy(int page, int size) {
-        return orderRepository.findOrderByStatus0(page,size);
+    public Order[] getOrderByCatalogAndOrderBy(String openId,int page, int size) {
+        return orderRepository.findOrderByStatus0(openId,page, size);
     }
 
     /**
@@ -271,7 +284,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Order[] getOrderByTitle(String title, int page, int size) {
-        return orderRepository.findOrderByTitle("%"+title+"%",page,size);
+        return orderRepository.findOrderByTitle("%" + title + "%", page, size);
     }
 
     /**
@@ -285,7 +298,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Order[] getOrderByCreaterOrAccepterId(String id, int status, int page, int size) {
-        return orderRepository.findOrderByCreaterIdOrAccepterIdAndStatus(id,status,page,size);
+        return orderRepository.findOrderByCreaterIdOrAccepterIdAndStatus(id, status, page, size);
     }
 
     /**
@@ -298,7 +311,7 @@ public class OrderServiceImpl implements OrderService{
      */
     @Override
     public Order[] getOrderByCreaterOrAccepterId(String id, int page, int size) {
-        return orderRepository.findOrderByCreaterIdOrAccepterId(id,page,size);
+        return orderRepository.findOrderByCreaterIdOrAccepterId(id, page, size);
     }
 
     /**
@@ -314,12 +327,13 @@ public class OrderServiceImpl implements OrderService{
 
     /**
      * 判断订单是否还可以合法修改订单状态
+     *
      * @param status
      * @return
      */
-    private boolean isOrderAlive (int status){
-        if(status == 6 && status == 5 && status == 4 && status == 3){
-            return  false;
+    private boolean isOrderAlive(int status) {
+        if (status == 6 && status == 5 && status == 4 && status == 3) {
+            return false;
         }
 
         return true;
@@ -327,12 +341,13 @@ public class OrderServiceImpl implements OrderService{
 
     /**
      * 创建通知数据
+     *
      * @param fromopenid
      * @param toopenid
      * @param msg
      * @return
      */
-    private Notification createNotification(String fromopenid , String toopenid, String msg){
+    private Notification createNotification(String fromopenid, String toopenid, String msg) {
         String title = "订单消息";
         //插入通知数据，并获得通知数据
         Notification notification = notificationService.insertNotification(fromopenid, toopenid, title, msg);

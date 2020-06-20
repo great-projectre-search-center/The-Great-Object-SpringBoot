@@ -5,6 +5,8 @@ import com.hdgs.great.object.repository.RewardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class RewardServiceImpl implements RewardService {
 
@@ -40,6 +42,17 @@ public class RewardServiceImpl implements RewardService {
      */
     @Override
     public Reward getLastChanged(String openid) {
+        Reward reward=rewardRepository.getLastChanged(openid);
+        if(reward==null){
+            Reward reward1=new Reward();
+            reward1.setOpen_Id(openid);
+            reward1.setCreated_Time(new Date());
+            reward1.setMatter("新用户");
+            reward1.setChanged(100);
+            reward1.setReward(100);
+            change(reward1);
+            getLastChanged(openid);
+        }
         return rewardRepository.getLastChanged(openid);
     }
 }

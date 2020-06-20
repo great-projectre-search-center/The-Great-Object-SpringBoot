@@ -76,7 +76,7 @@ public interface OrderService {
      * @param size
      * @return
      */
-    Order[] getOrderByCatalogAndOrderBy(int page, int size);
+    Order[] getOrderByCatalogAndOrderBy(String openId,int page, int size);
 
     /**
      * 根据订单名称模糊查询

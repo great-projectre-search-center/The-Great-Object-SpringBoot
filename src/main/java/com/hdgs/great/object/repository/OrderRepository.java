@@ -81,7 +81,7 @@ public interface OrderRepository {
      * @param size 每页的数量
      * @return 订单数据集合
      */
-    Order[] findOrderByStatus0(int page,int size);
+    Order[] findOrderByStatus0(String openId,int page,int size);
 
 
 }

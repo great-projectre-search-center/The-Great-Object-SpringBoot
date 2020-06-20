@@ -95,11 +95,11 @@ public class OrderController {
      * @return
      */
     @GetMapping("/list_status0")
-    public Order[] getMappingByCatalog(@RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
+    public Order[] getMappingByCatalog(@RequestParam(value = "openId", required = false, defaultValue = "1") String openId,
+                                       @RequestParam(value = "pageIndex", required = false, defaultValue = "1") int pageIndex,
                                        @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //执行查询
-        Order[] data = orderService.getOrderByCatalogAndOrderBy(pageIndex, pageSize);
-        int a=5;
+        Order[] data = orderService.getOrderByCatalogAndOrderBy(openId,pageIndex, pageSize);
         return data;
     }
 

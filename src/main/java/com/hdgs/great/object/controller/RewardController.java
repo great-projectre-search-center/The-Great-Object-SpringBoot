@@ -58,4 +58,17 @@ public class RewardController {
         return  data;
     }
 
+    @PostMapping("/exchange")
+    public JSONObject exchange(@RequestBody Reward reward){
+        reward.setReward(rewardService.getLastChanged(reward.getOpen_Id()).getReward()+reward.getChanged());
+
+        JSONObject response=new JSONObject();
+        if(reward.getChanged()<0){
+            response.put("isOK",false);
+            return response;
+        }
+        response.put("isOK",rewardService.change(reward));
+        return response;
+    }
+
 }
