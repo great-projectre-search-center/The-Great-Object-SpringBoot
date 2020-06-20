@@ -147,7 +147,7 @@
 		WHERE
 			 status=0 AND creater_id!=#{openId}
 		ORDER BY
-		 	c reate_Date
+		 	create_Date
 		DESC
 			limit ${(page-1)*size},${size}
 	</select>

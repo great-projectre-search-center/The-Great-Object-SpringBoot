@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <!-- namespace:该xml对应的哪个mapper接口 -->
 <mapper namespace="com.hdgs.great.object.repository.NotificationRepository">
@@ -51,7 +51,7 @@
 		FROM
 			t_notification
 		WHERE
-			from_uid=-1 AND from_Open_Id=0 AND to_Open_Id=#{to_Open_Id}
+			from_Open_Id="0" AND to_Open_Id=#{to_Open_Id}
 	</select>
 
 	<!-- 测试成功 -->
@@ -63,7 +63,7 @@
 		FROM
 			t_notification
 		WHERE
-			to_Open_Id=#{to_Open_Id}
+			to_Open_Id=#{to_Open_Id} AND from_Open_Id!="0"
 		ORDER BY nid DESC
 	</select>
 
