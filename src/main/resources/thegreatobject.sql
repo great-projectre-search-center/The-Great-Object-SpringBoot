@@ -39,11 +39,11 @@ CREATE TABLE `t_address` (
 -- ----------------------------
 -- Records of t_address
 -- ----------------------------
-INSERT INTO `t_address` VALUES ('1', '857', '一坨小甜甜', '13131375784', '江苏省', '徐州市', '贾汪区', '隔壁老王家', '2020-06-02 11:04:22', '系统管理员', '2020-06-02 11:04:33', '系统管理员', '2020-06-02 11:04:43');
-INSERT INTO `t_address` VALUES ('11', '555', 'juxing', '110', 'beijieng', 'beijing', 'beijing', 'jingdong', '2020-05-17 06:31:38', 'juxing', '2020-05-17 06:31:38', 'juxing', '2020-05-17 06:31:38');
-INSERT INTO `t_address` VALUES ('111', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '巨星', '13230301653', '河北省', '邯郸市', '邯山区', '巨星路154684号', null, 'juxing', '2020-06-02 03:38:38', 'juxing', '2020-06-02 03:38:38');
-INSERT INTO `t_address` VALUES ('113', null, 'jingfeng', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `t_address` VALUES ('120', '857', '测试数据', '13833335556', '北京市', '朝阳区', '北京一条街', '朝阳小区', '2020-06-27 00:23:56', '系统管理员', '2020-06-19 00:24:05', '系统管理员', '2020-06-21 00:24:09');
+-- INSERT INTO `t_address` VALUES ('1', '857', '一坨小甜甜', '13131375784', '江苏省', '徐州市', '贾汪区', '隔壁老王家', '2020-06-02 11:04:22', '系统管理员', '2020-06-02 11:04:33', '系统管理员', '2020-06-02 11:04:43');
+-- INSERT INTO `t_address` VALUES ('11', '555', 'juxing', '110', 'beijieng', 'beijing', 'beijing', 'jingdong', '2020-05-17 06:31:38', 'juxing', '2020-05-17 06:31:38', 'juxing', '2020-05-17 06:31:38');
+-- INSERT INTO `t_address` VALUES ('111', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '巨星', '13230301653', '河北省', '邯郸市', '邯山区', '巨星路154684号', null, 'juxing', '2020-06-02 03:38:38', 'juxing', '2020-06-02 03:38:38');
+-- INSERT INTO `t_address` VALUES ('113', null, 'jingfeng', null, null, null, null, null, null, null, null, null, null);
+-- INSERT INTO `t_address` VALUES ('120', '857', '测试数据', '13833335556', '北京市', '朝阳区', '北京一条街', '朝阳小区', '2020-06-27 00:23:56', '系统管理员', '2020-06-19 00:24:05', '系统管理员', '2020-06-21 00:24:09');
 
 -- ----------------------------
 -- Table structure for `t_appraise`
@@ -64,8 +64,8 @@ CREATE TABLE `t_appraise` (
 -- ----------------------------
 -- Records of t_appraise
 -- ----------------------------
-INSERT INTO `t_appraise` VALUES ('90910', '0', null, 'CDC等等', 'jingfeng', '2020-05-17 06:45:00', 'jingfeng', '2020-05-17 06:45:00');
-INSERT INTO `t_appraise` VALUES ('90912', '1', null, 'CDC等等', 'jingfeng', '2020-05-17 06:46:54', 'jingfeng', '2020-05-17 06:46:54');
+-- INSERT INTO `t_appraise` VALUES ('90910', '0', null, 'CDC等等', 'jingfeng', '2020-05-17 06:45:00', 'jingfeng', '2020-05-17 06:45:00');
+-- INSERT INTO `t_appraise` VALUES ('90912', '1', null, 'CDC等等', 'jingfeng', '2020-05-17 06:46:54', 'jingfeng', '2020-05-17 06:46:54');
 
 -- ----------------------------
 -- Table structure for `t_location`
@@ -109,17 +109,17 @@ CREATE TABLE `t_notification` (
 -- ----------------------------
 -- Records of t_notification
 -- ----------------------------
-INSERT INTO `t_notification` VALUES ('00000000001', '0', '-1', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '-1', 'Welcome', '欢迎来到帮跑跑', '', '2020-05-29 07:46:14', '', '2020-05-29 07:46:14');
-INSERT INTO `t_notification` VALUES ('00000000002', '0', '-1', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '-1', 'Welcome', '欢迎来到帮跑跑', '', '2020-05-29 07:50:18', '', '2020-05-29 07:50:18');
-INSERT INTO `t_notification` VALUES ('00000000003', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '1', null, '订单消息', 'ZZZXXXCCCWXY999已经接收你完成的订单', '1', '2020-06-07 05:49:04', '1', '2020-06-07 05:49:04');
-INSERT INTO `t_notification` VALUES ('00000000004', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999已接受你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:55:34', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:55:34');
-INSERT INTO `t_notification` VALUES ('00000000005', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:56:48', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:56:48');
-INSERT INTO `t_notification` VALUES ('00000000006', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:58:43', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:58:43');
-INSERT INTO `t_notification` VALUES ('00000000007', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-08 15:51:36', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-08 15:51:36');
-INSERT INTO `t_notification` VALUES ('00000000008', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-09 03:12:28', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-09 03:12:28');
-INSERT INTO `t_notification` VALUES ('00000000009', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:15:09', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:15:09');
-INSERT INTO `t_notification` VALUES ('00000000010', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:24:53', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:24:53');
-INSERT INTO `t_notification` VALUES ('00000000011', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999已经接收你完成的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37');
+-- INSERT INTO `t_notification` VALUES ('00000000001', '0', '-1', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '-1', 'Welcome', '欢迎来到帮跑跑', '', '2020-05-29 07:46:14', '', '2020-05-29 07:46:14');
+-- INSERT INTO `t_notification` VALUES ('00000000002', '0', '-1', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '-1', 'Welcome', '欢迎来到帮跑跑', '', '2020-05-29 07:50:18', '', '2020-05-29 07:50:18');
+-- INSERT INTO `t_notification` VALUES ('00000000003', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '1', null, '订单消息', 'ZZZXXXCCCWXY999已经接收你完成的订单', '1', '2020-06-07 05:49:04', '1', '2020-06-07 05:49:04');
+-- INSERT INTO `t_notification` VALUES ('00000000004', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999已接受你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:55:34', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:55:34');
+-- INSERT INTO `t_notification` VALUES ('00000000005', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:56:48', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:56:48');
+-- INSERT INTO `t_notification` VALUES ('00000000006', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:58:43', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-07 05:58:43');
+-- INSERT INTO `t_notification` VALUES ('00000000007', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-08 15:51:36', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-08 15:51:36');
+-- INSERT INTO `t_notification` VALUES ('00000000008', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-09 03:12:28', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-09 03:12:28');
+-- INSERT INTO `t_notification` VALUES ('00000000009', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:15:09', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:15:09');
+-- INSERT INTO `t_notification` VALUES ('00000000010', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999取消了你的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:24:53', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-13 16:24:53');
+-- INSERT INTO `t_notification` VALUES ('00000000011', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', null, '订单消息', 'ZZZXXXCCCWXY999已经接收你完成的订单', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37');
 
 -- ----------------------------
 -- Table structure for `t_order`
@@ -156,15 +156,15 @@ CREATE TABLE `t_order` (
 -- ----------------------------
 -- Records of t_order
 -- ----------------------------
-INSERT INTO `t_order` VALUES ('45776318', '777', '帮我取', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '77', '77', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:49:49', '2020-06-07 05:55:34', '顺丰快递', '777', '50', '7', '0', '10', '0000000003', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:49:49', '', '2020-06-15 04:58:37');
-INSERT INTO `t_order` VALUES ('54089096', '6', '帮我取', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '6', '6', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:34:15', '2020-06-01 16:35:33', '顺丰快递', '6', '50', '6', '0', '10', '0000000006', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:34:15', '', '2020-06-01 16:52:06');
-INSERT INTO `t_order` VALUES ('67128819', '3', '帮我取', '88', '3', '3', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:27:02', '2020-06-01 16:27:20', '顺丰快递', '3', '50', '3', '0', '10', '0000000003', '88', '2020-06-01 16:27:02', '', '2020-06-01 16:36:47');
-INSERT INTO `t_order` VALUES ('168253069', null, '恶心的订单', null, null, null, null, null, null, null, null, '2020-06-07 05:38:58', null, null, null, null, null, null, null, null, null, '2020-06-07 05:38:58', null, '2020-06-07 05:38:58');
-INSERT INTO `t_order` VALUES ('337240856', '1', '帮我取', '88', '1', '1', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:26:36', '2020-06-01 16:35:47', '顺丰快递', '1', '50', '1', '0', '10', '0000000003', '88', '2020-06-01 16:26:36', '', '2020-06-01 16:37:02');
-INSERT INTO `t_order` VALUES ('1006422505', '2', '帮我取', '88', '2', '2', '0', '0', '0', '0', '1', '2020-06-01 16:26:47', '0000-00-00 00:00:00', '顺丰快递', '2', '50', '2', '0', '10', '0000000000', '88', '2020-06-01 16:26:47', '', '2020-06-01 16:26:47');
-INSERT INTO `t_order` VALUES ('1187820787', '5', '帮我取', '88', '5', '5', '0', '0', '0', '0', '1', '2020-06-01 16:32:34', '0000-00-00 00:00:00', '顺丰快递', '5', '50', '5', '0', '10', '0000000000', '88', '2020-06-01 16:32:34', '', '2020-06-01 16:32:34');
-INSERT INTO `t_order` VALUES ('1743869185', '8', '帮我取', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '8', '8', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:50:08', '2020-06-01 16:50:18', '顺丰快递', '8', '50', '', '0', '10', '0000000003', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:50:08', '', '2020-06-01 17:08:00');
-INSERT INTO `t_order` VALUES ('2068860635', '4', '帮我取', '88', '4', '4', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:28:41', '2020-06-01 16:41:03', '顺丰快递', '4', '50', '4', '0', '10', '0000000003', '88', '2020-06-01 16:28:41', '', '2020-06-01 17:08:15');
+-- INSERT INTO `t_order` VALUES ('45776318', '777', '帮我取', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '77', '77', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:49:49', '2020-06-07 05:55:34', '顺丰快递', '777', '50', '7', '0', '10', '0000000003', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:49:49', '', '2020-06-15 04:58:37');
+-- INSERT INTO `t_order` VALUES ('54089096', '6', '帮我取', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '6', '6', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:34:15', '2020-06-01 16:35:33', '顺丰快递', '6', '50', '6', '0', '10', '0000000006', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:34:15', '', '2020-06-01 16:52:06');
+-- INSERT INTO `t_order` VALUES ('67128819', '3', '帮我取', '88', '3', '3', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:27:02', '2020-06-01 16:27:20', '顺丰快递', '3', '50', '3', '0', '10', '0000000003', '88', '2020-06-01 16:27:02', '', '2020-06-01 16:36:47');
+-- INSERT INTO `t_order` VALUES ('168253069', null, '恶心的订单', null, null, null, null, null, null, null, null, '2020-06-07 05:38:58', null, null, null, null, null, null, null, null, null, '2020-06-07 05:38:58', null, '2020-06-07 05:38:58');
+-- INSERT INTO `t_order` VALUES ('337240856', '1', '帮我取', '88', '1', '1', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:26:36', '2020-06-01 16:35:47', '顺丰快递', '1', '50', '1', '0', '10', '0000000003', '88', '2020-06-01 16:26:36', '', '2020-06-01 16:37:02');
+-- INSERT INTO `t_order` VALUES ('1006422505', '2', '帮我取', '88', '2', '2', '0', '0', '0', '0', '1', '2020-06-01 16:26:47', '0000-00-00 00:00:00', '顺丰快递', '2', '50', '2', '0', '10', '0000000000', '88', '2020-06-01 16:26:47', '', '2020-06-01 16:26:47');
+-- INSERT INTO `t_order` VALUES ('1187820787', '5', '帮我取', '88', '5', '5', '0', '0', '0', '0', '1', '2020-06-01 16:32:34', '0000-00-00 00:00:00', '顺丰快递', '5', '50', '5', '0', '10', '0000000000', '88', '2020-06-01 16:32:34', '', '2020-06-01 16:32:34');
+-- INSERT INTO `t_order` VALUES ('1743869185', '8', '帮我取', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '8', '8', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:50:08', '2020-06-01 16:50:18', '顺丰快递', '8', '50', '', '0', '10', '0000000003', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:50:08', '', '2020-06-01 17:08:00');
+-- INSERT INTO `t_order` VALUES ('2068860635', '4', '帮我取', '88', '4', '4', '0', '0', '0', '0', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-01 16:28:41', '2020-06-01 16:41:03', '顺丰快递', '4', '50', '4', '0', '10', '0000000003', '88', '2020-06-01 16:28:41', '', '2020-06-01 17:08:15');
 
 -- ----------------------------
 -- Table structure for `t_reward`
@@ -187,11 +187,11 @@ CREATE TABLE `t_reward` (
 -- ----------------------------
 -- Records of t_reward
 -- ----------------------------
-INSERT INTO `t_reward` VALUES ('00000000003', 'aaa', '2020-06-02 07:16:47', '加分了！！！！', '100', '0', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
-INSERT INTO `t_reward` VALUES ('00000000004', 'aaa', '2020-06-07 06:06:09', '加分了！！！！', '100', '0', null, null, null, null);
-INSERT INTO `t_reward` VALUES ('00000000005', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 03:44:37', '新用户的初始积分', '100', '100', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 03:44:37', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 03:44:37');
-INSERT INTO `t_reward` VALUES ('00000000006', 'aaa', '2020-06-15 04:55:50', '加分了！！！！', '100', '0', null, null, null, null);
-INSERT INTO `t_reward` VALUES ('00000000007', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37', '接受订单完成的奖励积分', '10', '110', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37');
+-- INSERT INTO `t_reward` VALUES ('00000000003', 'aaa', '2020-06-02 07:16:47', '加分了！！！！', '100', '0', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+-- INSERT INTO `t_reward` VALUES ('00000000004', 'aaa', '2020-06-07 06:06:09', '加分了！！！！', '100', '0', null, null, null, null);
+-- INSERT INTO `t_reward` VALUES ('00000000005', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 03:44:37', '新用户的初始积分', '100', '100', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 03:44:37', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 03:44:37');
+-- INSERT INTO `t_reward` VALUES ('00000000006', 'aaa', '2020-06-15 04:55:50', '加分了！！！！', '100', '0', null, null, null, null);
+-- INSERT INTO `t_reward` VALUES ('00000000007', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37', '接受订单完成的奖励积分', '10', '110', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '2020-06-15 04:58:37');
 
 -- ----------------------------
 -- Table structure for `t_wx_user`
@@ -218,5 +218,5 @@ CREATE TABLE `t_wx_user` (
 -- ----------------------------
 -- Records of t_wx_user
 -- ----------------------------
-INSERT INTO `t_wx_user` VALUES ('1', '123', '', '123', '', null, null, null, null, null, null, null, null, null);
-INSERT INTO `t_wx_user` VALUES ('2', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '', 'ZZZXXXCCCWXY999', null, '1', 'China', 'Hebei', 'Handan', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJyeUkf7UcgtyE1qj0PO2tZicZ4AtSQKtliaLU6iculltBict3prXmCA5bzGF5CbD7Dbdnan78v29yd4A/132', null, null, null, null);
+-- INSERT INTO `t_wx_user` VALUES ('1', '123', '', '123', '', null, null, null, null, null, null, null, null, null);
+-- INSERT INTO `t_wx_user` VALUES ('2', 'oV9m45b5S1RGPf6gTCXu3a5dAgF4', '', 'ZZZXXXCCCWXY999', null, '1', 'China', 'Hebei', 'Handan', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJyeUkf7UcgtyE1qj0PO2tZicZ4AtSQKtliaLU6iculltBict3prXmCA5bzGF5CbD7Dbdnan78v29yd4A/132', null, null, null, null);

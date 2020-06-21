@@ -115,7 +115,7 @@ public class OrderServiceImpl implements OrderService {
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(accepterId);
         //返回通知数据
-        return createNotification(accepterId, order.getCreater_Id(), accepter.getNick_Name() + "已接受你的订单");
+        return notificationService.insertNotification(accepterId, order.getCreater_Id(), "接单通知",accepter.getNick_Name() + "已接受你的订单");
     }
 
 
@@ -150,7 +150,7 @@ public class OrderServiceImpl implements OrderService {
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
 
-        return createNotification(order.getAccepter_Id(), order.getCreater_Id(), accepter.getNick_Name() + "正在为你送货中");
+        return notificationService.insertNotification(order.getAccepter_Id(), order.getCreater_Id(),"",accepter.getNick_Name() + "正在为你送货中");
     }
 
     /**
@@ -184,13 +184,13 @@ public class OrderServiceImpl implements OrderService {
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getCreater_Id());
         Reward reward = new Reward();
-        reward.setOpen_Id(accepter.getOpen_Id());
+        reward.setOpen_Id(order.getAccepter_Id());
         reward.setDate(new Date());
         reward.setChanged(order.getReward());
         reward.setMatter("接单");
-        reward.setReward(rewardService.getLastChanged(accepter.getOpen_Id()).getReward()+order.getReward());
+        reward.setReward(rewardService.getLastChanged(order.getAccepter_Id()).getReward()+order.getReward());
         rewardService.change(reward);
-        return createNotification(order.getCreater_Id(), order.getAccepter_Id(), accepter.getNick_Name() + "已经接收你完成的订单");
+        return notificationService.insertNotification(order.getCreater_Id(), order.getAccepter_Id(), "确认收货通知",accepter.getNick_Name() + "已经接收你完成的订单");
     }
 
 
@@ -225,7 +225,7 @@ public class OrderServiceImpl implements OrderService {
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
 
-        return createNotification(order.getAccepter_Id(), order.getCreater_Id(), accepter.getNick_Name() + "取消了你的订单");
+        return notificationService.insertNotification(order.getAccepter_Id(), order.getCreater_Id(),"取消订单通知", accepter.getNick_Name() + "取消了你的订单");
 
     }
 
@@ -347,12 +347,12 @@ public class OrderServiceImpl implements OrderService {
      * @param msg
      * @return
      */
-    private Notification createNotification(String fromopenid, String toopenid, String msg) {
-        String title = "订单消息";
-        //插入通知数据，并获得通知数据
-        Notification notification = notificationService.insertNotification(fromopenid, toopenid, title, msg);
-        //返回通知数据
-        return notification;
-    }
+//    private Notification createNotification(String fromopenid, String toopenid, String msg) {
+//        String title = "订单消息";
+//        //插入通知数据，并获得通知数据
+//        Notification notification = notificationService.insertNotification(fromopenid, toopenid, title, msg);
+//        //返回通知数据
+//        return notification;
+//    }
 
 }

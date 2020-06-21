@@ -2,8 +2,10 @@ package com.hdgs.great.object.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdgs.great.object.domain.Reward;
+import com.hdgs.great.object.service.NotificationService;
 import com.hdgs.great.object.service.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,6 +19,8 @@ public class RewardController {
     @Autowired
     RewardService rewardService;
 
+    @Autowired
+    NotificationService notificationService;
     /**
      * 获取最后一次积分变动信息
      * @param openid
@@ -63,12 +67,18 @@ public class RewardController {
         reward.setReward(rewardService.getLastChanged(reward.getOpen_Id()).getReward()+reward.getChanged());
 
         JSONObject response=new JSONObject();
-        if(reward.getChanged()<0){
+        if(reward.getReward()<0){
             response.put("isOK",false);
             return response;
         }
-        response.put("isOK",rewardService.change(reward));
+        boolean result=rewardService.change(reward) ;
+        if(result){
+
+            response.put("isOK",result);
+            notificationService.insertSystemNotification(reward.getOpen_Id(),"礼品兑换通知","您已兑换礼品，发货之后将会以短信通知您");
+        }
         return response;
     }
+
 
 }
