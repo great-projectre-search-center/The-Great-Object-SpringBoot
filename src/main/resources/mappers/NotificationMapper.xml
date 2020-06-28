@@ -78,6 +78,13 @@
 		WHERE
 			nid=#{nid}
 	</select>
-
+	<update id="readNotification">
+		UPDATE
+			t_notification
+		SET
+			read=1
+		WHERE
+			nid=#{nid}
+	</update>
 
 </mapper>

@@ -21,6 +21,7 @@ public class Notification {
     private String to_Open_Id;
     private String title;
     private String message;
+    private int read;
 
     //日志字段
     private String created_User;

@@ -47,4 +47,10 @@ public interface NotificationRepository {
      */
     Notification findById(Integer nid);
 
+    /**
+     * 将一条消息设为已读
+     * @param nid
+     * @return
+     */
+    Integer readNotification(Integer nid);
 }

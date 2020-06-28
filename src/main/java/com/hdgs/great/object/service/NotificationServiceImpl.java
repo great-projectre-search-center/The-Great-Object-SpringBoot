@@ -115,7 +115,7 @@ public class NotificationServiceImpl implements NotificationService {
     public JSONObject getNotificationById(int notificationid) {
         Notification notification = notificationRepository.findById(notificationid);
         JSONObject responsejson = new JSONObject();
-
+        notificationRepository.readNotification(notificationid);
         String fromopid = notification.getFrom_Open_Id();
         WxAccount fromwxAccount = wxAccountRepository.findByOpenid(fromopid);
         responsejson.put("notificationid", notification.getNid());
