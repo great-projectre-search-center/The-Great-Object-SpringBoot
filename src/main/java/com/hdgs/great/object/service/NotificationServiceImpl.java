@@ -100,6 +100,7 @@ public class NotificationServiceImpl implements NotificationService {
             }
             temp.put("title",notification.getTitle());
             temp.put("msg", notification.getMessage());
+            temp.put("read",notification.getRead());
             responsejson.add(temp);
         }
         return responsejson;
@@ -143,6 +144,7 @@ public class NotificationServiceImpl implements NotificationService {
                 temp.put("fromavatarurl", "/sysimg/sysnotification.png");
             temp.put("title",notification.getTitle());
             temp.put("msg", notification.getMessage());
+            temp.put("read",notification.getRead());
             responsejson.add(temp);
         }
         return responsejson;
