@@ -56,4 +56,10 @@ public interface NotificationService {
      * @return
      */
     public ArrayList<JSONObject> getAllSystemNotification(String to_Open_Id);
+
+    /**
+     *  消息已读
+     * @param  nid 通知数据的id
+     */
+    public boolean read(Integer nid);
 }

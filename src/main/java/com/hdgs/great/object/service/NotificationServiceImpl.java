@@ -149,6 +149,15 @@ public class NotificationServiceImpl implements NotificationService {
         }
         return responsejson;
     }
+
+    @Override
+    public  boolean read(Integer nid) {
+        Integer row = notificationRepository.readNotification(nid);
+        if(row != 1){
+            return false;
+        }
+        return true;
+    }
 }
 
 /*

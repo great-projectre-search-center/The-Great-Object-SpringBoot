@@ -30,7 +30,11 @@ public class OrderServiceTests {
     //成功
     @Test
     public void receivedOrder() {
-        orderService.receivedOrder(45776318);
+        System.out.println("*********************************************");
+
+        Notification notification = orderService.receivedOrder(45776318);
+        System.out.println(notification);
+        System.out.println("*********************************************");
     }
     /*
     //成功

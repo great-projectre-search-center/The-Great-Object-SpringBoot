@@ -90,4 +90,17 @@ public class NotificationController {
         responseJSON.put("isOk", notification);
         return responseJSON;
     }
+
+    /**
+     * 消息已读
+     * @param nid
+     * @return
+     */
+    @PostMapping("/nid/readnotification")
+    public JSONObject readNotification(@PathVariable("nid") Integer nid){
+        boolean result =notificationService.read(nid);
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOk", result);
+        return responseJSON;
+    }
 }

@@ -49,9 +49,12 @@ public class NotificationServiceTests {
 
     @Test
     public void getAllSystemNotification() {
-        ArrayList<JSONObject> data = notificationService.getAllSystemNotification("1");
+        ArrayList<JSONObject> data = notificationService.getAllSystemNotification("oV9m45b5S1RGPf6gTCXu3a5dAgF4");
         for (int i = 0 ; i < data.size() ; i++){
+            System.out.println("*******************************************************");
             System.out.println(data.get(i));
+            System.out.println("*******************************************************");
+
         }
     }
 }

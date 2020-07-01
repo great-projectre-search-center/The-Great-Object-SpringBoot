@@ -186,6 +186,19 @@ public class OrderController {
         return responseJSON;
     }
 
+
+    /*
+    @GetMapping("/receive")
+    public JSONObject receive(Integer orderId) {
+        Notification result = orderService.receivedOrder(orderId);
+        //响应
+        JSONObject responseJSON = new JSONObject();
+        responseJSON.put("isOK", result);
+        return responseJSON;
+    }
+
+     */
+
     /**
      * 取消订单
      * @param jsonObject

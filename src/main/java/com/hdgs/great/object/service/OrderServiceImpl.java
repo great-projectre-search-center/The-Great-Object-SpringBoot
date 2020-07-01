@@ -114,6 +114,9 @@ public class OrderServiceImpl implements OrderService {
 
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(accepterId);
+        if(accepter == null) {
+            return null;
+        }
         //返回通知数据
         return notificationService.insertNotification(accepterId, order.getCreater_Id(), "接单通知",accepter.getNick_Name() + "已接受你的订单");
     }
@@ -150,6 +153,10 @@ public class OrderServiceImpl implements OrderService {
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
 
+        if(accepter == null) {
+            return null;
+        }
+
         return notificationService.insertNotification(order.getAccepter_Id(), order.getCreater_Id(),"",accepter.getNick_Name() + "正在为你送货中");
     }
 
@@ -183,6 +190,11 @@ public class OrderServiceImpl implements OrderService {
 
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getCreater_Id());
+
+        if(accepter == null) {
+            return null;
+        }
+
         Reward reward = new Reward();
         reward.setOpen_Id(order.getAccepter_Id());
         reward.setDate(new Date());
@@ -224,6 +236,9 @@ public class OrderServiceImpl implements OrderService {
 
         //获取接单人用户信息
         WxAccount accepter = wxAccountService.getWxAccountByOpenId(order.getAccepter_Id());
+        if(accepter == null) {
+            return null;
+        }
 
         return notificationService.insertNotification(order.getAccepter_Id(), order.getCreater_Id(),"取消订单通知", accepter.getNick_Name() + "取消了你的订单");
 
