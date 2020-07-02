@@ -13,13 +13,13 @@
 		    to_Open_Id,
 		    title,message,
 		    created_User,created_Time,
-			modified_User,modified_Time
+			modified_User,modified_Time,`read`
 		) VALUES (
 		    #{from_Open_Id},
 		    #{to_Open_Id},
 		    #{title},#{message},
 		    #{created_User},#{created_Time},
-			#{modified_User},#{modified_Time}
+			#{modified_User},#{modified_Time},0
 		)
 	</insert>
 
@@ -82,7 +82,7 @@
 		UPDATE
 			t_notification
 		SET
-			read=1
+			`read`=1
 		WHERE
 			nid=#{nid}
 	</update>
